@@ -16,7 +16,8 @@ from torchattacks import *
 import datetime
 import hashlib
 from initializeDatasets import encryptFilesAndStore, decryptFilesAndVerify
-
+from itertools import chain, combinations
+import threading
 
 # Some suggestions of our libraries that might be helpful for this project
 #from collections import Counter          # an even easier way to count
@@ -121,7 +122,8 @@ def train(modelInp, optimizerInp, epoch, saveModel):
     print("Epoch = {}, Training Accuracy = {}".format(epoch, accuracy))
 
 
-def test(modelInp, test_loader_arg, attackGeneratorList=None):
+def test(modelInp, test_loader_arg, attackGeneratorList=None, attackNameList=''):
+    begin_time = datetime.datetime.now()
     modelInp.eval()
     test_loss = 0
     correct = 0
@@ -146,8 +148,9 @@ def test(modelInp, test_loader_arg, attackGeneratorList=None):
         test_loss /= len(test_loader_arg)
     test_losses.append(test_loss)
 
-    print("Test accuracy: {}".format(accuracy))
-
+    print("Attacking with: {} \n Test accuracy: {}\n Execution time: {} \n ################################################################################"
+          .format(attackNameList, accuracy, (datetime.datetime.now() - begin_time)))
+    #print("Execution time - ", datetime.datetime.now() - begin_time)
     return accuracy
 
 
@@ -223,17 +226,29 @@ if __name__ == '__main__':
         train(networkOriginal, optimizerOriginal, epoch, undefended_model_path)
         test(networkOriginal, test_loader)
 
+    epsilonSmall    = 0.05
+    epsilonMiddle   = 0.1
+    epsilonLarge    = 0.15
+
+    epsilonUse = epsilonSmall
+
     attackDict = {
         "DeepFool"  :   DeepFool(model, steps=10),  # used to be 1000 steps
-        "FGSM"      :   FGSM(model, eps=0.05),
-        "PGD"       :   PGD(model, eps=0.05, alpha=0.5, steps=7, random_start=True),
+        "FGSM"      :   FGSM(model, eps=epsilonUse),
+        "PGD"       :   PGD(model, eps=epsilonUse, alpha=0.5, steps=7, random_start=True),
         "CW"        :   CW(model, c=100, lr=0.01, steps=10, kappa=10),  # used to be 1000 steps,
-        "FFGSM"     :   FFGSM(model, eps=0.25, alpha=0.1),
-        "VANILA"    :   VANILA(model),
-        "APGD"      :   APGD(model, eps=0.05, steps=100, eot_iter=1, n_restarts=1, loss='ce'),
+        #"FFGSM"     :   FFGSM(model, eps=epsilonUse, alpha=0.1),
+        #"VANILA"    :   VANILA(model),
+        #"APGD"      :   APGD(model, eps=epsilonUse, steps=100, eot_iter=1, n_restarts=1, loss='ce'),
         #"AutoAttack":  AutoAttack(model, eps=0.05, n_classes=10, version='standard'),
-        "DIFGSM"    :   DIFGSM(model, eps=0.05, alpha=2 / 255, steps=100, diversity_prob=0.5, resize_rate=0.9)
+        #"DIFGSM"    :   DIFGSM(model, eps=epsilonUse, alpha=2 / 255, steps=100, diversity_prob=0.5, resize_rate=0.9),
+        "FAB1"      :   FAB(model, eps=epsilonUse, steps=10, n_classes=10, n_restarts=1, targeted=False), #steps used to be 100
+        "FAB2"      :   FAB(model, eps=epsilonUse, steps=10, n_classes=10, n_restarts=1, targeted=True)
     }
+
+
+
+
 
     print("################################################################################")
     print("Training Summary - ")
@@ -242,36 +257,47 @@ if __name__ == '__main__':
     print("################################################################################")
 
     flgAttackIndv = False
-
+    threadPool = []
     if flgAttackIndv:
         for attack in list(attackDict.keys()):
-            print("Attacking model with adversarial images from ", attack)
-            begin_time = datetime.datetime.now()
-            test(networkOriginal, test_loader, [attackDict[attack]])
-            print(".....^ Execution time - ", datetime.datetime.now() - begin_time)
+            #print("Attacking model with adversarial images from ", attack)
+            #begin_time = datetime.datetime.now()
+            threadInst = threading.Thread(target=test,
+                                          args=(networkOriginal, test_loader, [attackDict[attack]], attack,))
+            threadPool.append(threadInst)
+            #test(networkOriginal, test_loader, [attackDict[attack]])
+            #print(".....^ Execution time - ", datetime.datetime.now() - begin_time)
     else:
-        #trying combinatorial attacks
-        print("Attacking with a combination of FGSM and PGD and Deepfool")
-        begin_time = datetime.datetime.now()
-        test(networkOriginal, test_loader, [attackDict["FGSM"],
-                                            attackDict["PGD"],
-                                            attackDict["DeepFool"]])
-        print(".....^ Execution time - ", datetime.datetime.now() - begin_time)
+        attackKeys = list(attackDict.keys())
+        for itr, attackSet in enumerate(chain.from_iterable(combinations(attackKeys, r) for r in range(len(attackKeys) + 1)), 1):
+            attackModelList = []
+            attackNameList = []
+            for attackX in list(attackSet):
+                attackNameList.append(attackX)
+                attackModelList.append(attackDict[attackX])
 
-        print("Attacking with a combination of FFGSM and PGD")
-        begin_time = datetime.datetime.now()
-        test(networkOriginal, test_loader, [attackDict["FFGSM"],
-                                            attackDict["PGD"]])
+            # trying combinatorial attacks
 
-        print(".....^ Execution time - ", datetime.datetime.now() - begin_time)
+            print("################################################################################")
+            #print("Attacking with a combination of ", attackNameList)
+            #begin_time = datetime.datetime.now()
+            threadInst = threading.Thread(target=test,
+                                          args=(networkOriginal, test_loader, attackModelList, attackNameList,))
+            threadPool.append(threadInst)
+            #test(networkOriginal, test_loader, attackModelList, attackNameList)
+            #print("Execution time - ", datetime.datetime.now() - begin_time)
+            print("################################################################################")
 
-        print("Attacking with a combination of FFGSM, PGD and DeepFool")
-        begin_time = datetime.datetime.now()
-        test(networkOriginal, test_loader, [attackDict["FFGSM"],
-                                            attackDict["PGD"],
-                                            attackDict["DeepFool"]])
+    for threadX in threadPool:
+        threadX.start()
+    print("################################################################################")
+    for threadX in threadPool:
+        threadX.join()
 
-        print(".....^ Execution time - ", datetime.datetime.now() - begin_time)
+
+
+
+
 
 
 
