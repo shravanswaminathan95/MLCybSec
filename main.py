@@ -91,7 +91,12 @@ class Net(nn.Module):
         return F.log_softmax(x)
 
 
-
+#class myPyAttackThread(threading.Thread):
+#    def __init__(self, threadId, attackSet):
+#        threading.Thread.__init__(self)
+#        self.threadId = threadId
+#        self.attackSet = attackSet
+#        self.attackDepth = len(list(attackSet))
 
 
 
@@ -242,8 +247,8 @@ if __name__ == '__main__':
         #"APGD"      :   APGD(model, eps=epsilonUse, steps=100, eot_iter=1, n_restarts=1, loss='ce'),
         #"AutoAttack":  AutoAttack(model, eps=0.05, n_classes=10, version='standard'),
         #"DIFGSM"    :   DIFGSM(model, eps=epsilonUse, alpha=2 / 255, steps=100, diversity_prob=0.5, resize_rate=0.9),
-        "FAB1"      :   FAB(model, eps=epsilonUse, steps=10, n_classes=10, n_restarts=1, targeted=False), #steps used to be 100
-        "FAB2"      :   FAB(model, eps=epsilonUse, steps=10, n_classes=10, n_restarts=1, targeted=True)
+        "FAB"      :   FAB(model, eps=epsilonUse, steps=10, n_classes=10, n_restarts=1, targeted=False), #steps used to be 100
+        #"FAB2"      :   FAB(model, eps=epsilonUse, steps=10, n_classes=10, n_restarts=1, targeted=True)
     }
 
 
@@ -258,41 +263,69 @@ if __name__ == '__main__':
 
     flgAttackIndv = False
     threadPool = []
+    attackThreadPoolDict = {}
     if flgAttackIndv:
         for attack in list(attackDict.keys()):
-            #print("Attacking model with adversarial images from ", attack)
-            #begin_time = datetime.datetime.now()
             threadInst = threading.Thread(target=test,
                                           args=(networkOriginal, test_loader, [attackDict[attack]], attack,))
             threadPool.append(threadInst)
-            #test(networkOriginal, test_loader, [attackDict[attack]])
-            #print(".....^ Execution time - ", datetime.datetime.now() - begin_time)
+
     else:
         attackKeys = list(attackDict.keys())
+
+        #Initializing threading helper dict
+        for i in range(len(attackKeys)):
+            attackThreadPoolDict[i+1] = []
+
+        #enumerate(chain.from_iterable(combinations(attackKeys, r) for r in range(len(attackKeys) + 1)), 1)
         for itr, attackSet in enumerate(chain.from_iterable(combinations(attackKeys, r) for r in range(len(attackKeys) + 1)), 1):
-            attackModelList = []
-            attackNameList = []
-            for attackX in list(attackSet):
-                attackNameList.append(attackX)
-                attackModelList.append(attackDict[attackX])
+            if attackSet:
+                print("Generated attack set: {}".format(attackSet))
+                attackModelList = []
+                attackNameList = []
+                for attackX in list(attackSet):
+                    attackNameList.append(attackX)
+                    attackModelList.append(attackDict[attackX])
+                # trying combinatorial attacks
+                threadInst = threading.Thread(target=test,
+                                              args=(networkOriginal, test_loader, attackModelList, attackNameList,))
+                attackThreadPoolDict[len(list(attackSet))].append(threadInst)
 
-            # trying combinatorial attacks
 
+
+
+
+
+
+    n = 4
+    flgUseChunks = False
+    threadPoolChunks = [threadPool[i*n:(i+1)*n] for i in range((len(threadPool)+n-1)//n)]
+
+    if flgUseChunks:
+        for chunkX in threadPoolChunks:
+            for threadX in chunkX:
+                threadX.start()
+            #incomplete
+    else:
+        print(
+            "Starting threads for generating adversarial samples... \n .....The command line might be dead for a while")
+        #Threads are used to execute the adversarial set computation.
+        #Threads are grouped with the number of cascaded attacks in order to make the join more efficient
+        #A simple asscending order of attack depth would also work. Attack depth = number of cascaded layers in the attack
+        for attackDepth in list(attackThreadPoolDict.keys()):
+            print("Generating adversarial samples for {} cascaded attacks".format(attackDepth))
+            for threadX in attackThreadPoolDict[attackDepth]:
+                threadX.start()
             print("################################################################################")
-            #print("Attacking with a combination of ", attackNameList)
-            #begin_time = datetime.datetime.now()
-            threadInst = threading.Thread(target=test,
-                                          args=(networkOriginal, test_loader, attackModelList, attackNameList,))
-            threadPool.append(threadInst)
-            #test(networkOriginal, test_loader, attackModelList, attackNameList)
-            #print("Execution time - ", datetime.datetime.now() - begin_time)
-            print("################################################################################")
+            for threadX in attackThreadPoolDict[attackDepth]:
+                threadX.join()
 
-    for threadX in threadPool:
-        threadX.start()
-    print("################################################################################")
-    for threadX in threadPool:
-        threadX.join()
+        #print("Starting threads for generating adversarial samples... \n .....The command line might be dead for a while")
+        #for threadX in threadPool:
+        #    threadX.start()
+        #print("################################################################################")
+        #for threadX in threadPool:
+        #    threadX.join()
 
 
 
