@@ -18,6 +18,7 @@ import hashlib
 from initializeDatasets import encryptFilesAndStore, decryptFilesAndVerify
 from itertools import chain, combinations
 import threading
+from threading import Thread, Lock
 
 # Some suggestions of our libraries that might be helpful for this project
 #from collections import Counter          # an even easier way to count
@@ -41,6 +42,9 @@ from torch.utils.data import DataLoader, Dataset, TensorDataset
 from torch.utils.data.sampler import SubsetRandomSampler
 from torch.autograd import Variable
 
+
+dictTestParams = []
+dictTestParamsMutex = Lock()
 
 # (2)define model
 # Model with no dropout
@@ -102,7 +106,7 @@ class Net(nn.Module):
 
 # (3)define loss, optimizer
 # Training function for all networks
-def train(modelInp, optimizerInp, epoch, saveModel):
+def train(modelInp, optimizerInp, epoch, saveModel, attackGeneratorList=None):
     modelInp.train()
     correct = 0
     for batch_idx, (data, target) in enumerate(train_loader):
@@ -127,7 +131,40 @@ def train(modelInp, optimizerInp, epoch, saveModel):
     print("Epoch = {}, Training Accuracy = {}".format(epoch, accuracy))
 
 
-def test(modelInp, test_loader_arg, attackGeneratorList=None, attackNameList=''):
+#This function is fucked up and against the idea of loading model from repo
+def trainWithAdversary(modelInp, optimizerInp, epoch, saveModel, attackGeneratorList=None):
+    modelInp.train()
+    correct = 0
+    for batch_idx, (dataX, target) in enumerate(train_loader):
+        #data.requires_grad = True
+        dataTmp = dataX
+        if attackGeneratorList is None:
+            attackGeneratorList = []
+
+        attackGeneratorList.append("NoAttack")
+        for attackType in attackGeneratorList:
+            if attackType != "NoAttack":
+                dataTmp = attackType(dataTmp, target)
+            optimizerInp.zero_grad()
+            output = modelInp(dataTmp)
+            loss = F.nll_loss(output, target)
+            loss.backward()
+            optimizerInp.step()
+            pred = output.data.max(1, keepdim=True)[1]
+            correct += pred.eq(target.data.view_as(pred)).sum()
+            if batch_idx % log_interval == 0:
+                #print('Network:Train Epoch: {} [{}/{} ({:.0f}%)]\tLoss: {:.6f}'.format(
+                #    epoch, batch_idx * len(data), len(train_loader.dataset),
+                #           100. * batch_idx / len(train_loader), loss.item()))
+                train_losses.append(loss.item())
+                train_counter.append(
+                    (batch_idx * 64) + ((epoch - 1) * len(train_loader.dataset)))
+                torch.save(modelInp.state_dict(), saveModel)
+    accuracy = 100 * correct / len(train_loader.dataset)
+    train_acc.append(accuracy)
+    print("Epoch = {}, Training Accuracy = {}".format(epoch, accuracy))
+
+def test(modelInp, test_loader_arg, attackGeneratorList=None, attackNameList='', id=0):
     begin_time = datetime.datetime.now()
     modelInp.eval()
     test_loss = 0
@@ -153,12 +190,92 @@ def test(modelInp, test_loader_arg, attackGeneratorList=None, attackNameList='')
         test_loss /= len(test_loader_arg)
     test_losses.append(test_loss)
 
+    runTime = (datetime.datetime.now() - begin_time)
     print("Attacking with: {} \n Test accuracy: {}\n Execution time: {} \n ################################################################################"
-          .format(attackNameList, accuracy, (datetime.datetime.now() - begin_time)))
+          .format(attackNameList, accuracy, runTime))
+    recordTestParams(id, attackNameList, accuracy, runTime)
     #print("Execution time - ", datetime.datetime.now() - begin_time)
     return accuracy
 
+def recordTestParams(id, attackSet, accuracy, runTime):
+    global dictTestParams
+    global dictTestParamsMutex
 
+    dictTestParamsMutex.acquire(blocking=True)
+    dictTestParams[id] = (attackSet, accuracy, runTime)
+    #listTestParams.append((attackSet, accuracy, runTime))
+    dictTestParamsMutex.release()
+
+def dumpTestParams():
+    global dictTestParams
+    with open(os.sep.join([dir, "cascadedAttackAccuracy.json"]), 'w', encoding='utf-8') as dumpFile:
+        json.dump(dictTestParams, dumpFile, ensure_ascii=False, indent=4)
+
+def evaluateAttacks():
+    epsilonSmall = 0.05
+    epsilonMiddle = 0.1
+    epsilonLarge = 0.15
+
+    epsilonUse = epsilonSmall
+
+    attackDict = {
+        "DeepFool": DeepFool(model, steps=10),  # used to be 1000 steps
+        "FGSM": FGSM(model, eps=epsilonUse),
+        "PGD": PGD(model, eps=epsilonUse, alpha=0.5, steps=7, random_start=True),
+        "CW": CW(model, c=100, lr=0.01, steps=10, kappa=10),  # used to be 1000 steps,
+        # "FFGSM"     :   FFGSM(model, eps=epsilonUse, alpha=0.1),
+        # "VANILA"    :   VANILA(model),
+        # "APGD"      :   APGD(model, eps=epsilonUse, steps=100, eot_iter=1, n_restarts=1, loss='ce'),
+        # "AutoAttack":  AutoAttack(model, eps=0.05, n_classes=10, version='standard'),
+        # "DIFGSM"    :   DIFGSM(model, eps=epsilonUse, alpha=2 / 255, steps=100, diversity_prob=0.5, resize_rate=0.9),
+        "FAB": FAB(model, eps=epsilonUse, steps=10, n_classes=10, n_restarts=1, targeted=False),  # steps used to be 100
+        # "FAB2"      :   FAB(model, eps=epsilonUse, steps=10, n_classes=10, n_restarts=1, targeted=True)
+    }
+
+    flgAttackIndv = False
+    attackThreadPoolDict = {}
+
+    if flgAttackIndv:
+        attackThreadPoolDict[1] = []
+        for attack in list(attackDict.keys()):
+            threadInst = threading.Thread(target=test,
+                                          args=(networkOriginal, test_loader, [attackDict[attack]], attack,))
+            attackThreadPoolDict[1].append(threadInst)
+
+    else:
+        attackKeys = list(attackDict.keys())
+
+        # Initializing threading helper dict
+        for i in range(len(attackKeys)):
+            attackThreadPoolDict[i + 1] = []
+
+        # enumerate(chain.from_iterable(combinations(attackKeys, r) for r in range(len(attackKeys) + 1)), 1)
+        for itr, attackSet in enumerate(
+                chain.from_iterable(combinations(attackKeys, r) for r in range(len(attackKeys) + 1)), 1):
+            if attackSet:
+                print("Generated attack set: {}".format(attackSet))
+                attackModelList = []
+                attackNameList = []
+                for attackX in list(attackSet):
+                    attackNameList.append(attackX)
+                    attackModelList.append(attackDict[attackX])
+                # trying combinatorial attacks
+                threadInst = threading.Thread(target=test,
+                                              args=(networkOriginal, test_loader, attackModelList, attackNameList, itr,))
+                attackThreadPoolDict[len(list(attackSet))].append(threadInst)
+
+    print("Starting threads for generating adversarial samples... \n .....The command line might be dead for a while")
+    # Threads are used to execute the adversarial set computation.
+    # Threads are grouped with the number of cascaded attacks in order to make the join more efficient
+    # A simple asscending order of attack depth would also work.
+    # Attack depth = number of cascaded layers in the attack
+    for attackDepth in list(attackThreadPoolDict.keys()):
+        print("Generating adversarial samples for {} cascaded attacks".format(attackDepth))
+        for threadX in attackThreadPoolDict[attackDepth]:
+            threadX.start()
+        print("################################################################################")
+        for threadX in attackThreadPoolDict[attackDepth]:
+            threadX.join()
 
 
 # Press the green button in the gutter to run the script.
@@ -231,101 +348,16 @@ if __name__ == '__main__':
         train(networkOriginal, optimizerOriginal, epoch, undefended_model_path)
         test(networkOriginal, test_loader)
 
-    epsilonSmall    = 0.05
-    epsilonMiddle   = 0.1
-    epsilonLarge    = 0.15
-
-    epsilonUse = epsilonSmall
-
-    attackDict = {
-        "DeepFool"  :   DeepFool(model, steps=10),  # used to be 1000 steps
-        "FGSM"      :   FGSM(model, eps=epsilonUse),
-        "PGD"       :   PGD(model, eps=epsilonUse, alpha=0.5, steps=7, random_start=True),
-        "CW"        :   CW(model, c=100, lr=0.01, steps=10, kappa=10),  # used to be 1000 steps,
-        #"FFGSM"     :   FFGSM(model, eps=epsilonUse, alpha=0.1),
-        #"VANILA"    :   VANILA(model),
-        #"APGD"      :   APGD(model, eps=epsilonUse, steps=100, eot_iter=1, n_restarts=1, loss='ce'),
-        #"AutoAttack":  AutoAttack(model, eps=0.05, n_classes=10, version='standard'),
-        #"DIFGSM"    :   DIFGSM(model, eps=epsilonUse, alpha=2 / 255, steps=100, diversity_prob=0.5, resize_rate=0.9),
-        "FAB"      :   FAB(model, eps=epsilonUse, steps=10, n_classes=10, n_restarts=1, targeted=False), #steps used to be 100
-        #"FAB2"      :   FAB(model, eps=epsilonUse, steps=10, n_classes=10, n_restarts=1, targeted=True)
-    }
-
-
-
-
-
     print("################################################################################")
     print("Training Summary - ")
     for epoch in range(1, n_epochs + 1):
         print('.....Epoch %d, Train Accuracy: %f, Test Accuracy: %f' % (epoch, train_acc[epoch - 1], test_acc[epoch - 1]))
     print("################################################################################")
 
-    flgAttackIndv = False
-    threadPool = []
-    attackThreadPoolDict = {}
-    if flgAttackIndv:
-        for attack in list(attackDict.keys()):
-            threadInst = threading.Thread(target=test,
-                                          args=(networkOriginal, test_loader, [attackDict[attack]], attack,))
-            threadPool.append(threadInst)
-
-    else:
-        attackKeys = list(attackDict.keys())
-
-        #Initializing threading helper dict
-        for i in range(len(attackKeys)):
-            attackThreadPoolDict[i+1] = []
-
-        #enumerate(chain.from_iterable(combinations(attackKeys, r) for r in range(len(attackKeys) + 1)), 1)
-        for itr, attackSet in enumerate(chain.from_iterable(combinations(attackKeys, r) for r in range(len(attackKeys) + 1)), 1):
-            if attackSet:
-                print("Generated attack set: {}".format(attackSet))
-                attackModelList = []
-                attackNameList = []
-                for attackX in list(attackSet):
-                    attackNameList.append(attackX)
-                    attackModelList.append(attackDict[attackX])
-                # trying combinatorial attacks
-                threadInst = threading.Thread(target=test,
-                                              args=(networkOriginal, test_loader, attackModelList, attackNameList,))
-                attackThreadPoolDict[len(list(attackSet))].append(threadInst)
+    evaluateAttacks()
+    dumpTestParams()
 
 
-
-
-
-
-
-    n = 4
-    flgUseChunks = False
-    threadPoolChunks = [threadPool[i*n:(i+1)*n] for i in range((len(threadPool)+n-1)//n)]
-
-    if flgUseChunks:
-        for chunkX in threadPoolChunks:
-            for threadX in chunkX:
-                threadX.start()
-            #incomplete
-    else:
-        print(
-            "Starting threads for generating adversarial samples... \n .....The command line might be dead for a while")
-        #Threads are used to execute the adversarial set computation.
-        #Threads are grouped with the number of cascaded attacks in order to make the join more efficient
-        #A simple asscending order of attack depth would also work. Attack depth = number of cascaded layers in the attack
-        for attackDepth in list(attackThreadPoolDict.keys()):
-            print("Generating adversarial samples for {} cascaded attacks".format(attackDepth))
-            for threadX in attackThreadPoolDict[attackDepth]:
-                threadX.start()
-            print("################################################################################")
-            for threadX in attackThreadPoolDict[attackDepth]:
-                threadX.join()
-
-        #print("Starting threads for generating adversarial samples... \n .....The command line might be dead for a while")
-        #for threadX in threadPool:
-        #    threadX.start()
-        #print("################################################################################")
-        #for threadX in threadPool:
-        #    threadX.join()
 
 
 
