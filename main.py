@@ -43,8 +43,23 @@ from torch.utils.data.sampler import SubsetRandomSampler
 from torch.autograd import Variable
 
 
-dictTestParams = []
+dictTestParams = {}
 dictTestParamsMutex = Lock()
+undefended_model_path = "undefended_model.pth"
+threshold_model_path = "threshold_model.pth"
+defended_model_path = "defended_model.pth"
+whiteboxRandomModel = "whiteboxRandomModel.pth"
+attackDict = {} #filled by main
+listAdvModels = []
+
+path = os.path.abspath(__file__)
+wspacepath = os.path.dirname(path)
+pathElements = wspacepath.split(os.sep)
+wspacepath = os.sep.join(pathElements)
+pathElements.extend(["_out"])
+outDir = os.sep.join(pathElements)
+print("wspacepath=", wspacepath)
+print("outDir=", outDir)
 
 # (2)define model
 # Model with no dropout
@@ -132,37 +147,42 @@ def train(modelInp, optimizerInp, epoch, saveModel, attackGeneratorList=None):
 
 
 #This function is fucked up and against the idea of loading model from repo
-def trainWithAdversary(modelInp, optimizerInp, epoch, saveModel, attackGeneratorList=None):
-    modelInp.train()
-    correct = 0
-    for batch_idx, (dataX, target) in enumerate(train_loader):
-        #data.requires_grad = True
-        dataTmp = dataX
-        if attackGeneratorList is None:
-            attackGeneratorList = []
+def trainWithAdversary(modelInpPath, nEpoch, saveModel, attackGeneratorList, attackNameList):
 
-        attackGeneratorList.append("NoAttack")
-        for attackType in attackGeneratorList:
-            if attackType != "NoAttack":
-                dataTmp = attackType(dataTmp, target)
-            optimizerInp.zero_grad()
-            output = modelInp(dataTmp)
-            loss = F.nll_loss(output, target)
-            loss.backward()
-            optimizerInp.step()
-            pred = output.data.max(1, keepdim=True)[1]
-            correct += pred.eq(target.data.view_as(pred)).sum()
-            if batch_idx % log_interval == 0:
-                #print('Network:Train Epoch: {} [{}/{} ({:.0f}%)]\tLoss: {:.6f}'.format(
-                #    epoch, batch_idx * len(data), len(train_loader.dataset),
-                #           100. * batch_idx / len(train_loader), loss.item()))
-                train_losses.append(loss.item())
-                train_counter.append(
-                    (batch_idx * 64) + ((epoch - 1) * len(train_loader.dataset)))
-                torch.save(modelInp.state_dict(), saveModel)
-    accuracy = 100 * correct / len(train_loader.dataset)
-    train_acc.append(accuracy)
-    print("Epoch = {}, Training Accuracy = {}".format(epoch, accuracy))
+    # load the model
+    modelInp = Net().to(device)
+    modelInp.load_state_dict(torch.load(modelInpPath))
+    modelInp.eval()
+    optimizerInp = optim.SGD(modelInp.parameters(), lr=learning_rate_2, momentum=momentum_2)
+
+    for epoch in range(1, nEpoch + 1):
+        modelInp.train()
+        correct = 0
+        for batch_idx, (dataX, target) in enumerate(train_loader):
+            for attackType in attackGeneratorList:
+                dataTmp = attackType(dataX, target)
+                optimizerInp.zero_grad()
+                output = modelInp(dataTmp)
+                loss = F.nll_loss(output, target)
+                loss.backward()
+                optimizerInp.step()
+                pred = output.data.max(1, keepdim=True)[1]
+                correct += pred.eq(target.data.view_as(pred)).sum()
+                if batch_idx % log_interval == 0:
+                    #print('Network:Train Epoch: {} [{}/{} ({:.0f}%)]\tLoss: {:.6f}'.format(
+                    #    epoch, batch_idx * len(data), len(train_loader.dataset),
+                    #           100. * batch_idx / len(train_loader), loss.item()))
+                    train_losses.append(loss.item())
+                    train_counter.append(
+                        (batch_idx * 64) + ((epoch - 1) * len(train_loader.dataset)))
+                    torch.save(modelInp.state_dict(), saveModel)
+        accuracy = 100 * correct / len(train_loader.dataset)
+        train_acc.append(accuracy)
+        print("Training adversarial model with {}; Epoch = {}, Training Accuracy = {}".format(attackNameList, epoch, accuracy))
+
+    print("################################################################################")
+    print("Adversarial({}) model {} is trained and stored".format(attackNameList, saveModel))
+    print("################################################################################")
 
 def test(modelInp, test_loader_arg, attackGeneratorList=None, attackNameList='', id=0):
     begin_time = datetime.datetime.now()
@@ -206,12 +226,17 @@ def recordTestParams(id, attackSet, accuracy, runTime):
     #listTestParams.append((attackSet, accuracy, runTime))
     dictTestParamsMutex.release()
 
-def dumpTestParams():
+def dumpTestParams(jsonName):
     global dictTestParams
-    with open(os.sep.join([dir, "cascadedAttackAccuracy.json"]), 'w', encoding='utf-8') as dumpFile:
+    with open(os.sep.join([outDir, jsonName]), 'w', encoding='utf-8') as dumpFile:
         json.dump(dictTestParams, dumpFile, ensure_ascii=False, indent=4)
 
-def evaluateAttacks():
+    dictTestParams = {}
+
+
+def evaluateAttacks(originalModel, substituteModel):
+
+    global attackDict
     epsilonSmall = 0.05
     epsilonMiddle = 0.1
     epsilonLarge = 0.15
@@ -219,19 +244,19 @@ def evaluateAttacks():
     epsilonUse = epsilonSmall
 
     attackDict = {
-        "DeepFool": DeepFool(model, steps=10),  # used to be 1000 steps
-        "FGSM": FGSM(model, eps=epsilonUse),
-        "PGD": PGD(model, eps=epsilonUse, alpha=0.5, steps=7, random_start=True),
-        "CW": CW(model, c=100, lr=0.01, steps=10, kappa=10),  # used to be 1000 steps,
-        # "FFGSM"     :   FFGSM(model, eps=epsilonUse, alpha=0.1),
-        # "VANILA"    :   VANILA(model),
-        # "APGD"      :   APGD(model, eps=epsilonUse, steps=100, eot_iter=1, n_restarts=1, loss='ce'),
-        # "AutoAttack":  AutoAttack(model, eps=0.05, n_classes=10, version='standard'),
-        # "DIFGSM"    :   DIFGSM(model, eps=epsilonUse, alpha=2 / 255, steps=100, diversity_prob=0.5, resize_rate=0.9),
-        "FAB": FAB(model, eps=epsilonUse, steps=10, n_classes=10, n_restarts=1, targeted=False),  # steps used to be 100
-        # "FAB2"      :   FAB(model, eps=epsilonUse, steps=10, n_classes=10, n_restarts=1, targeted=True)
+        "DeepFool": DeepFool(substituteModel, steps=10),  # used to be 1000 steps
+        "FGSM": FGSM(substituteModel, eps=epsilonUse),
+        "PGD": PGD(substituteModel, eps=epsilonUse, alpha=0.5, steps=7, random_start=True),
+        "CW": CW(substituteModel, c=100, lr=0.01, steps=10, kappa=10),  # used to be 1000 steps,
+        # "FFGSM"       :   FFGSM(model, eps=epsilonUse, alpha=0.1),
+        # "VANILA"      :   VANILA(model),
+        # "APGD"        :   APGD(model, eps=epsilonUse, steps=100, eot_iter=1, n_restarts=1, loss='ce'),
+        # "AutoAttack"  :   AutoAttack(model, eps=0.05, n_classes=10, version='standard'),
+        # "DIFGSM"      :   DIFGSM(model, eps=epsilonUse, alpha=2 / 255, steps=100, diversity_prob=0.5, resize_rate=0.9),
+        "FAB": FAB(substituteModel, eps=epsilonUse, steps=10, n_classes=10, n_restarts=1, targeted=False),
+        # steps used to be 100
+        # "FAB2"        :   FAB(model, eps=epsilonUse, steps=10, n_classes=10, n_restarts=1, targeted=True)
     }
-
     flgAttackIndv = False
     attackThreadPoolDict = {}
 
@@ -239,7 +264,7 @@ def evaluateAttacks():
         attackThreadPoolDict[1] = []
         for attack in list(attackDict.keys()):
             threadInst = threading.Thread(target=test,
-                                          args=(networkOriginal, test_loader, [attackDict[attack]], attack,))
+                                          args=(originalModel, test_loader, [attackDict[attack]], attack,))
             attackThreadPoolDict[1].append(threadInst)
 
     else:
@@ -261,7 +286,7 @@ def evaluateAttacks():
                     attackModelList.append(attackDict[attackX])
                 # trying combinatorial attacks
                 threadInst = threading.Thread(target=test,
-                                              args=(networkOriginal, test_loader, attackModelList, attackNameList, itr,))
+                                              args=(originalModel, test_loader, attackModelList, attackNameList, itr,))
                 attackThreadPoolDict[len(list(attackSet))].append(threadInst)
 
     print("Starting threads for generating adversarial samples... \n .....The command line might be dead for a while")
@@ -275,6 +300,49 @@ def evaluateAttacks():
             threadX.start()
         print("################################################################################")
         for threadX in attackThreadPoolDict[attackDepth]:
+            threadX.join()
+
+
+def adversarialTraining(modelPath):
+    advTrainThreadPoolDict = {}
+    global attackDict, listAdvModels
+    nEpoch = 4
+
+    attackKeys = list(attackDict.keys())
+
+    # Initializing threading helper dict
+    for i in range(len(attackKeys)):
+        advTrainThreadPoolDict[i + 1] = []
+
+    for itr, attackSet in enumerate(
+            chain.from_iterable(combinations(attackKeys, r) for r in range(len(attackKeys) + 1)), 1):
+        if attackSet:
+            print("Generated attack set: {}".format(attackSet))
+            attackModelList = []
+            attackNameList = []
+            advModelNameStr = "advModel_"
+            for attackX in list(attackSet):
+                advModelNameStr += str(attackX)
+                attackNameList.append(attackX)
+                attackModelList.append(attackDict[attackX])
+            advModelNameStr += ".pth"
+            listAdvModels.append(advModelNameStr)
+            # trying combinatorial attacks
+            threadInst = threading.Thread(target=trainWithAdversary,
+                                          args=(modelPath, nEpoch, advModelNameStr, attackModelList, attackNameList,))
+            advTrainThreadPoolDict[len(list(attackSet))].append(threadInst)
+
+    print("Starting threads for training models with adversarial samples... \n .....The command line might be dead for a while")
+    # Threads are used to execute the adversarial set computation.
+    # Threads are grouped with the number of cascaded attacks in order to make the join more efficient
+    # A simple asscending order of attack depth would also work.
+    # Attack depth = number of cascaded layers in the attack
+    for attackDepth in list(advTrainThreadPoolDict.keys()):
+        print("Training adversarial model for {} cascaded defense".format(attackDepth))
+        for threadX in advTrainThreadPoolDict[attackDepth]:
+            threadX.start()
+        print("################################################################################")
+        for threadX in advTrainThreadPoolDict[attackDepth]:
             threadX.join()
 
 
@@ -293,12 +361,6 @@ if __name__ == '__main__':
         device = torch.device('cuda')
     else:
         raise ValueError('Unrecognized compute mode')
-
-
-    undefended_model_path = "undefended_model.pth"
-    threshold_model_path = "threshold_model.pth"
-    defended_model_path = "defended_model.pth"
-    whiteboxRandomModel = "whiteboxRandomModel.pth"
 
     n_epochs = 4
     batch_size_train = 64
@@ -342,7 +404,13 @@ if __name__ == '__main__':
     networkOriginal = Net().to(device)
     optimizerOriginal = optim.SGD(networkOriginal.parameters(), lr=learning_rate_2, momentum=momentum_2)
 
-    train(model, optimizerModel, 1, whiteboxRandomModel)
+    substituteModel = Net().to(device)
+    optimizerSubstituteModel = optim.SGD(substituteModel.parameters(), lr=learning_rate_2, momentum=momentum_2)
+
+
+    train(substituteModel, optimizerSubstituteModel, 1, whiteboxRandomModel)
+
+
 
     for epoch in range(1, n_epochs + 1):
         train(networkOriginal, optimizerOriginal, epoch, undefended_model_path)
@@ -354,8 +422,26 @@ if __name__ == '__main__':
         print('.....Epoch %d, Train Accuracy: %f, Test Accuracy: %f' % (epoch, train_acc[epoch - 1], test_acc[epoch - 1]))
     print("################################################################################")
 
-    evaluateAttacks()
-    dumpTestParams()
+    evaluateAttacks(originalModel=networkOriginal,
+                    substituteModel=substituteModel)
+
+    dumpTestParams("cascadedAttackAccuracy.json")
+
+
+    adversarialTraining(undefended_model_path)
+
+    for advModelPath in listAdvModels:
+        advModel = Net().to(device)
+        advModel.load_state_dict(torch.load(advModelPath))
+        advModel.eval()
+        evaluateAttacks(originalModel=advModel,
+                        substituteModel=substituteModel)
+        dumpJsonName = advModelPath.replace(".pth", "")
+        dumpJsonName = advModelPath.replace("advModel_", "")
+        dumpJsonName = "cascadedAttackAccuracy_AdvModel_" + dumpJsonName + ".json"
+        dumpTestParams(dumpJsonName)
+
+
 
 
 
