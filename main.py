@@ -18,7 +18,8 @@ import hashlib
 from initializeDatasets import encryptFilesAndStore, decryptFilesAndVerify
 from itertools import chain, combinations
 import threading
-from threading import Thread, Lock
+#from threading import Thread, Lock
+from multiprocessing import Process, Pool, Pipe, Lock
 
 # Some suggestions of our libraries that might be helpful for this project
 #from collections import Counter          # an even easier way to count
@@ -44,7 +45,7 @@ from torch.autograd import Variable
 
 
 dictTestParams = {}
-dictTestParamsMutex = Lock()
+
 undefended_model_path = "undefended_model.pth"
 threshold_model_path = "threshold_model.pth"
 defended_model_path = "defended_model.pth"
@@ -108,16 +109,6 @@ class Net(nn.Module):
         x = F.dropout(x, training=self.training)
         x = self.fc2(x)
         return F.log_softmax(x)
-
-
-#class myPyAttackThread(threading.Thread):
-#    def __init__(self, threadId, attackSet):
-#        threading.Thread.__init__(self)
-#        self.threadId = threadId
-#        self.attackSet = attackSet
-#        self.attackDepth = len(list(attackSet))
-
-
 
 # (3)define loss, optimizer
 # Training function for all networks
@@ -184,7 +175,7 @@ def trainWithAdversary(modelInpPath, nEpoch, saveModel, attackGeneratorList, att
     print("Adversarial({}) model {} is trained and stored".format(attackNameList, saveModel))
     print("################################################################################")
 
-def test(modelInp, test_loader_arg, attackGeneratorList=None, attackNameList='', id=0):
+def test(modelInp, test_loader_arg, attackGeneratorList=None, attackNameList='', id=0, lock=None):
     begin_time = datetime.datetime.now()
     modelInp.eval()
     test_loss = 0
@@ -213,18 +204,19 @@ def test(modelInp, test_loader_arg, attackGeneratorList=None, attackNameList='',
     runTime = (datetime.datetime.now() - begin_time)
     print("Attacking with: {} \n Test accuracy: {}\n Execution time: {} \n ################################################################################"
           .format(attackNameList, accuracy, runTime))
-    recordTestParams(id, attackNameList, accuracy, runTime)
+    recordTestParams(id, attackNameList, accuracy, runTime, lock)
     #print("Execution time - ", datetime.datetime.now() - begin_time)
     return accuracy
 
-def recordTestParams(id, attackSet, accuracy, runTime):
+def recordTestParams(id, attackSet, accuracy, runTime, lock):
     global dictTestParams
-    global dictTestParamsMutex
 
-    dictTestParamsMutex.acquire(blocking=True)
-    dictTestParams[id] = (attackSet, accuracy, runTime)
-    #listTestParams.append((attackSet, accuracy, runTime))
-    dictTestParamsMutex.release()
+    if lock:
+        lock.acquire(blocking=True)
+        dictTestParams[id] = (attackSet, accuracy, runTime)
+        lock.release()
+    else:
+        print("recordTestParams has not lock over dictTestParams, therefore storing skipped")
 
 def dumpTestParams(jsonName):
     global dictTestParams
@@ -234,7 +226,7 @@ def dumpTestParams(jsonName):
     dictTestParams = {}
 
 
-def evaluateAttacks(originalModel, substituteModel):
+def evaluateAttacks(originalModel, substituteModel, lock):
 
     global attackDict
     epsilonSmall = 0.05
@@ -257,37 +249,30 @@ def evaluateAttacks(originalModel, substituteModel):
         # steps used to be 100
         # "FAB2"        :   FAB(model, eps=epsilonUse, steps=10, n_classes=10, n_restarts=1, targeted=True)
     }
-    flgAttackIndv = False
     attackThreadPoolDict = {}
+    attackKeys = list(attackDict.keys())
 
-    if flgAttackIndv:
-        attackThreadPoolDict[1] = []
-        for attack in list(attackDict.keys()):
-            threadInst = threading.Thread(target=test,
-                                          args=(originalModel, test_loader, [attackDict[attack]], attack,))
-            attackThreadPoolDict[1].append(threadInst)
+    # Initializing threading helper dict
+    for i in range(len(attackKeys)):
+        attackThreadPoolDict[i + 1] = []
 
-    else:
-        attackKeys = list(attackDict.keys())
+    # enumerate(chain.from_iterable(combinations(attackKeys, r) for r in range(len(attackKeys) + 1)), 1)
+    for itr, attackSet in enumerate(
+            chain.from_iterable(combinations(attackKeys, r) for r in range(len(attackKeys) + 1)), 1):
+        if attackSet:
+            print("Generated attack set: {}".format(attackSet))
+            attackModelList = []
+            attackNameList = []
+            for attackX in list(attackSet):
+                attackNameList.append(attackX)
+                attackModelList.append(attackDict[attackX])
+            # trying combinatorial attacks
+            procInst = Process(target=test,
+                               args=(originalModel, test_loader, attackModelList, attackNameList, itr, lock))
 
-        # Initializing threading helper dict
-        for i in range(len(attackKeys)):
-            attackThreadPoolDict[i + 1] = []
-
-        # enumerate(chain.from_iterable(combinations(attackKeys, r) for r in range(len(attackKeys) + 1)), 1)
-        for itr, attackSet in enumerate(
-                chain.from_iterable(combinations(attackKeys, r) for r in range(len(attackKeys) + 1)), 1):
-            if attackSet:
-                print("Generated attack set: {}".format(attackSet))
-                attackModelList = []
-                attackNameList = []
-                for attackX in list(attackSet):
-                    attackNameList.append(attackX)
-                    attackModelList.append(attackDict[attackX])
-                # trying combinatorial attacks
-                threadInst = threading.Thread(target=test,
-                                              args=(originalModel, test_loader, attackModelList, attackNameList, itr,))
-                attackThreadPoolDict[len(list(attackSet))].append(threadInst)
+            #threadInst = threading.Thread(target=test,
+            #                              args=(originalModel, test_loader, attackModelList, attackNameList, itr,))
+            attackThreadPoolDict[len(list(attackSet))].append(procInst)
 
     print("Starting threads for generating adversarial samples... \n .....The command line might be dead for a while")
     # Threads are used to execute the adversarial set computation.
@@ -328,9 +313,12 @@ def adversarialTraining(modelPath):
             advModelNameStr += ".pth"
             listAdvModels.append(advModelNameStr)
             # trying combinatorial attacks
-            threadInst = threading.Thread(target=trainWithAdversary,
-                                          args=(modelPath, nEpoch, advModelNameStr, attackModelList, attackNameList,))
-            advTrainThreadPoolDict[len(list(attackSet))].append(threadInst)
+            procInst = Process(target=trainWithAdversary,
+                               args=(modelPath, nEpoch, advModelNameStr, attackModelList, attackNameList,))
+
+            #threadInst = threading.Thread(target=trainWithAdversary,
+            #                              args=(modelPath, nEpoch, advModelNameStr, attackModelList, attackNameList,))
+            advTrainThreadPoolDict[len(list(attackSet))].append(procInst)
 
     print("Starting threads for training models with adversarial samples... \n .....The command line might be dead for a while")
     # Threads are used to execute the adversarial set computation.
@@ -348,6 +336,8 @@ def adversarialTraining(modelPath):
 
 # Press the green button in the gutter to run the script.
 if __name__ == '__main__':
+    dictTestParamsMutex = Lock()
+
     np.random.seed(200)
 
     compute_mode = 'cpu'
@@ -423,7 +413,8 @@ if __name__ == '__main__':
     print("################################################################################")
 
     evaluateAttacks(originalModel=networkOriginal,
-                    substituteModel=substituteModel)
+                    substituteModel=substituteModel,
+                    lock=dictTestParamsMutex)
 
     dumpTestParams("cascadedAttackAccuracy.json")
 
@@ -435,7 +426,8 @@ if __name__ == '__main__':
         advModel.load_state_dict(torch.load(advModelPath))
         advModel.eval()
         evaluateAttacks(originalModel=advModel,
-                        substituteModel=substituteModel)
+                        substituteModel=substituteModel,
+                        lock=dictTestParamsMutex)
         dumpJsonName = advModelPath.replace(".pth", "")
         dumpJsonName = advModelPath.replace("advModel_", "")
         dumpJsonName = "cascadedAttackAccuracy_AdvModel_" + dumpJsonName + ".json"
