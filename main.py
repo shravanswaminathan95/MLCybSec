@@ -44,14 +44,23 @@ from torch.utils.data.sampler import SubsetRandomSampler
 from torch.autograd import Variable
 
 
-dictTestParams = {}
-
 undefended_model_path = "undefended_model.pth"
 threshold_model_path = "threshold_model.pth"
 defended_model_path = "defended_model.pth"
 whiteboxRandomModel = "whiteboxRandomModel.pth"
+untrainedModelPath = "untrainedModel.pth"
 attackDict = {} #filled by main
 listAdvModels = []
+n_epochs = 3
+batch_size_train = 64
+batch_size_test = 1
+learning_rate_1 = 0.01
+learning_rate_2 = 0.05
+momentum_1 = 0.5
+momentum_2 = 0.25
+log_interval = 10
+
+device = torch.device('cpu')
 
 path = os.path.abspath(__file__)
 wspacepath = os.path.dirname(path)
@@ -59,8 +68,8 @@ pathElements = wspacepath.split(os.sep)
 wspacepath = os.sep.join(pathElements)
 pathElements.extend(["_out"])
 outDir = os.sep.join(pathElements)
-print("wspacepath=", wspacepath)
-print("outDir=", outDir)
+#print("wspacepath=", wspacepath)
+#print("outDir=", outDir)
 
 # (2)define model
 # Model with no dropout
@@ -112,7 +121,10 @@ class Net(nn.Module):
 
 # (3)define loss, optimizer
 # Training function for all networks
-def train(modelInp, optimizerInp, epoch, saveModel, attackGeneratorList=None):
+def train(modelInp, optimizerInp, epoch, saveModel, train_loader, attackGeneratorList=None ):
+    # defining list to save training and testing loss for future evaluation.
+    train_losses = []
+    train_counter = []
     modelInp.train()
     correct = 0
     for batch_idx, (data, target) in enumerate(train_loader):
@@ -135,11 +147,14 @@ def train(modelInp, optimizerInp, epoch, saveModel, attackGeneratorList=None):
     accuracy = 100 * correct / len(train_loader.dataset)
     train_acc.append(accuracy)
     print("Epoch = {}, Training Accuracy = {}".format(epoch, accuracy))
-
+    return accuracy
 
 #This function is fucked up and against the idea of loading model from repo
-def trainWithAdversary(modelInpPath, nEpoch, saveModel, attackGeneratorList, attackNameList):
+def trainWithAdversary(modelInpPath, nEpoch, saveModel, attackGeneratorList, attackNameList, train_loader):
 
+    # defining list to save training and testing loss for future evaluation.
+    train_losses = []
+    train_counter = []
     # load the model
     modelInp = Net().to(device)
     modelInp.load_state_dict(torch.load(modelInpPath))
@@ -147,28 +162,46 @@ def trainWithAdversary(modelInpPath, nEpoch, saveModel, attackGeneratorList, att
     optimizerInp = optim.SGD(modelInp.parameters(), lr=learning_rate_2, momentum=momentum_2)
 
     for epoch in range(1, nEpoch + 1):
+
         modelInp.train()
         correct = 0
         for batch_idx, (dataX, target) in enumerate(train_loader):
+            dataX, target = dataX.to(device), target.to(device)
+            modelInp.zero_grad()
+            modelInp.train()
+
+            outputClean = modelInp(dataX)
+            loss = F.nll_loss(outputClean, target)
             for attackType in attackGeneratorList:
-                dataTmp = attackType(dataX, target)
-                optimizerInp.zero_grad()
-                output = modelInp(dataTmp)
-                loss = F.nll_loss(output, target)
-                loss.backward()
-                optimizerInp.step()
-                pred = output.data.max(1, keepdim=True)[1]
-                correct += pred.eq(target.data.view_as(pred)).sum()
-                if batch_idx % log_interval == 0:
-                    #print('Network:Train Epoch: {} [{}/{} ({:.0f}%)]\tLoss: {:.6f}'.format(
-                    #    epoch, batch_idx * len(data), len(train_loader.dataset),
-                    #           100. * batch_idx / len(train_loader), loss.item()))
-                    train_losses.append(loss.item())
-                    train_counter.append(
-                        (batch_idx * 64) + ((epoch - 1) * len(train_loader.dataset)))
-                    torch.save(modelInp.state_dict(), saveModel)
-        accuracy = 100 * correct / len(train_loader.dataset)
-        train_acc.append(accuracy)
+                dataAdv = attackType(dataX, target)
+                outputAdv = modelInp(dataAdv)
+                loss += F.nll_loss(outputAdv, target)
+            loss = loss / (len(attackGeneratorList) + 1)
+
+            optimizerInp.zero_grad()
+            loss.backward()
+            optimizerInp.step()
+
+            #predClean = outputClean.data.max(1, keepdim=True)[1]
+            #correctClean = predClean.eq(target.data.view_as(predClean)).sum()
+
+            #for attackType in attackGeneratorList:
+            #    predAdv = outputAdv.data.max(1, keepdim=True)[1]
+            #    correctClean = predAdv.eq(target.data.view_as(predAdv)).sum()
+
+            #correct = 0.5 * (correctClean + correctAdv)
+
+            if batch_idx % log_interval == 0:
+                #print('Network:Train Epoch: {} [{}/{} ({:.0f}%)]\tLoss: {:.6f}'.format(
+                #    epoch, batch_idx * len(data), len(train_loader.dataset),
+                #           100. * batch_idx / len(train_loader), loss.item()))
+            #    train_losses.append(loss.item())
+            #    train_counter.append(
+            #        (batch_idx * 64) + ((epoch - 1) * len(train_loader.dataset)))
+                torch.save(modelInp.state_dict(), saveModel)
+        #accuracy = 100 * correct / len(train_loader.dataset)
+        accuracy = "Dummy"
+        #train_acc.append(accuracy)
         print("Training adversarial model with {}; Epoch = {}, Training Accuracy = {}".format(attackNameList, epoch, accuracy))
 
     print("################################################################################")
@@ -180,7 +213,7 @@ def test(modelInp, test_loader_arg, attackGeneratorList=None, attackNameList='',
     modelInp.eval()
     test_loss = 0
     correct = 0
-
+    test_losses = []
     for dataX, target in test_loader_arg:
         dataTmp = dataX
         if attackGeneratorList is not None:
@@ -194,7 +227,7 @@ def test(modelInp, test_loader_arg, attackGeneratorList=None, attackNameList='',
         accuracy = 100 * correct / len(test_loader_arg.dataset)
     except:
         accuracy = 100 * correct / len(test_loader_arg)
-    test_acc.append(accuracy)
+    #test_acc.append(accuracy)
     try:
         test_loss /= len(test_loader_arg.dataset)
     except:
@@ -212,7 +245,7 @@ def recordTestParams(id, attackSet, accuracy, runTime, lock):
     global dictTestParams
 
     if lock:
-        lock.acquire(blocking=True)
+        lock.acquire()
         dictTestParams[id] = (attackSet, accuracy, runTime)
         lock.release()
     else:
@@ -229,26 +262,6 @@ def dumpTestParams(jsonName):
 def evaluateAttacks(originalModel, substituteModel, lock):
 
     global attackDict
-    epsilonSmall = 0.05
-    epsilonMiddle = 0.1
-    epsilonLarge = 0.15
-
-    epsilonUse = epsilonSmall
-
-    attackDict = {
-        "DeepFool": DeepFool(substituteModel, steps=10),  # used to be 1000 steps
-        "FGSM": FGSM(substituteModel, eps=epsilonUse),
-        "PGD": PGD(substituteModel, eps=epsilonUse, alpha=0.5, steps=7, random_start=True),
-        "CW": CW(substituteModel, c=100, lr=0.01, steps=10, kappa=10),  # used to be 1000 steps,
-        # "FFGSM"       :   FFGSM(model, eps=epsilonUse, alpha=0.1),
-        # "VANILA"      :   VANILA(model),
-        # "APGD"        :   APGD(model, eps=epsilonUse, steps=100, eot_iter=1, n_restarts=1, loss='ce'),
-        # "AutoAttack"  :   AutoAttack(model, eps=0.05, n_classes=10, version='standard'),
-        # "DIFGSM"      :   DIFGSM(model, eps=epsilonUse, alpha=2 / 255, steps=100, diversity_prob=0.5, resize_rate=0.9),
-        "FAB": FAB(substituteModel, eps=epsilonUse, steps=10, n_classes=10, n_restarts=1, targeted=False),
-        # steps used to be 100
-        # "FAB2"        :   FAB(model, eps=epsilonUse, steps=10, n_classes=10, n_restarts=1, targeted=True)
-    }
     attackThreadPoolDict = {}
     attackKeys = list(attackDict.keys())
 
@@ -288,10 +301,11 @@ def evaluateAttacks(originalModel, substituteModel, lock):
             threadX.join()
 
 
-def adversarialTraining(modelPath):
+def adversarialTraining(modelPath, train_loader):
+    print("Called adversarialTraining")
     advTrainThreadPoolDict = {}
     global attackDict, listAdvModels
-    nEpoch = 4
+    nEpoch = 3
 
     attackKeys = list(attackDict.keys())
 
@@ -314,13 +328,13 @@ def adversarialTraining(modelPath):
             listAdvModels.append(advModelNameStr)
             # trying combinatorial attacks
             procInst = Process(target=trainWithAdversary,
-                               args=(modelPath, nEpoch, advModelNameStr, attackModelList, attackNameList,))
+                               args=(modelPath, nEpoch, advModelNameStr, attackModelList, attackNameList, train_loader))
 
             #threadInst = threading.Thread(target=trainWithAdversary,
             #                              args=(modelPath, nEpoch, advModelNameStr, attackModelList, attackNameList,))
             advTrainThreadPoolDict[len(list(attackSet))].append(procInst)
-
-    print("Starting threads for training models with adversarial samples... \n .....The command line might be dead for a while")
+    print(advTrainThreadPoolDict)
+    print("Starting processes for training models with adversarial samples... \n .....The command line might be dead for a while")
     # Threads are used to execute the adversarial set computation.
     # Threads are grouped with the number of cascaded attacks in order to make the join more efficient
     # A simple asscending order of attack depth would also work.
@@ -340,39 +354,14 @@ if __name__ == '__main__':
 
     np.random.seed(200)
 
-    compute_mode = 'cpu'
-
-    if compute_mode == 'cpu':
-        device = torch.device('cpu')
-    elif compute_mode == 'gpu':
-        # If you are using pytorch on the GPU cluster, you have to manually specify which GPU device to use
-        # It is extremely important that you *do not* spawn multi-GPU jobs.
-        os.environ["CUDA_VISIBLE_DEVICES"] = '0'  # Set device ID here
-        device = torch.device('cuda')
-    else:
-        raise ValueError('Unrecognized compute mode')
-
-    n_epochs = 4
-    batch_size_train = 64
-    batch_size_test = 1
-    learning_rate_1 = 0.01
-    learning_rate_2 = 0.05
-    momentum_1 = 0.5
-    momentum_2 = 0.25
-    log_interval = 10
-
     imageDataForPlotting = []
-
-    # defining list to save training and testing loss for future evaluation.
-    train_losses = []
-    train_counter = []
-    test_losses = []
-    # test_counter_4 = [i*len(train_loader.dataset) for i in range(n_epochs + 1)] todo - clean up
+    dictTestParams = {}
     train_acc = []
     test_acc = []
 
     model = Net().to(device)
     optimizerModel = optim.SGD(model.parameters(), lr=learning_rate_2, momentum=momentum_2)
+    torch.save(model.state_dict(), untrainedModelPath)
     #todo, train the above model to the MNIST dataset. This will improve the attack vastly.
 
 
@@ -397,14 +386,33 @@ if __name__ == '__main__':
     substituteModel = Net().to(device)
     optimizerSubstituteModel = optim.SGD(substituteModel.parameters(), lr=learning_rate_2, momentum=momentum_2)
 
+    train(substituteModel, optimizerSubstituteModel, 1, whiteboxRandomModel, train_loader)
 
-    train(substituteModel, optimizerSubstituteModel, 1, whiteboxRandomModel)
+    epsilonSmall = 0.05
+    epsilonMiddle = 0.1
+    epsilonLarge = 0.15
 
+    epsilonUse = epsilonSmall
+
+    attackDict = {
+        "DeepFool": DeepFool(substituteModel, steps=10),  # used to be 1000 steps
+        "FGSM": FGSM(substituteModel, eps=epsilonUse),
+        "PGD": PGD(substituteModel, eps=epsilonUse, alpha=0.5, steps=7, random_start=True),
+        "CW": CW(substituteModel, c=100, lr=0.01, steps=10, kappa=10),  # used to be 1000 steps,
+        # "FFGSM"       :   FFGSM(model, eps=epsilonUse, alpha=0.1),
+        # "VANILA"      :   VANILA(model),
+        # "APGD"        :   APGD(model, eps=epsilonUse, steps=100, eot_iter=1, n_restarts=1, loss='ce'),
+        # "AutoAttack"  :   AutoAttack(model, eps=0.05, n_classes=10, version='standard'),
+        # "DIFGSM"      :   DIFGSM(model, eps=epsilonUse, alpha=2 / 255, steps=100, diversity_prob=0.5, resize_rate=0.9),
+        "FAB": FAB(substituteModel, eps=epsilonUse, steps=10, n_classes=10, n_restarts=1, targeted=False),
+        # steps used to be 100
+        # "FAB2"        :   FAB(model, eps=epsilonUse, steps=10, n_classes=10, n_restarts=1, targeted=True)
+    }
 
 
     for epoch in range(1, n_epochs + 1):
-        train(networkOriginal, optimizerOriginal, epoch, undefended_model_path)
-        test(networkOriginal, test_loader)
+        train_acc.append(train(networkOriginal, optimizerOriginal, epoch, undefended_model_path, train_loader))
+        test_acc.append(test(networkOriginal, test_loader))
 
     print("################################################################################")
     print("Training Summary - ")
@@ -412,14 +420,14 @@ if __name__ == '__main__':
         print('.....Epoch %d, Train Accuracy: %f, Test Accuracy: %f' % (epoch, train_acc[epoch - 1], test_acc[epoch - 1]))
     print("################################################################################")
 
-    evaluateAttacks(originalModel=networkOriginal,
-                    substituteModel=substituteModel,
-                    lock=dictTestParamsMutex)
+    #evaluateAttacks(originalModel=networkOriginal,
+    #                substituteModel=substituteModel,
+    #                lock=dictTestParamsMutex)
 
-    dumpTestParams("cascadedAttackAccuracy.json")
+    #dumpTestParams("cascadedAttackAccuracy.json")
 
 
-    adversarialTraining(undefended_model_path)
+    adversarialTraining(untrainedModelPath, train_loader)
 
     for advModelPath in listAdvModels:
         advModel = Net().to(device)
