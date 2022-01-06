@@ -43,7 +43,6 @@ from torch.utils.data import DataLoader, Dataset, TensorDataset
 from torch.utils.data.sampler import SubsetRandomSampler
 from torch.autograd import Variable
 
-
 undefended_model_path = "undefended_model.pth"
 threshold_model_path = "threshold_model.pth"
 defended_model_path = "defended_model.pth"
@@ -237,7 +236,7 @@ def test(modelInp, test_loader_arg, attackGeneratorList=None, attackNameList='',
     runTime = (datetime.datetime.now() - begin_time)
     print("Attacking with: {} \n Test accuracy: {}\n Execution time: {} \n ################################################################################"
           .format(attackNameList, accuracy, runTime))
-    recordTestParams(id, attackNameList, accuracy, runTime, lock)
+    #recordTestParams(id, attackNameList, accuracy, runTime, lock)
     #print("Execution time - ", datetime.datetime.now() - begin_time)
     return accuracy
 
@@ -355,6 +354,7 @@ if __name__ == '__main__':
     np.random.seed(200)
 
     imageDataForPlotting = []
+    #global dictTestParams
     dictTestParams = {}
     train_acc = []
     test_acc = []
@@ -427,12 +427,26 @@ if __name__ == '__main__':
     #dumpTestParams("cascadedAttackAccuracy.json")
 
 
-    adversarialTraining(untrainedModelPath, train_loader)
+    #adversarialTraining(untrainedModelPath, train_loader)
+
+    attackKeys = list(attackDict.keys())
+    for itr, attackSet in enumerate(
+            chain.from_iterable(combinations(attackKeys, r) for r in range(len(attackKeys) + 1)), 1):
+        if attackSet:
+            print("Generated attack set: {}".format(attackSet))
+            advModelNameStr = "advModel_"
+            for attackX in list(attackSet):
+                advModelNameStr += str(attackX)
+            advModelNameStr += ".pth"
+            listAdvModels.append(advModelNameStr)
 
     for advModelPath in listAdvModels:
         advModel = Net().to(device)
         advModel.load_state_dict(torch.load(advModelPath))
         advModel.eval()
+        print("################################################################################")
+        print(advModelPath)
+        #test(advModel, test_loader)
         evaluateAttacks(originalModel=advModel,
                         substituteModel=substituteModel,
                         lock=dictTestParamsMutex)

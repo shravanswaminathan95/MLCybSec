@@ -1,0 +1,169 @@
+################################################################################
+advModel_DeepFoolFGSM.pth
+Generated attack set: ('DeepFool',)
+Generated attack set: ('FGSM',)
+Generated attack set: ('PGD',)
+Generated attack set: ('CW',)
+Generated attack set: ('FAB',)
+Generated attack set: ('DeepFool', 'FGSM')
+Generated attack set: ('DeepFool', 'PGD')
+Generated attack set: ('DeepFool', 'CW')
+Generated attack set: ('DeepFool', 'FAB')
+Generated attack set: ('FGSM', 'PGD')
+Generated attack set: ('FGSM', 'CW')
+Generated attack set: ('FGSM', 'FAB')
+Generated attack set: ('PGD', 'CW')
+Generated attack set: ('PGD', 'FAB')
+Generated attack set: ('CW', 'FAB')
+Generated attack set: ('DeepFool', 'FGSM', 'PGD')
+Generated attack set: ('DeepFool', 'FGSM', 'CW')
+Generated attack set: ('DeepFool', 'FGSM', 'FAB')
+Generated attack set: ('DeepFool', 'PGD', 'CW')
+Generated attack set: ('DeepFool', 'PGD', 'FAB')
+Generated attack set: ('DeepFool', 'CW', 'FAB')
+Generated attack set: ('FGSM', 'PGD', 'CW')
+Generated attack set: ('FGSM', 'PGD', 'FAB')
+Generated attack set: ('FGSM', 'CW', 'FAB')
+Generated attack set: ('PGD', 'CW', 'FAB')
+Generated attack set: ('DeepFool', 'FGSM', 'PGD', 'CW')
+Generated attack set: ('DeepFool', 'FGSM', 'PGD', 'FAB')
+Generated attack set: ('DeepFool', 'FGSM', 'CW', 'FAB')
+Generated attack set: ('DeepFool', 'PGD', 'CW', 'FAB')
+Generated attack set: ('FGSM', 'PGD', 'CW', 'FAB')
+Generated attack set: ('DeepFool', 'FGSM', 'PGD', 'CW', 'FAB')
+Starting threads for generating adversarial samples...
+ .....The command line might be dead for a while
+Generating adversarial samples for 1 cascaded attacks
+################################################################################
+Attacking with: ['FGSM']
+ Test accuracy: 96.58999633789062
+ Execution time: 0:00:13.196709
+ ################################################################################
+Attacking with: ['PGD']
+ Test accuracy: 96.5999984741211
+ Execution time: 0:00:46.866881
+ ################################################################################
+Attacking with: ['CW']
+ Test accuracy: 97.48999786376953
+ Execution time: 0:01:13.696232
+ ################################################################################
+Attacking with: ['DeepFool']
+ Test accuracy: 96.63999938964844
+ Execution time: 0:03:25.619806
+ ################################################################################
+Attacking with: ['FAB']
+ Test accuracy: 97.41000366210938
+ Execution time: 0:05:37.915695
+ ################################################################################
+Generating adversarial samples for 2 cascaded attacks
+################################################################################
+Attacking with: ['FGSM', 'PGD']
+ Test accuracy: 95.30999755859375
+ Execution time: 0:02:10.269758
+ ################################################################################
+Attacking with: ['FGSM', 'CW']
+ Test accuracy: 96.58000183105469
+ Execution time: 0:03:40.000802
+ ################################################################################
+Attacking with: ['PGD', 'CW']
+ Test accuracy: 96.5999984741211
+ Execution time: 0:05:01.855246
+ ################################################################################
+Attacking with: ['DeepFool', 'FGSM']
+ Test accuracy: 93.63999938964844
+ Execution time: 0:08:41.050994
+ ################################################################################
+Attacking with: ['DeepFool', 'PGD']
+ Test accuracy: 93.63999938964844
+ Execution time: 0:09:31.570200
+ ################################################################################
+Attacking with: ['DeepFool', 'CW']
+ Test accuracy: 96.58000183105469
+ Execution time: 0:11:02.276700
+ ################################################################################
+Attacking with: ['FGSM', 'FAB']
+ Test accuracy: 96.5
+ Execution time: 0:11:21.376182
+ ################################################################################
+Attacking with: ['PGD', 'FAB']
+ Test accuracy: 96.5
+ Execution time: 0:11:49.607596
+ ################################################################################
+Attacking with: ['CW', 'FAB']
+ Test accuracy: 97.38999938964844
+ Execution time: 0:11:53.512359
+ ################################################################################
+Attacking with: ['DeepFool', 'FAB']
+ Test accuracy: 96.63999938964844
+ Execution time: 0:13:14.925656
+ ################################################################################
+Generating adversarial samples for 3 cascaded attacks
+################################################################################
+Attacking with: ['FGSM', 'PGD', 'CW']
+ Test accuracy: 95.25
+ Execution time: 0:12:47.876108
+ ################################################################################
+Attacking with: ['DeepFool', 'FGSM', 'PGD']
+ Test accuracy: 84.91999816894531
+ Execution time: 0:19:04.608459
+ ################################################################################
+Attacking with: ['DeepFool', 'FGSM', 'FAB']
+ Test accuracy: 93.63999938964844
+ Execution time: 0:20:26.242859
+ ################################################################################
+Attacking with: ['DeepFool', 'FGSM', 'CW']
+ Test accuracy: 93.63999938964844
+ Execution time: 0:20:28.130541
+ ################################################################################
+Attacking with: ['FGSM', 'PGD', 'FAB']
+ Test accuracy: 95.23999786376953
+ Execution time: 0:20:56.596623
+ ################################################################################
+Attacking with: ['DeepFool', 'PGD', 'CW']
+ Test accuracy: 93.5999984741211
+ Execution time: 0:21:08.895858
+ ################################################################################
+Attacking with: ['DeepFool', 'PGD', 'FAB']
+ Test accuracy: 93.66999816894531
+ Execution time: 0:21:11.892532
+ ################################################################################
+Attacking with: ['DeepFool', 'CW', 'FAB']
+ Test accuracy: 96.58000183105469
+ Execution time: 0:21:21.481394
+ ################################################################################
+Attacking with: ['FGSM', 'CW', 'FAB']
+ Test accuracy: 96.5
+ Execution time: 0:22:37.412840
+ ################################################################################
+Attacking with: ['PGD', 'CW', 'FAB']
+ Test accuracy: 96.5
+ Execution time: 0:23:04.851682
+ ################################################################################
+Generating adversarial samples for 4 cascaded attacks
+################################################################################
+Attacking with: ['DeepFool', 'FGSM', 'PGD', 'FAB']
+ Test accuracy: 84.97000122070312
+ Execution time: 0:07:16.766808
+ ################################################################################
+Attacking with: ['DeepFool', 'FGSM', 'PGD', 'CW']
+ Test accuracy: 84.9000015258789
+ Execution time: 0:07:36.397846
+ ################################################################################
+Attacking with: ['DeepFool', 'FGSM', 'CW', 'FAB']
+ Test accuracy: 93.63999938964844
+ Execution time: 0:07:56.847338
+ ################################################################################
+Attacking with: ['FGSM', 'PGD', 'CW', 'FAB']
+ Test accuracy: 95.23999786376953
+ Execution time: 0:08:00.208210
+ ################################################################################
+Attacking with: ['DeepFool', 'PGD', 'CW', 'FAB']
+ Test accuracy: 93.66999816894531
+ Execution time: 0:08:18.410270
+ ################################################################################
+Generating adversarial samples for 5 cascaded attacks
+################################################################################
+Attacking with: ['DeepFool', 'FGSM', 'PGD', 'CW', 'FAB']
+ Test accuracy: 84.97000122070312
+ Execution time: 0:07:22.603795
+ ################################################################################

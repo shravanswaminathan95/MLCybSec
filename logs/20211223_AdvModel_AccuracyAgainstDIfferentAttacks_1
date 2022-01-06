@@ -1,0 +1,2356 @@
+/Users/shravanswaminathan/PycharmProjects/MLCybSec_ImageAttacks/venv/bin/python /Users/shravanswaminathan/PycharmProjects/MLCybSec_ImageAttacks/main.py
+Enter the key to encrypt the hashes:
+\\>booboo
+Valid file -  t10k-images-idx3-ubyte
+Valid file -  .DS_Store
+Valid file -  t10k-labels-idx1-ubyte
+Valid file -  train-images-idx3-ubyte
+Valid file -  train-labels-idx1-ubyte
+Datasets authenticated. Starting training....
+/Users/shravanswaminathan/PycharmProjects/MLCybSec_ImageAttacks/venv/lib/python3.8/site-packages/torchvision/datasets/mnist.py:498: UserWarning: The given NumPy array is not writeable, and PyTorch does not support non-writeable tensors. This means you can write to the underlying (supposedly non-writeable) NumPy array using the tensor. You may want to copy the array to protect its data or make it writeable before converting it to a tensor. This type of warning will be suppressed for the rest of this program. (Triggered internally at  ../torch/csrc/utils/tensor_numpy.cpp:189.)
+  return torch.from_numpy(parsed.astype(m[2], copy=False)).view(*s)
+/Users/shravanswaminathan/PycharmProjects/MLCybSec_ImageAttacks/main.py:119: UserWarning: Implicit dimension choice for log_softmax has been deprecated. Change the call to include dim=X as an argument.
+  return F.log_softmax(x)
+Epoch = 1, Training Accuracy = 72.9800033569336
+Epoch = 1, Training Accuracy = 72.38999938964844
+/Users/shravanswaminathan/PycharmProjects/MLCybSec_ImageAttacks/venv/lib/python3.8/site-packages/torch/nn/_reduction.py:42: UserWarning: size_average and reduce args will be deprecated, please use reduction='sum' instead.
+  warnings.warn(warning.format(ret))
+Attacking with:
+ Test accuracy: 94.11000061035156
+ Execution time: 0:00:03.267641
+ ################################################################################
+Epoch = 2, Training Accuracy = 88.99600219726562
+Attacking with:
+ Test accuracy: 96.23999786376953
+ Execution time: 0:00:03.286987
+ ################################################################################
+Epoch = 3, Training Accuracy = 91.0979995727539
+Attacking with:
+ Test accuracy: 96.87000274658203
+ Execution time: 0:00:03.229900
+ ################################################################################
+################################################################################
+Training Summary -
+.....Epoch 1, Train Accuracy: 72.980003, Test Accuracy: 94.110001
+.....Epoch 2, Train Accuracy: 72.389999, Test Accuracy: 96.239998
+.....Epoch 3, Train Accuracy: 72.389999, Test Accuracy: 96.870003
+################################################################################
+Generated attack set: ('DeepFool',)
+Generated attack set: ('FGSM',)
+Generated attack set: ('PGD',)
+Generated attack set: ('CW',)
+Generated attack set: ('FAB',)
+Generated attack set: ('DeepFool', 'FGSM')
+Generated attack set: ('DeepFool', 'PGD')
+Generated attack set: ('DeepFool', 'CW')
+Generated attack set: ('DeepFool', 'FAB')
+Generated attack set: ('FGSM', 'PGD')
+Generated attack set: ('FGSM', 'CW')
+Generated attack set: ('FGSM', 'FAB')
+Generated attack set: ('PGD', 'CW')
+Generated attack set: ('PGD', 'FAB')
+Generated attack set: ('CW', 'FAB')
+Generated attack set: ('DeepFool', 'FGSM', 'PGD')
+Generated attack set: ('DeepFool', 'FGSM', 'CW')
+Generated attack set: ('DeepFool', 'FGSM', 'FAB')
+Generated attack set: ('DeepFool', 'PGD', 'CW')
+Generated attack set: ('DeepFool', 'PGD', 'FAB')
+Generated attack set: ('DeepFool', 'CW', 'FAB')
+Generated attack set: ('FGSM', 'PGD', 'CW')
+Generated attack set: ('FGSM', 'PGD', 'FAB')
+Generated attack set: ('FGSM', 'CW', 'FAB')
+Generated attack set: ('PGD', 'CW', 'FAB')
+Generated attack set: ('DeepFool', 'FGSM', 'PGD', 'CW')
+Generated attack set: ('DeepFool', 'FGSM', 'PGD', 'FAB')
+Generated attack set: ('DeepFool', 'FGSM', 'CW', 'FAB')
+Generated attack set: ('DeepFool', 'PGD', 'CW', 'FAB')
+Generated attack set: ('FGSM', 'PGD', 'CW', 'FAB')
+Generated attack set: ('DeepFool', 'FGSM', 'PGD', 'CW', 'FAB')
+################################################################################
+advModel_DeepFool.pth
+Generated attack set: ('DeepFool',)
+Generated attack set: ('FGSM',)
+Generated attack set: ('PGD',)
+Generated attack set: ('CW',)
+Generated attack set: ('FAB',)
+Generated attack set: ('DeepFool', 'FGSM')
+Generated attack set: ('DeepFool', 'PGD')
+Generated attack set: ('DeepFool', 'CW')
+Generated attack set: ('DeepFool', 'FAB')
+Generated attack set: ('FGSM', 'PGD')
+Generated attack set: ('FGSM', 'CW')
+Generated attack set: ('FGSM', 'FAB')
+Generated attack set: ('PGD', 'CW')
+Generated attack set: ('PGD', 'FAB')
+Generated attack set: ('CW', 'FAB')
+Generated attack set: ('DeepFool', 'FGSM', 'PGD')
+Generated attack set: ('DeepFool', 'FGSM', 'CW')
+Generated attack set: ('DeepFool', 'FGSM', 'FAB')
+Generated attack set: ('DeepFool', 'PGD', 'CW')
+Generated attack set: ('DeepFool', 'PGD', 'FAB')
+Generated attack set: ('DeepFool', 'CW', 'FAB')
+Generated attack set: ('FGSM', 'PGD', 'CW')
+Generated attack set: ('FGSM', 'PGD', 'FAB')
+Generated attack set: ('FGSM', 'CW', 'FAB')
+Generated attack set: ('PGD', 'CW', 'FAB')
+Generated attack set: ('DeepFool', 'FGSM', 'PGD', 'CW')
+Generated attack set: ('DeepFool', 'FGSM', 'PGD', 'FAB')
+Generated attack set: ('DeepFool', 'FGSM', 'CW', 'FAB')
+Generated attack set: ('DeepFool', 'PGD', 'CW', 'FAB')
+Generated attack set: ('FGSM', 'PGD', 'CW', 'FAB')
+Generated attack set: ('DeepFool', 'FGSM', 'PGD', 'CW', 'FAB')
+Starting threads for generating adversarial samples...
+ .....The command line might be dead for a while
+Generating adversarial samples for 1 cascaded attacks
+################################################################################
+/Users/shravanswaminathan/PycharmProjects/MLCybSec_ImageAttacks/main.py:119: UserWarning: Implicit dimension choice for log_softmax has been deprecated. Change the call to include dim=X as an argument.
+  return F.log_softmax(x)
+/Users/shravanswaminathan/PycharmProjects/MLCybSec_ImageAttacks/main.py:119: UserWarning: Implicit dimension choice for log_softmax has been deprecated. Change the call to include dim=X as an argument.
+  return F.log_softmax(x)
+/Users/shravanswaminathan/PycharmProjects/MLCybSec_ImageAttacks/main.py:119: UserWarning: Implicit dimension choice for log_softmax has been deprecated. Change the call to include dim=X as an argument.
+  return F.log_softmax(x)
+/Users/shravanswaminathan/PycharmProjects/MLCybSec_ImageAttacks/main.py:119: UserWarning: Implicit dimension choice for log_softmax has been deprecated. Change the call to include dim=X as an argument.
+  return F.log_softmax(x)
+/Users/shravanswaminathan/PycharmProjects/MLCybSec_ImageAttacks/venv/lib/python3.8/site-packages/torch/nn/_reduction.py:42: UserWarning: size_average and reduce args will be deprecated, please use reduction='sum' instead.
+  warnings.warn(warning.format(ret))
+/Users/shravanswaminathan/PycharmProjects/MLCybSec_ImageAttacks/main.py:119: UserWarning: Implicit dimension choice for log_softmax has been deprecated. Change the call to include dim=X as an argument.
+  return F.log_softmax(x)
+/Users/shravanswaminathan/PycharmProjects/MLCybSec_ImageAttacks/venv/lib/python3.8/site-packages/torch/nn/_reduction.py:42: UserWarning: size_average and reduce args will be deprecated, please use reduction='sum' instead.
+  warnings.warn(warning.format(ret))
+/Users/shravanswaminathan/PycharmProjects/MLCybSec_ImageAttacks/venv/lib/python3.8/site-packages/torch/nn/_reduction.py:42: UserWarning: size_average and reduce args will be deprecated, please use reduction='sum' instead.
+  warnings.warn(warning.format(ret))
+/Users/shravanswaminathan/PycharmProjects/MLCybSec_ImageAttacks/venv/lib/python3.8/site-packages/torch/nn/_reduction.py:42: UserWarning: size_average and reduce args will be deprecated, please use reduction='sum' instead.
+  warnings.warn(warning.format(ret))
+/Users/shravanswaminathan/PycharmProjects/MLCybSec_ImageAttacks/venv/lib/python3.8/site-packages/torch/nn/_reduction.py:42: UserWarning: size_average and reduce args will be deprecated, please use reduction='sum' instead.
+  warnings.warn(warning.format(ret))
+Attacking with: ['FGSM']
+ Test accuracy: 96.66999816894531
+ Execution time: 0:00:13.046443
+ ################################################################################
+Attacking with: ['PGD']
+ Test accuracy: 96.66999816894531
+ Execution time: 0:00:48.321345
+ ################################################################################
+Attacking with: ['CW']
+ Test accuracy: 97.62000274658203
+ Execution time: 0:01:16.891978
+ ################################################################################
+Attacking with: ['DeepFool']
+ Test accuracy: 97.04000091552734
+ Execution time: 0:03:31.343127
+ ################################################################################
+Attacking with: ['FAB']
+ Test accuracy: 97.52999877929688
+ Execution time: 0:05:36.613809
+ ################################################################################
+Generating adversarial samples for 2 cascaded attacks
+################################################################################
+/Users/shravanswaminathan/PycharmProjects/MLCybSec_ImageAttacks/main.py:119: UserWarning: Implicit dimension choice for log_softmax has been deprecated. Change the call to include dim=X as an argument.
+  return F.log_softmax(x)
+/Users/shravanswaminathan/PycharmProjects/MLCybSec_ImageAttacks/main.py:119: UserWarning: Implicit dimension choice for log_softmax has been deprecated. Change the call to include dim=X as an argument.
+  return F.log_softmax(x)
+/Users/shravanswaminathan/PycharmProjects/MLCybSec_ImageAttacks/main.py:119: UserWarning: Implicit dimension choice for log_softmax has been deprecated. Change the call to include dim=X as an argument.
+  return F.log_softmax(x)
+/Users/shravanswaminathan/PycharmProjects/MLCybSec_ImageAttacks/main.py:119: UserWarning: Implicit dimension choice for log_softmax has been deprecated. Change the call to include dim=X as an argument.
+  return F.log_softmax(x)
+/Users/shravanswaminathan/PycharmProjects/MLCybSec_ImageAttacks/main.py:119: UserWarning: Implicit dimension choice for log_softmax has been deprecated. Change the call to include dim=X as an argument.
+  return F.log_softmax(x)
+/Users/shravanswaminathan/PycharmProjects/MLCybSec_ImageAttacks/main.py:119: UserWarning: Implicit dimension choice for log_softmax has been deprecated. Change the call to include dim=X as an argument.
+  return F.log_softmax(x)
+/Users/shravanswaminathan/PycharmProjects/MLCybSec_ImageAttacks/main.py:119: UserWarning: Implicit dimension choice for log_softmax has been deprecated. Change the call to include dim=X as an argument.
+  return F.log_softmax(x)
+/Users/shravanswaminathan/PycharmProjects/MLCybSec_ImageAttacks/main.py:119: UserWarning: Implicit dimension choice for log_softmax has been deprecated. Change the call to include dim=X as an argument.
+  return F.log_softmax(x)
+/Users/shravanswaminathan/PycharmProjects/MLCybSec_ImageAttacks/venv/lib/python3.8/site-packages/torch/nn/_reduction.py:42: UserWarning: size_average and reduce args will be deprecated, please use reduction='sum' instead.
+  warnings.warn(warning.format(ret))
+/Users/shravanswaminathan/PycharmProjects/MLCybSec_ImageAttacks/main.py:119: UserWarning: Implicit dimension choice for log_softmax has been deprecated. Change the call to include dim=X as an argument.
+  return F.log_softmax(x)
+/Users/shravanswaminathan/PycharmProjects/MLCybSec_ImageAttacks/main.py:119: UserWarning: Implicit dimension choice for log_softmax has been deprecated. Change the call to include dim=X as an argument.
+  return F.log_softmax(x)
+/Users/shravanswaminathan/PycharmProjects/MLCybSec_ImageAttacks/venv/lib/python3.8/site-packages/torch/nn/_reduction.py:42: UserWarning: size_average and reduce args will be deprecated, please use reduction='sum' instead.
+  warnings.warn(warning.format(ret))
+/Users/shravanswaminathan/PycharmProjects/MLCybSec_ImageAttacks/venv/lib/python3.8/site-packages/torch/nn/_reduction.py:42: UserWarning: size_average and reduce args will be deprecated, please use reduction='sum' instead.
+  warnings.warn(warning.format(ret))
+/Users/shravanswaminathan/PycharmProjects/MLCybSec_ImageAttacks/venv/lib/python3.8/site-packages/torch/nn/_reduction.py:42: UserWarning: size_average and reduce args will be deprecated, please use reduction='sum' instead.
+  warnings.warn(warning.format(ret))
+/Users/shravanswaminathan/PycharmProjects/MLCybSec_ImageAttacks/venv/lib/python3.8/site-packages/torch/nn/_reduction.py:42: UserWarning: size_average and reduce args will be deprecated, please use reduction='sum' instead.
+  warnings.warn(warning.format(ret))
+/Users/shravanswaminathan/PycharmProjects/MLCybSec_ImageAttacks/venv/lib/python3.8/site-packages/torch/nn/_reduction.py:42: UserWarning: size_average and reduce args will be deprecated, please use reduction='sum' instead.
+  warnings.warn(warning.format(ret))
+/Users/shravanswaminathan/PycharmProjects/MLCybSec_ImageAttacks/venv/lib/python3.8/site-packages/torch/nn/_reduction.py:42: UserWarning: size_average and reduce args will be deprecated, please use reduction='sum' instead.
+  warnings.warn(warning.format(ret))
+/Users/shravanswaminathan/PycharmProjects/MLCybSec_ImageAttacks/venv/lib/python3.8/site-packages/torch/nn/_reduction.py:42: UserWarning: size_average and reduce args will be deprecated, please use reduction='sum' instead.
+  warnings.warn(warning.format(ret))
+/Users/shravanswaminathan/PycharmProjects/MLCybSec_ImageAttacks/venv/lib/python3.8/site-packages/torch/nn/_reduction.py:42: UserWarning: size_average and reduce args will be deprecated, please use reduction='sum' instead.
+  warnings.warn(warning.format(ret))
+/Users/shravanswaminathan/PycharmProjects/MLCybSec_ImageAttacks/venv/lib/python3.8/site-packages/torch/nn/_reduction.py:42: UserWarning: size_average and reduce args will be deprecated, please use reduction='sum' instead.
+  warnings.warn(warning.format(ret))
+Attacking with: ['FGSM', 'PGD']
+ Test accuracy: 95.33999633789062
+ Execution time: 0:02:07.708764
+ ################################################################################
+Attacking with: ['FGSM', 'CW']
+ Test accuracy: 96.63999938964844
+ Execution time: 0:04:06.182988
+ ################################################################################
+Attacking with: ['PGD', 'CW']
+ Test accuracy: 96.68000030517578
+ Execution time: 0:05:16.414787
+ ################################################################################
+Attacking with: ['DeepFool', 'FGSM']
+ Test accuracy: 94.83999633789062
+ Execution time: 0:09:34.264727
+ ################################################################################
+Attacking with: ['DeepFool', 'PGD']
+ Test accuracy: 94.86000061035156
+ Execution time: 0:10:20.329277
+ ################################################################################
+Attacking with: ['DeepFool', 'CW']
+ Test accuracy: 97.0199966430664
+ Execution time: 0:11:09.175746
+ ################################################################################
+Attacking with: ['PGD', 'FAB']
+ Test accuracy: 96.5999984741211
+ Execution time: 0:11:18.962740
+ ################################################################################
+Attacking with: ['FGSM', 'FAB']
+ Test accuracy: 96.62000274658203
+ Execution time: 0:11:28.489553
+ ################################################################################
+Attacking with: ['CW', 'FAB']
+ Test accuracy: 97.52999877929688
+ Execution time: 0:12:09.651246
+ ################################################################################
+Attacking with: ['DeepFool', 'FAB']
+ Test accuracy: 97.04000091552734
+ Execution time: 0:14:01.982435
+ ################################################################################
+Generating adversarial samples for 3 cascaded attacks
+################################################################################
+/Users/shravanswaminathan/PycharmProjects/MLCybSec_ImageAttacks/main.py:119: UserWarning: Implicit dimension choice for log_softmax has been deprecated. Change the call to include dim=X as an argument.
+  return F.log_softmax(x)
+/Users/shravanswaminathan/PycharmProjects/MLCybSec_ImageAttacks/main.py:119: UserWarning: Implicit dimension choice for log_softmax has been deprecated. Change the call to include dim=X as an argument.
+  return F.log_softmax(x)
+/Users/shravanswaminathan/PycharmProjects/MLCybSec_ImageAttacks/main.py:119: UserWarning: Implicit dimension choice for log_softmax has been deprecated. Change the call to include dim=X as an argument.
+  return F.log_softmax(x)
+/Users/shravanswaminathan/PycharmProjects/MLCybSec_ImageAttacks/main.py:119: UserWarning: Implicit dimension choice for log_softmax has been deprecated. Change the call to include dim=X as an argument.
+  return F.log_softmax(x)
+/Users/shravanswaminathan/PycharmProjects/MLCybSec_ImageAttacks/main.py:119: UserWarning: Implicit dimension choice for log_softmax has been deprecated. Change the call to include dim=X as an argument.
+  return F.log_softmax(x)
+/Users/shravanswaminathan/PycharmProjects/MLCybSec_ImageAttacks/main.py:119: UserWarning: Implicit dimension choice for log_softmax has been deprecated. Change the call to include dim=X as an argument.
+  return F.log_softmax(x)
+/Users/shravanswaminathan/PycharmProjects/MLCybSec_ImageAttacks/main.py:119: UserWarning: Implicit dimension choice for log_softmax has been deprecated. Change the call to include dim=X as an argument.
+  return F.log_softmax(x)
+/Users/shravanswaminathan/PycharmProjects/MLCybSec_ImageAttacks/main.py:119: UserWarning: Implicit dimension choice for log_softmax has been deprecated. Change the call to include dim=X as an argument.
+  return F.log_softmax(x)
+/Users/shravanswaminathan/PycharmProjects/MLCybSec_ImageAttacks/main.py:119: UserWarning: Implicit dimension choice for log_softmax has been deprecated. Change the call to include dim=X as an argument.
+  return F.log_softmax(x)
+/Users/shravanswaminathan/PycharmProjects/MLCybSec_ImageAttacks/venv/lib/python3.8/site-packages/torch/nn/_reduction.py:42: UserWarning: size_average and reduce args will be deprecated, please use reduction='sum' instead.
+  warnings.warn(warning.format(ret))
+/Users/shravanswaminathan/PycharmProjects/MLCybSec_ImageAttacks/main.py:119: UserWarning: Implicit dimension choice for log_softmax has been deprecated. Change the call to include dim=X as an argument.
+  return F.log_softmax(x)
+/Users/shravanswaminathan/PycharmProjects/MLCybSec_ImageAttacks/venv/lib/python3.8/site-packages/torch/nn/_reduction.py:42: UserWarning: size_average and reduce args will be deprecated, please use reduction='sum' instead.
+  warnings.warn(warning.format(ret))
+/Users/shravanswaminathan/PycharmProjects/MLCybSec_ImageAttacks/venv/lib/python3.8/site-packages/torch/nn/_reduction.py:42: UserWarning: size_average and reduce args will be deprecated, please use reduction='sum' instead.
+  warnings.warn(warning.format(ret))
+/Users/shravanswaminathan/PycharmProjects/MLCybSec_ImageAttacks/venv/lib/python3.8/site-packages/torch/nn/_reduction.py:42: UserWarning: size_average and reduce args will be deprecated, please use reduction='sum' instead.
+  warnings.warn(warning.format(ret))
+/Users/shravanswaminathan/PycharmProjects/MLCybSec_ImageAttacks/venv/lib/python3.8/site-packages/torch/nn/_reduction.py:42: UserWarning: size_average and reduce args will be deprecated, please use reduction='sum' instead.
+  warnings.warn(warning.format(ret))
+/Users/shravanswaminathan/PycharmProjects/MLCybSec_ImageAttacks/venv/lib/python3.8/site-packages/torch/nn/_reduction.py:42: UserWarning: size_average and reduce args will be deprecated, please use reduction='sum' instead.
+  warnings.warn(warning.format(ret))
+/Users/shravanswaminathan/PycharmProjects/MLCybSec_ImageAttacks/venv/lib/python3.8/site-packages/torch/nn/_reduction.py:42: UserWarning: size_average and reduce args will be deprecated, please use reduction='sum' instead.
+  warnings.warn(warning.format(ret))
+/Users/shravanswaminathan/PycharmProjects/MLCybSec_ImageAttacks/venv/lib/python3.8/site-packages/torch/nn/_reduction.py:42: UserWarning: size_average and reduce args will be deprecated, please use reduction='sum' instead.
+  warnings.warn(warning.format(ret))
+/Users/shravanswaminathan/PycharmProjects/MLCybSec_ImageAttacks/venv/lib/python3.8/site-packages/torch/nn/_reduction.py:42: UserWarning: size_average and reduce args will be deprecated, please use reduction='sum' instead.
+  warnings.warn(warning.format(ret))
+/Users/shravanswaminathan/PycharmProjects/MLCybSec_ImageAttacks/venv/lib/python3.8/site-packages/torch/nn/_reduction.py:42: UserWarning: size_average and reduce args will be deprecated, please use reduction='sum' instead.
+  warnings.warn(warning.format(ret))
+Attacking with: ['DeepFool', 'FGSM', 'FAB']
+ Test accuracy: 94.83999633789062
+ Execution time: 0:09:41.312726
+ ################################################################################
+Attacking with: ['DeepFool', 'PGD', 'FAB']
+ Test accuracy: 94.87000274658203
+ Execution time: 0:10:33.176020
+ ################################################################################
+Attacking with: ['FGSM', 'PGD', 'FAB']
+ Test accuracy: 95.33999633789062
+ Execution time: 0:11:24.340114
+ ################################################################################
+Attacking with: ['DeepFool', 'CW', 'FAB']
+ Test accuracy: 97.0199966430664
+ Execution time: 0:11:55.929381
+ ################################################################################
+Attacking with: ['FGSM', 'PGD', 'CW']
+ Test accuracy: 95.33000183105469
+ Execution time: 0:12:21.343438
+ ################################################################################
+Attacking with: ['FGSM', 'CW', 'FAB']
+ Test accuracy: 96.5999984741211
+ Execution time: 0:13:40.965664
+ ################################################################################
+Attacking with: ['PGD', 'CW', 'FAB']
+ Test accuracy: 96.58000183105469
+ Execution time: 0:15:05.235524
+ ################################################################################
+Attacking with: ['DeepFool', 'FGSM', 'PGD']
+ Test accuracy: 89.91000366210938
+ Execution time: 0:16:02.097340
+ ################################################################################
+Attacking with: ['DeepFool', 'FGSM', 'CW']
+ Test accuracy: 94.83999633789062
+ Execution time: 0:16:35.713159
+ ################################################################################
+Attacking with: ['DeepFool', 'PGD', 'CW']
+ Test accuracy: 94.80999755859375
+ Execution time: 0:17:00.630769
+ ################################################################################
+Generating adversarial samples for 4 cascaded attacks
+################################################################################
+/Users/shravanswaminathan/PycharmProjects/MLCybSec_ImageAttacks/main.py:119: UserWarning: Implicit dimension choice for log_softmax has been deprecated. Change the call to include dim=X as an argument.
+  return F.log_softmax(x)
+/Users/shravanswaminathan/PycharmProjects/MLCybSec_ImageAttacks/main.py:119: UserWarning: Implicit dimension choice for log_softmax has been deprecated. Change the call to include dim=X as an argument.
+  return F.log_softmax(x)
+/Users/shravanswaminathan/PycharmProjects/MLCybSec_ImageAttacks/main.py:119: UserWarning: Implicit dimension choice for log_softmax has been deprecated. Change the call to include dim=X as an argument.
+  return F.log_softmax(x)
+/Users/shravanswaminathan/PycharmProjects/MLCybSec_ImageAttacks/main.py:119: UserWarning: Implicit dimension choice for log_softmax has been deprecated. Change the call to include dim=X as an argument.
+  return F.log_softmax(x)
+/Users/shravanswaminathan/PycharmProjects/MLCybSec_ImageAttacks/main.py:119: UserWarning: Implicit dimension choice for log_softmax has been deprecated. Change the call to include dim=X as an argument.
+  return F.log_softmax(x)
+/Users/shravanswaminathan/PycharmProjects/MLCybSec_ImageAttacks/venv/lib/python3.8/site-packages/torch/nn/_reduction.py:42: UserWarning: size_average and reduce args will be deprecated, please use reduction='sum' instead.
+  warnings.warn(warning.format(ret))
+/Users/shravanswaminathan/PycharmProjects/MLCybSec_ImageAttacks/venv/lib/python3.8/site-packages/torch/nn/_reduction.py:42: UserWarning: size_average and reduce args will be deprecated, please use reduction='sum' instead.
+  warnings.warn(warning.format(ret))
+/Users/shravanswaminathan/PycharmProjects/MLCybSec_ImageAttacks/venv/lib/python3.8/site-packages/torch/nn/_reduction.py:42: UserWarning: size_average and reduce args will be deprecated, please use reduction='sum' instead.
+  warnings.warn(warning.format(ret))
+/Users/shravanswaminathan/PycharmProjects/MLCybSec_ImageAttacks/venv/lib/python3.8/site-packages/torch/nn/_reduction.py:42: UserWarning: size_average and reduce args will be deprecated, please use reduction='sum' instead.
+  warnings.warn(warning.format(ret))
+/Users/shravanswaminathan/PycharmProjects/MLCybSec_ImageAttacks/venv/lib/python3.8/site-packages/torch/nn/_reduction.py:42: UserWarning: size_average and reduce args will be deprecated, please use reduction='sum' instead.
+  warnings.warn(warning.format(ret))
+Attacking with: ['FGSM', 'PGD', 'CW', 'FAB']
+ Test accuracy: 95.33999633789062
+ Execution time: 0:08:29.153961
+ ################################################################################
+Attacking with: ['DeepFool', 'FGSM', 'PGD', 'FAB']
+ Test accuracy: 89.9000015258789
+ Execution time: 0:08:35.809058
+ ################################################################################
+Attacking with: ['DeepFool', 'FGSM', 'PGD', 'CW']
+ Test accuracy: 89.97000122070312
+ Execution time: 0:09:01.140992
+ ################################################################################
+Attacking with: ['DeepFool', 'FGSM', 'CW', 'FAB']
+ Test accuracy: 94.83999633789062
+ Execution time: 0:09:19.236601
+ ################################################################################
+Attacking with: ['DeepFool', 'PGD', 'CW', 'FAB']
+ Test accuracy: 94.87000274658203
+ Execution time: 0:09:34.719438
+ ################################################################################
+Generating adversarial samples for 5 cascaded attacks
+################################################################################
+/Users/shravanswaminathan/PycharmProjects/MLCybSec_ImageAttacks/main.py:119: UserWarning: Implicit dimension choice for log_softmax has been deprecated. Change the call to include dim=X as an argument.
+  return F.log_softmax(x)
+/Users/shravanswaminathan/PycharmProjects/MLCybSec_ImageAttacks/venv/lib/python3.8/site-packages/torch/nn/_reduction.py:42: UserWarning: size_average and reduce args will be deprecated, please use reduction='sum' instead.
+  warnings.warn(warning.format(ret))
+Attacking with: ['DeepFool', 'FGSM', 'PGD', 'CW', 'FAB']
+ Test accuracy: 89.9000015258789
+ Execution time: 0:05:40.284062
+ ################################################################################
+################################################################################
+advModel_FGSM.pth
+Generated attack set: ('DeepFool',)
+Generated attack set: ('FGSM',)
+Generated attack set: ('PGD',)
+Generated attack set: ('CW',)
+Generated attack set: ('FAB',)
+Generated attack set: ('DeepFool', 'FGSM')
+Generated attack set: ('DeepFool', 'PGD')
+Generated attack set: ('DeepFool', 'CW')
+Generated attack set: ('DeepFool', 'FAB')
+Generated attack set: ('FGSM', 'PGD')
+Generated attack set: ('FGSM', 'CW')
+Generated attack set: ('FGSM', 'FAB')
+Generated attack set: ('PGD', 'CW')
+Generated attack set: ('PGD', 'FAB')
+Generated attack set: ('CW', 'FAB')
+Generated attack set: ('DeepFool', 'FGSM', 'PGD')
+Generated attack set: ('DeepFool', 'FGSM', 'CW')
+Generated attack set: ('DeepFool', 'FGSM', 'FAB')
+Generated attack set: ('DeepFool', 'PGD', 'CW')
+Generated attack set: ('DeepFool', 'PGD', 'FAB')
+Generated attack set: ('DeepFool', 'CW', 'FAB')
+Generated attack set: ('FGSM', 'PGD', 'CW')
+Generated attack set: ('FGSM', 'PGD', 'FAB')
+Generated attack set: ('FGSM', 'CW', 'FAB')
+Generated attack set: ('PGD', 'CW', 'FAB')
+Generated attack set: ('DeepFool', 'FGSM', 'PGD', 'CW')
+Generated attack set: ('DeepFool', 'FGSM', 'PGD', 'FAB')
+Generated attack set: ('DeepFool', 'FGSM', 'CW', 'FAB')
+Generated attack set: ('DeepFool', 'PGD', 'CW', 'FAB')
+Generated attack set: ('FGSM', 'PGD', 'CW', 'FAB')
+Generated attack set: ('DeepFool', 'FGSM', 'PGD', 'CW', 'FAB')
+Starting threads for generating adversarial samples...
+ .....The command line might be dead for a while
+Generating adversarial samples for 1 cascaded attacks
+################################################################################
+/Users/shravanswaminathan/PycharmProjects/MLCybSec_ImageAttacks/main.py:119: UserWarning: Implicit dimension choice for log_softmax has been deprecated. Change the call to include dim=X as an argument.
+  return F.log_softmax(x)
+/Users/shravanswaminathan/PycharmProjects/MLCybSec_ImageAttacks/main.py:119: UserWarning: Implicit dimension choice for log_softmax has been deprecated. Change the call to include dim=X as an argument.
+  return F.log_softmax(x)
+/Users/shravanswaminathan/PycharmProjects/MLCybSec_ImageAttacks/main.py:119: UserWarning: Implicit dimension choice for log_softmax has been deprecated. Change the call to include dim=X as an argument.
+  return F.log_softmax(x)
+/Users/shravanswaminathan/PycharmProjects/MLCybSec_ImageAttacks/venv/lib/python3.8/site-packages/torch/nn/_reduction.py:42: UserWarning: size_average and reduce args will be deprecated, please use reduction='sum' instead.
+  warnings.warn(warning.format(ret))
+/Users/shravanswaminathan/PycharmProjects/MLCybSec_ImageAttacks/venv/lib/python3.8/site-packages/torch/nn/_reduction.py:42: UserWarning: size_average and reduce args will be deprecated, please use reduction='sum' instead.
+  warnings.warn(warning.format(ret))
+/Users/shravanswaminathan/PycharmProjects/MLCybSec_ImageAttacks/main.py:119: UserWarning: Implicit dimension choice for log_softmax has been deprecated. Change the call to include dim=X as an argument.
+  return F.log_softmax(x)
+/Users/shravanswaminathan/PycharmProjects/MLCybSec_ImageAttacks/main.py:119: UserWarning: Implicit dimension choice for log_softmax has been deprecated. Change the call to include dim=X as an argument.
+  return F.log_softmax(x)
+/Users/shravanswaminathan/PycharmProjects/MLCybSec_ImageAttacks/venv/lib/python3.8/site-packages/torch/nn/_reduction.py:42: UserWarning: size_average and reduce args will be deprecated, please use reduction='sum' instead.
+  warnings.warn(warning.format(ret))
+/Users/shravanswaminathan/PycharmProjects/MLCybSec_ImageAttacks/venv/lib/python3.8/site-packages/torch/nn/_reduction.py:42: UserWarning: size_average and reduce args will be deprecated, please use reduction='sum' instead.
+  warnings.warn(warning.format(ret))
+/Users/shravanswaminathan/PycharmProjects/MLCybSec_ImageAttacks/venv/lib/python3.8/site-packages/torch/nn/_reduction.py:42: UserWarning: size_average and reduce args will be deprecated, please use reduction='sum' instead.
+  warnings.warn(warning.format(ret))
+Attacking with: ['FGSM']
+ Test accuracy: 95.98999786376953
+ Execution time: 0:00:14.426703
+ ################################################################################
+Attacking with: ['PGD']
+ Test accuracy: 95.88999938964844
+ Execution time: 0:00:52.872836
+ ################################################################################
+Attacking with: ['CW']
+ Test accuracy: 97.5
+ Execution time: 0:01:26.680864
+ ################################################################################
+Attacking with: ['DeepFool']
+ Test accuracy: 95.6500015258789
+ Execution time: 0:04:02.819635
+ ################################################################################
+Attacking with: ['FAB']
+ Test accuracy: 97.27999877929688
+ Execution time: 0:05:59.150110
+ ################################################################################
+Generating adversarial samples for 2 cascaded attacks
+################################################################################
+/Users/shravanswaminathan/PycharmProjects/MLCybSec_ImageAttacks/main.py:119: UserWarning: Implicit dimension choice for log_softmax has been deprecated. Change the call to include dim=X as an argument.
+  return F.log_softmax(x)
+/Users/shravanswaminathan/PycharmProjects/MLCybSec_ImageAttacks/main.py:119: UserWarning: Implicit dimension choice for log_softmax has been deprecated. Change the call to include dim=X as an argument.
+  return F.log_softmax(x)
+/Users/shravanswaminathan/PycharmProjects/MLCybSec_ImageAttacks/main.py:119: UserWarning: Implicit dimension choice for log_softmax has been deprecated. Change the call to include dim=X as an argument.
+  return F.log_softmax(x)
+/Users/shravanswaminathan/PycharmProjects/MLCybSec_ImageAttacks/main.py:119: UserWarning: Implicit dimension choice for log_softmax has been deprecated. Change the call to include dim=X as an argument.
+  return F.log_softmax(x)
+/Users/shravanswaminathan/PycharmProjects/MLCybSec_ImageAttacks/main.py:119: UserWarning: Implicit dimension choice for log_softmax has been deprecated. Change the call to include dim=X as an argument.
+  return F.log_softmax(x)
+/Users/shravanswaminathan/PycharmProjects/MLCybSec_ImageAttacks/main.py:119: UserWarning: Implicit dimension choice for log_softmax has been deprecated. Change the call to include dim=X as an argument.
+  return F.log_softmax(x)
+/Users/shravanswaminathan/PycharmProjects/MLCybSec_ImageAttacks/main.py:119: UserWarning: Implicit dimension choice for log_softmax has been deprecated. Change the call to include dim=X as an argument.
+  return F.log_softmax(x)
+/Users/shravanswaminathan/PycharmProjects/MLCybSec_ImageAttacks/main.py:119: UserWarning: Implicit dimension choice for log_softmax has been deprecated. Change the call to include dim=X as an argument.
+  return F.log_softmax(x)
+/Users/shravanswaminathan/PycharmProjects/MLCybSec_ImageAttacks/main.py:119: UserWarning: Implicit dimension choice for log_softmax has been deprecated. Change the call to include dim=X as an argument.
+  return F.log_softmax(x)
+/Users/shravanswaminathan/PycharmProjects/MLCybSec_ImageAttacks/venv/lib/python3.8/site-packages/torch/nn/_reduction.py:42: UserWarning: size_average and reduce args will be deprecated, please use reduction='sum' instead.
+  warnings.warn(warning.format(ret))
+/Users/shravanswaminathan/PycharmProjects/MLCybSec_ImageAttacks/venv/lib/python3.8/site-packages/torch/nn/_reduction.py:42: UserWarning: size_average and reduce args will be deprecated, please use reduction='sum' instead.
+  warnings.warn(warning.format(ret))
+/Users/shravanswaminathan/PycharmProjects/MLCybSec_ImageAttacks/venv/lib/python3.8/site-packages/torch/nn/_reduction.py:42: UserWarning: size_average and reduce args will be deprecated, please use reduction='sum' instead.
+  warnings.warn(warning.format(ret))
+/Users/shravanswaminathan/PycharmProjects/MLCybSec_ImageAttacks/venv/lib/python3.8/site-packages/torch/nn/_reduction.py:42: UserWarning: size_average and reduce args will be deprecated, please use reduction='sum' instead.
+  warnings.warn(warning.format(ret))
+/Users/shravanswaminathan/PycharmProjects/MLCybSec_ImageAttacks/venv/lib/python3.8/site-packages/torch/nn/_reduction.py:42: UserWarning: size_average and reduce args will be deprecated, please use reduction='sum' instead.
+  warnings.warn(warning.format(ret))
+/Users/shravanswaminathan/PycharmProjects/MLCybSec_ImageAttacks/venv/lib/python3.8/site-packages/torch/nn/_reduction.py:42: UserWarning: size_average and reduce args will be deprecated, please use reduction='sum' instead.
+  warnings.warn(warning.format(ret))
+/Users/shravanswaminathan/PycharmProjects/MLCybSec_ImageAttacks/venv/lib/python3.8/site-packages/torch/nn/_reduction.py:42: UserWarning: size_average and reduce args will be deprecated, please use reduction='sum' instead.
+  warnings.warn(warning.format(ret))
+/Users/shravanswaminathan/PycharmProjects/MLCybSec_ImageAttacks/main.py:119: UserWarning: Implicit dimension choice for log_softmax has been deprecated. Change the call to include dim=X as an argument.
+  return F.log_softmax(x)
+/Users/shravanswaminathan/PycharmProjects/MLCybSec_ImageAttacks/venv/lib/python3.8/site-packages/torch/nn/_reduction.py:42: UserWarning: size_average and reduce args will be deprecated, please use reduction='sum' instead.
+  warnings.warn(warning.format(ret))
+/Users/shravanswaminathan/PycharmProjects/MLCybSec_ImageAttacks/venv/lib/python3.8/site-packages/torch/nn/_reduction.py:42: UserWarning: size_average and reduce args will be deprecated, please use reduction='sum' instead.
+  warnings.warn(warning.format(ret))
+/Users/shravanswaminathan/PycharmProjects/MLCybSec_ImageAttacks/venv/lib/python3.8/site-packages/torch/nn/_reduction.py:42: UserWarning: size_average and reduce args will be deprecated, please use reduction='sum' instead.
+  warnings.warn(warning.format(ret))
+Attacking with: ['FGSM', 'PGD']
+ Test accuracy: 93.0199966430664
+ Execution time: 0:02:41.628548
+ ################################################################################
+Attacking with: ['FGSM', 'CW']
+ Test accuracy: 95.94000244140625
+ Execution time: 0:05:06.221535
+ ################################################################################
+Attacking with: ['PGD', 'CW']
+ Test accuracy: 95.91000366210938
+ Execution time: 0:06:40.657970
+ ################################################################################
+Attacking with: ['FGSM', 'FAB']
+ Test accuracy: 95.80000305175781
+ Execution time: 0:12:43.723724
+ ################################################################################
+Attacking with: ['PGD', 'FAB']
+ Test accuracy: 95.76000213623047
+ Execution time: 0:12:56.620823
+ ################################################################################
+Attacking with: ['DeepFool', 'FGSM']
+ Test accuracy: 86.83000183105469
+ Execution time: 0:12:56.897411
+ ################################################################################
+Attacking with: ['DeepFool', 'PGD']
+ Test accuracy: 86.81999969482422
+ Execution time: 0:14:08.648115
+ ################################################################################
+Attacking with: ['DeepFool', 'CW']
+ Test accuracy: 95.47000122070312
+ Execution time: 0:14:19.166856
+ ################################################################################
+Attacking with: ['DeepFool', 'FAB']
+ Test accuracy: 95.6500015258789
+ Execution time: 0:15:24.535296
+ ################################################################################
+Attacking with: ['CW', 'FAB']
+ Test accuracy: 97.27999877929688
+ Execution time: 0:15:54.934292
+ ################################################################################
+Generating adversarial samples for 3 cascaded attacks
+################################################################################
+/Users/shravanswaminathan/PycharmProjects/MLCybSec_ImageAttacks/main.py:119: UserWarning: Implicit dimension choice for log_softmax has been deprecated. Change the call to include dim=X as an argument.
+  return F.log_softmax(x)
+/Users/shravanswaminathan/PycharmProjects/MLCybSec_ImageAttacks/main.py:119: UserWarning: Implicit dimension choice for log_softmax has been deprecated. Change the call to include dim=X as an argument.
+  return F.log_softmax(x)
+/Users/shravanswaminathan/PycharmProjects/MLCybSec_ImageAttacks/main.py:119: UserWarning: Implicit dimension choice for log_softmax has been deprecated. Change the call to include dim=X as an argument.
+  return F.log_softmax(x)
+/Users/shravanswaminathan/PycharmProjects/MLCybSec_ImageAttacks/main.py:119: UserWarning: Implicit dimension choice for log_softmax has been deprecated. Change the call to include dim=X as an argument.
+  return F.log_softmax(x)
+/Users/shravanswaminathan/PycharmProjects/MLCybSec_ImageAttacks/main.py:119: UserWarning: Implicit dimension choice for log_softmax has been deprecated. Change the call to include dim=X as an argument.
+  return F.log_softmax(x)
+/Users/shravanswaminathan/PycharmProjects/MLCybSec_ImageAttacks/main.py:119: UserWarning: Implicit dimension choice for log_softmax has been deprecated. Change the call to include dim=X as an argument.
+  return F.log_softmax(x)
+/Users/shravanswaminathan/PycharmProjects/MLCybSec_ImageAttacks/main.py:119: UserWarning: Implicit dimension choice for log_softmax has been deprecated. Change the call to include dim=X as an argument.
+  return F.log_softmax(x)
+/Users/shravanswaminathan/PycharmProjects/MLCybSec_ImageAttacks/main.py:119: UserWarning: Implicit dimension choice for log_softmax has been deprecated. Change the call to include dim=X as an argument.
+  return F.log_softmax(x)
+/Users/shravanswaminathan/PycharmProjects/MLCybSec_ImageAttacks/main.py:119: UserWarning: Implicit dimension choice for log_softmax has been deprecated. Change the call to include dim=X as an argument.
+  return F.log_softmax(x)
+/Users/shravanswaminathan/PycharmProjects/MLCybSec_ImageAttacks/main.py:119: UserWarning: Implicit dimension choice for log_softmax has been deprecated. Change the call to include dim=X as an argument.
+  return F.log_softmax(x)
+/Users/shravanswaminathan/PycharmProjects/MLCybSec_ImageAttacks/venv/lib/python3.8/site-packages/torch/nn/_reduction.py:42: UserWarning: size_average and reduce args will be deprecated, please use reduction='sum' instead.
+  warnings.warn(warning.format(ret))
+/Users/shravanswaminathan/PycharmProjects/MLCybSec_ImageAttacks/venv/lib/python3.8/site-packages/torch/nn/_reduction.py:42: UserWarning: size_average and reduce args will be deprecated, please use reduction='sum' instead.
+  warnings.warn(warning.format(ret))
+/Users/shravanswaminathan/PycharmProjects/MLCybSec_ImageAttacks/venv/lib/python3.8/site-packages/torch/nn/_reduction.py:42: UserWarning: size_average and reduce args will be deprecated, please use reduction='sum' instead.
+  warnings.warn(warning.format(ret))
+/Users/shravanswaminathan/PycharmProjects/MLCybSec_ImageAttacks/venv/lib/python3.8/site-packages/torch/nn/_reduction.py:42: UserWarning: size_average and reduce args will be deprecated, please use reduction='sum' instead.
+  warnings.warn(warning.format(ret))
+/Users/shravanswaminathan/PycharmProjects/MLCybSec_ImageAttacks/venv/lib/python3.8/site-packages/torch/nn/_reduction.py:42: UserWarning: size_average and reduce args will be deprecated, please use reduction='sum' instead.
+  warnings.warn(warning.format(ret))
+/Users/shravanswaminathan/PycharmProjects/MLCybSec_ImageAttacks/venv/lib/python3.8/site-packages/torch/nn/_reduction.py:42: UserWarning: size_average and reduce args will be deprecated, please use reduction='sum' instead.
+  warnings.warn(warning.format(ret))
+/Users/shravanswaminathan/PycharmProjects/MLCybSec_ImageAttacks/venv/lib/python3.8/site-packages/torch/nn/_reduction.py:42: UserWarning: size_average and reduce args will be deprecated, please use reduction='sum' instead.
+  warnings.warn(warning.format(ret))
+/Users/shravanswaminathan/PycharmProjects/MLCybSec_ImageAttacks/venv/lib/python3.8/site-packages/torch/nn/_reduction.py:42: UserWarning: size_average and reduce args will be deprecated, please use reduction='sum' instead.
+  warnings.warn(warning.format(ret))
+/Users/shravanswaminathan/PycharmProjects/MLCybSec_ImageAttacks/venv/lib/python3.8/site-packages/torch/nn/_reduction.py:42: UserWarning: size_average and reduce args will be deprecated, please use reduction='sum' instead.
+  warnings.warn(warning.format(ret))
+/Users/shravanswaminathan/PycharmProjects/MLCybSec_ImageAttacks/venv/lib/python3.8/site-packages/torch/nn/_reduction.py:42: UserWarning: size_average and reduce args will be deprecated, please use reduction='sum' instead.
+  warnings.warn(warning.format(ret))
+Attacking with: ['FGSM', 'PGD', 'CW']
+ Test accuracy: 92.95999908447266
+ Execution time: 0:06:39.839015
+ ################################################################################
+Attacking with: ['DeepFool', 'FGSM', 'FAB']
+ Test accuracy: 86.83000183105469
+ Execution time: 0:12:59.207548
+ ################################################################################
+Attacking with: ['DeepFool', 'FGSM', 'PGD']
+ Test accuracy: 60.369998931884766
+ Execution time: 0:14:08.768105
+ ################################################################################
+Attacking with: ['FGSM', 'PGD', 'FAB']
+ Test accuracy: 92.9000015258789
+ Execution time: 0:15:21.995716
+ ################################################################################
+Attacking with: ['DeepFool', 'FGSM', 'CW']
+ Test accuracy: 86.83000183105469
+ Execution time: 0:15:25.943886
+ ################################################################################
+Attacking with: ['DeepFool', 'PGD', 'FAB']
+ Test accuracy: 86.8499984741211
+ Execution time: 0:15:30.511796
+ ################################################################################
+Attacking with: ['PGD', 'CW', 'FAB']
+ Test accuracy: 95.76000213623047
+ Execution time: 0:15:37.249321
+ ################################################################################
+Attacking with: ['DeepFool', 'PGD', 'CW']
+ Test accuracy: 87.0
+ Execution time: 0:15:56.263525
+ ################################################################################
+Attacking with: ['FGSM', 'CW', 'FAB']
+ Test accuracy: 95.7699966430664
+ Execution time: 0:16:34.127050
+ ################################################################################
+Attacking with: ['DeepFool', 'CW', 'FAB']
+ Test accuracy: 95.47000122070312
+ Execution time: 0:16:40.822652
+ ################################################################################
+Generating adversarial samples for 4 cascaded attacks
+################################################################################
+/Users/shravanswaminathan/PycharmProjects/MLCybSec_ImageAttacks/main.py:119: UserWarning: Implicit dimension choice for log_softmax has been deprecated. Change the call to include dim=X as an argument.
+  return F.log_softmax(x)
+/Users/shravanswaminathan/PycharmProjects/MLCybSec_ImageAttacks/main.py:119: UserWarning: Implicit dimension choice for log_softmax has been deprecated. Change the call to include dim=X as an argument.
+  return F.log_softmax(x)
+/Users/shravanswaminathan/PycharmProjects/MLCybSec_ImageAttacks/main.py:119: UserWarning: Implicit dimension choice for log_softmax has been deprecated. Change the call to include dim=X as an argument.
+  return F.log_softmax(x)
+/Users/shravanswaminathan/PycharmProjects/MLCybSec_ImageAttacks/main.py:119: UserWarning: Implicit dimension choice for log_softmax has been deprecated. Change the call to include dim=X as an argument.
+  return F.log_softmax(x)
+/Users/shravanswaminathan/PycharmProjects/MLCybSec_ImageAttacks/main.py:119: UserWarning: Implicit dimension choice for log_softmax has been deprecated. Change the call to include dim=X as an argument.
+  return F.log_softmax(x)
+/Users/shravanswaminathan/PycharmProjects/MLCybSec_ImageAttacks/venv/lib/python3.8/site-packages/torch/nn/_reduction.py:42: UserWarning: size_average and reduce args will be deprecated, please use reduction='sum' instead.
+  warnings.warn(warning.format(ret))
+/Users/shravanswaminathan/PycharmProjects/MLCybSec_ImageAttacks/venv/lib/python3.8/site-packages/torch/nn/_reduction.py:42: UserWarning: size_average and reduce args will be deprecated, please use reduction='sum' instead.
+  warnings.warn(warning.format(ret))
+/Users/shravanswaminathan/PycharmProjects/MLCybSec_ImageAttacks/venv/lib/python3.8/site-packages/torch/nn/_reduction.py:42: UserWarning: size_average and reduce args will be deprecated, please use reduction='sum' instead.
+  warnings.warn(warning.format(ret))
+/Users/shravanswaminathan/PycharmProjects/MLCybSec_ImageAttacks/venv/lib/python3.8/site-packages/torch/nn/_reduction.py:42: UserWarning: size_average and reduce args will be deprecated, please use reduction='sum' instead.
+  warnings.warn(warning.format(ret))
+/Users/shravanswaminathan/PycharmProjects/MLCybSec_ImageAttacks/venv/lib/python3.8/site-packages/torch/nn/_reduction.py:42: UserWarning: size_average and reduce args will be deprecated, please use reduction='sum' instead.
+  warnings.warn(warning.format(ret))
+Attacking with: ['DeepFool', 'FGSM', 'PGD', 'FAB']
+ Test accuracy: 60.310001373291016
+ Execution time: 0:07:25.898319
+ ################################################################################
+Attacking with: ['FGSM', 'PGD', 'CW', 'FAB']
+ Test accuracy: 92.9000015258789
+ Execution time: 0:07:50.806537
+ ################################################################################
+Attacking with: ['DeepFool', 'FGSM', 'PGD', 'CW']
+ Test accuracy: 60.150001525878906
+ Execution time: 0:07:52.464860
+ ################################################################################
+Attacking with: ['DeepFool', 'FGSM', 'CW', 'FAB']
+ Test accuracy: 86.83000183105469
+ Execution time: 0:08:08.646194
+ ################################################################################
+Attacking with: ['DeepFool', 'PGD', 'CW', 'FAB']
+ Test accuracy: 86.8499984741211
+ Execution time: 0:08:16.688731
+ ################################################################################
+Generating adversarial samples for 5 cascaded attacks
+################################################################################
+/Users/shravanswaminathan/PycharmProjects/MLCybSec_ImageAttacks/main.py:119: UserWarning: Implicit dimension choice for log_softmax has been deprecated. Change the call to include dim=X as an argument.
+  return F.log_softmax(x)
+/Users/shravanswaminathan/PycharmProjects/MLCybSec_ImageAttacks/venv/lib/python3.8/site-packages/torch/nn/_reduction.py:42: UserWarning: size_average and reduce args will be deprecated, please use reduction='sum' instead.
+  warnings.warn(warning.format(ret))
+Attacking with: ['DeepFool', 'FGSM', 'PGD', 'CW', 'FAB']
+ Test accuracy: 60.310001373291016
+ Execution time: 0:05:42.511485
+ ################################################################################
+################################################################################
+advModel_PGD.pth
+Generated attack set: ('DeepFool',)
+Generated attack set: ('FGSM',)
+Generated attack set: ('PGD',)
+Generated attack set: ('CW',)
+Generated attack set: ('FAB',)
+Generated attack set: ('DeepFool', 'FGSM')
+Generated attack set: ('DeepFool', 'PGD')
+Generated attack set: ('DeepFool', 'CW')
+Generated attack set: ('DeepFool', 'FAB')
+Generated attack set: ('FGSM', 'PGD')
+Generated attack set: ('FGSM', 'CW')
+Generated attack set: ('FGSM', 'FAB')
+Generated attack set: ('PGD', 'CW')
+Generated attack set: ('PGD', 'FAB')
+Generated attack set: ('CW', 'FAB')
+Generated attack set: ('DeepFool', 'FGSM', 'PGD')
+Generated attack set: ('DeepFool', 'FGSM', 'CW')
+Generated attack set: ('DeepFool', 'FGSM', 'FAB')
+Generated attack set: ('DeepFool', 'PGD', 'CW')
+Generated attack set: ('DeepFool', 'PGD', 'FAB')
+Generated attack set: ('DeepFool', 'CW', 'FAB')
+Generated attack set: ('FGSM', 'PGD', 'CW')
+Generated attack set: ('FGSM', 'PGD', 'FAB')
+Generated attack set: ('FGSM', 'CW', 'FAB')
+Generated attack set: ('PGD', 'CW', 'FAB')
+Generated attack set: ('DeepFool', 'FGSM', 'PGD', 'CW')
+Generated attack set: ('DeepFool', 'FGSM', 'PGD', 'FAB')
+Generated attack set: ('DeepFool', 'FGSM', 'CW', 'FAB')
+Generated attack set: ('DeepFool', 'PGD', 'CW', 'FAB')
+Generated attack set: ('FGSM', 'PGD', 'CW', 'FAB')
+Generated attack set: ('DeepFool', 'FGSM', 'PGD', 'CW', 'FAB')
+Starting threads for generating adversarial samples...
+ .....The command line might be dead for a while
+Generating adversarial samples for 1 cascaded attacks
+################################################################################
+/Users/shravanswaminathan/PycharmProjects/MLCybSec_ImageAttacks/main.py:119: UserWarning: Implicit dimension choice for log_softmax has been deprecated. Change the call to include dim=X as an argument.
+  return F.log_softmax(x)
+/Users/shravanswaminathan/PycharmProjects/MLCybSec_ImageAttacks/main.py:119: UserWarning: Implicit dimension choice for log_softmax has been deprecated. Change the call to include dim=X as an argument.
+  return F.log_softmax(x)
+/Users/shravanswaminathan/PycharmProjects/MLCybSec_ImageAttacks/main.py:119: UserWarning: Implicit dimension choice for log_softmax has been deprecated. Change the call to include dim=X as an argument.
+  return F.log_softmax(x)
+/Users/shravanswaminathan/PycharmProjects/MLCybSec_ImageAttacks/main.py:119: UserWarning: Implicit dimension choice for log_softmax has been deprecated. Change the call to include dim=X as an argument.
+  return F.log_softmax(x)
+/Users/shravanswaminathan/PycharmProjects/MLCybSec_ImageAttacks/main.py:119: UserWarning: Implicit dimension choice for log_softmax has been deprecated. Change the call to include dim=X as an argument.
+  return F.log_softmax(x)
+/Users/shravanswaminathan/PycharmProjects/MLCybSec_ImageAttacks/venv/lib/python3.8/site-packages/torch/nn/_reduction.py:42: UserWarning: size_average and reduce args will be deprecated, please use reduction='sum' instead.
+  warnings.warn(warning.format(ret))
+/Users/shravanswaminathan/PycharmProjects/MLCybSec_ImageAttacks/venv/lib/python3.8/site-packages/torch/nn/_reduction.py:42: UserWarning: size_average and reduce args will be deprecated, please use reduction='sum' instead.
+  warnings.warn(warning.format(ret))
+/Users/shravanswaminathan/PycharmProjects/MLCybSec_ImageAttacks/venv/lib/python3.8/site-packages/torch/nn/_reduction.py:42: UserWarning: size_average and reduce args will be deprecated, please use reduction='sum' instead.
+  warnings.warn(warning.format(ret))
+/Users/shravanswaminathan/PycharmProjects/MLCybSec_ImageAttacks/venv/lib/python3.8/site-packages/torch/nn/_reduction.py:42: UserWarning: size_average and reduce args will be deprecated, please use reduction='sum' instead.
+  warnings.warn(warning.format(ret))
+/Users/shravanswaminathan/PycharmProjects/MLCybSec_ImageAttacks/venv/lib/python3.8/site-packages/torch/nn/_reduction.py:42: UserWarning: size_average and reduce args will be deprecated, please use reduction='sum' instead.
+  warnings.warn(warning.format(ret))
+Attacking with: ['FGSM']
+ Test accuracy: 96.26000213623047
+ Execution time: 0:00:12.620725
+ ################################################################################
+Attacking with: ['PGD']
+ Test accuracy: 96.2300033569336
+ Execution time: 0:00:46.428235
+ ################################################################################
+Attacking with: ['CW']
+ Test accuracy: 97.43000030517578
+ Execution time: 0:01:19.788532
+ ################################################################################
+Attacking with: ['DeepFool']
+ Test accuracy: 96.22000122070312
+ Execution time: 0:03:45.415335
+ ################################################################################
+Attacking with: ['FAB']
+ Test accuracy: 97.30000305175781
+ Execution time: 0:05:54.829572
+ ################################################################################
+Generating adversarial samples for 2 cascaded attacks
+################################################################################
+/Users/shravanswaminathan/PycharmProjects/MLCybSec_ImageAttacks/main.py:119: UserWarning: Implicit dimension choice for log_softmax has been deprecated. Change the call to include dim=X as an argument.
+  return F.log_softmax(x)
+/Users/shravanswaminathan/PycharmProjects/MLCybSec_ImageAttacks/main.py:119: UserWarning: Implicit dimension choice for log_softmax has been deprecated. Change the call to include dim=X as an argument.
+  return F.log_softmax(x)
+/Users/shravanswaminathan/PycharmProjects/MLCybSec_ImageAttacks/main.py:119: UserWarning: Implicit dimension choice for log_softmax has been deprecated. Change the call to include dim=X as an argument.
+  return F.log_softmax(x)
+/Users/shravanswaminathan/PycharmProjects/MLCybSec_ImageAttacks/main.py:119: UserWarning: Implicit dimension choice for log_softmax has been deprecated. Change the call to include dim=X as an argument.
+  return F.log_softmax(x)
+/Users/shravanswaminathan/PycharmProjects/MLCybSec_ImageAttacks/main.py:119: UserWarning: Implicit dimension choice for log_softmax has been deprecated. Change the call to include dim=X as an argument.
+  return F.log_softmax(x)
+/Users/shravanswaminathan/PycharmProjects/MLCybSec_ImageAttacks/main.py:119: UserWarning: Implicit dimension choice for log_softmax has been deprecated. Change the call to include dim=X as an argument.
+  return F.log_softmax(x)
+/Users/shravanswaminathan/PycharmProjects/MLCybSec_ImageAttacks/main.py:119: UserWarning: Implicit dimension choice for log_softmax has been deprecated. Change the call to include dim=X as an argument.
+  return F.log_softmax(x)
+/Users/shravanswaminathan/PycharmProjects/MLCybSec_ImageAttacks/main.py:119: UserWarning: Implicit dimension choice for log_softmax has been deprecated. Change the call to include dim=X as an argument.
+  return F.log_softmax(x)
+/Users/shravanswaminathan/PycharmProjects/MLCybSec_ImageAttacks/venv/lib/python3.8/site-packages/torch/nn/_reduction.py:42: UserWarning: size_average and reduce args will be deprecated, please use reduction='sum' instead.
+  warnings.warn(warning.format(ret))
+/Users/shravanswaminathan/PycharmProjects/MLCybSec_ImageAttacks/main.py:119: UserWarning: Implicit dimension choice for log_softmax has been deprecated. Change the call to include dim=X as an argument.
+  return F.log_softmax(x)
+/Users/shravanswaminathan/PycharmProjects/MLCybSec_ImageAttacks/venv/lib/python3.8/site-packages/torch/nn/_reduction.py:42: UserWarning: size_average and reduce args will be deprecated, please use reduction='sum' instead.
+  warnings.warn(warning.format(ret))
+/Users/shravanswaminathan/PycharmProjects/MLCybSec_ImageAttacks/venv/lib/python3.8/site-packages/torch/nn/_reduction.py:42: UserWarning: size_average and reduce args will be deprecated, please use reduction='sum' instead.
+  warnings.warn(warning.format(ret))
+/Users/shravanswaminathan/PycharmProjects/MLCybSec_ImageAttacks/main.py:119: UserWarning: Implicit dimension choice for log_softmax has been deprecated. Change the call to include dim=X as an argument.
+  return F.log_softmax(x)
+/Users/shravanswaminathan/PycharmProjects/MLCybSec_ImageAttacks/venv/lib/python3.8/site-packages/torch/nn/_reduction.py:42: UserWarning: size_average and reduce args will be deprecated, please use reduction='sum' instead.
+  warnings.warn(warning.format(ret))
+/Users/shravanswaminathan/PycharmProjects/MLCybSec_ImageAttacks/venv/lib/python3.8/site-packages/torch/nn/_reduction.py:42: UserWarning: size_average and reduce args will be deprecated, please use reduction='sum' instead.
+  warnings.warn(warning.format(ret))
+/Users/shravanswaminathan/PycharmProjects/MLCybSec_ImageAttacks/venv/lib/python3.8/site-packages/torch/nn/_reduction.py:42: UserWarning: size_average and reduce args will be deprecated, please use reduction='sum' instead.
+  warnings.warn(warning.format(ret))
+/Users/shravanswaminathan/PycharmProjects/MLCybSec_ImageAttacks/venv/lib/python3.8/site-packages/torch/nn/_reduction.py:42: UserWarning: size_average and reduce args will be deprecated, please use reduction='sum' instead.
+  warnings.warn(warning.format(ret))
+/Users/shravanswaminathan/PycharmProjects/MLCybSec_ImageAttacks/venv/lib/python3.8/site-packages/torch/nn/_reduction.py:42: UserWarning: size_average and reduce args will be deprecated, please use reduction='sum' instead.
+  warnings.warn(warning.format(ret))
+/Users/shravanswaminathan/PycharmProjects/MLCybSec_ImageAttacks/venv/lib/python3.8/site-packages/torch/nn/_reduction.py:42: UserWarning: size_average and reduce args will be deprecated, please use reduction='sum' instead.
+  warnings.warn(warning.format(ret))
+/Users/shravanswaminathan/PycharmProjects/MLCybSec_ImageAttacks/venv/lib/python3.8/site-packages/torch/nn/_reduction.py:42: UserWarning: size_average and reduce args will be deprecated, please use reduction='sum' instead.
+  warnings.warn(warning.format(ret))
+Attacking with: ['FGSM', 'PGD']
+ Test accuracy: 93.68000030517578
+ Execution time: 0:02:25.529460
+ ################################################################################
+Attacking with: ['FGSM', 'CW']
+ Test accuracy: 96.20999908447266
+ Execution time: 0:04:09.447491
+ ################################################################################
+Attacking with: ['PGD', 'CW']
+ Test accuracy: 96.16000366210938
+ Execution time: 0:05:16.250670
+ ################################################################################
+Attacking with: ['DeepFool', 'FGSM']
+ Test accuracy: 90.12000274658203
+ Execution time: 0:10:25.910497
+ ################################################################################
+Attacking with: ['PGD', 'FAB']
+ Test accuracy: 96.0999984741211
+ Execution time: 0:11:16.531314
+ ################################################################################
+Attacking with: ['DeepFool', 'PGD']
+ Test accuracy: 90.13999938964844
+ Execution time: 0:11:17.615335
+ ################################################################################
+Attacking with: ['DeepFool', 'CW']
+ Test accuracy: 96.16999816894531
+ Execution time: 0:12:13.127784
+ ################################################################################
+Attacking with: ['FGSM', 'FAB']
+ Test accuracy: 96.13999938964844
+ Execution time: 0:12:20.268734
+ ################################################################################
+Attacking with: ['CW', 'FAB']
+ Test accuracy: 97.27999877929688
+ Execution time: 0:14:14.048806
+ ################################################################################
+Attacking with: ['DeepFool', 'FAB']
+ Test accuracy: 96.22000122070312
+ Execution time: 0:15:18.467670
+ ################################################################################
+Generating adversarial samples for 3 cascaded attacks
+################################################################################
+/Users/shravanswaminathan/PycharmProjects/MLCybSec_ImageAttacks/main.py:119: UserWarning: Implicit dimension choice for log_softmax has been deprecated. Change the call to include dim=X as an argument.
+  return F.log_softmax(x)
+/Users/shravanswaminathan/PycharmProjects/MLCybSec_ImageAttacks/main.py:119: UserWarning: Implicit dimension choice for log_softmax has been deprecated. Change the call to include dim=X as an argument.
+  return F.log_softmax(x)
+/Users/shravanswaminathan/PycharmProjects/MLCybSec_ImageAttacks/main.py:119: UserWarning: Implicit dimension choice for log_softmax has been deprecated. Change the call to include dim=X as an argument.
+  return F.log_softmax(x)
+/Users/shravanswaminathan/PycharmProjects/MLCybSec_ImageAttacks/main.py:119: UserWarning: Implicit dimension choice for log_softmax has been deprecated. Change the call to include dim=X as an argument.
+  return F.log_softmax(x)
+/Users/shravanswaminathan/PycharmProjects/MLCybSec_ImageAttacks/main.py:119: UserWarning: Implicit dimension choice for log_softmax has been deprecated. Change the call to include dim=X as an argument.
+  return F.log_softmax(x)
+/Users/shravanswaminathan/PycharmProjects/MLCybSec_ImageAttacks/main.py:119: UserWarning: Implicit dimension choice for log_softmax has been deprecated. Change the call to include dim=X as an argument.
+  return F.log_softmax(x)
+/Users/shravanswaminathan/PycharmProjects/MLCybSec_ImageAttacks/main.py:119: UserWarning: Implicit dimension choice for log_softmax has been deprecated. Change the call to include dim=X as an argument.
+  return F.log_softmax(x)
+/Users/shravanswaminathan/PycharmProjects/MLCybSec_ImageAttacks/venv/lib/python3.8/site-packages/torch/nn/_reduction.py:42: UserWarning: size_average and reduce args will be deprecated, please use reduction='sum' instead.
+  warnings.warn(warning.format(ret))
+/Users/shravanswaminathan/PycharmProjects/MLCybSec_ImageAttacks/main.py:119: UserWarning: Implicit dimension choice for log_softmax has been deprecated. Change the call to include dim=X as an argument.
+  return F.log_softmax(x)
+/Users/shravanswaminathan/PycharmProjects/MLCybSec_ImageAttacks/main.py:119: UserWarning: Implicit dimension choice for log_softmax has been deprecated. Change the call to include dim=X as an argument.
+  return F.log_softmax(x)
+/Users/shravanswaminathan/PycharmProjects/MLCybSec_ImageAttacks/main.py:119: UserWarning: Implicit dimension choice for log_softmax has been deprecated. Change the call to include dim=X as an argument.
+  return F.log_softmax(x)
+/Users/shravanswaminathan/PycharmProjects/MLCybSec_ImageAttacks/venv/lib/python3.8/site-packages/torch/nn/_reduction.py:42: UserWarning: size_average and reduce args will be deprecated, please use reduction='sum' instead.
+  warnings.warn(warning.format(ret))
+/Users/shravanswaminathan/PycharmProjects/MLCybSec_ImageAttacks/venv/lib/python3.8/site-packages/torch/nn/_reduction.py:42: UserWarning: size_average and reduce args will be deprecated, please use reduction='sum' instead.
+  warnings.warn(warning.format(ret))
+/Users/shravanswaminathan/PycharmProjects/MLCybSec_ImageAttacks/venv/lib/python3.8/site-packages/torch/nn/_reduction.py:42: UserWarning: size_average and reduce args will be deprecated, please use reduction='sum' instead.
+  warnings.warn(warning.format(ret))
+/Users/shravanswaminathan/PycharmProjects/MLCybSec_ImageAttacks/venv/lib/python3.8/site-packages/torch/nn/_reduction.py:42: UserWarning: size_average and reduce args will be deprecated, please use reduction='sum' instead.
+  warnings.warn(warning.format(ret))
+/Users/shravanswaminathan/PycharmProjects/MLCybSec_ImageAttacks/venv/lib/python3.8/site-packages/torch/nn/_reduction.py:42: UserWarning: size_average and reduce args will be deprecated, please use reduction='sum' instead.
+  warnings.warn(warning.format(ret))
+/Users/shravanswaminathan/PycharmProjects/MLCybSec_ImageAttacks/venv/lib/python3.8/site-packages/torch/nn/_reduction.py:42: UserWarning: size_average and reduce args will be deprecated, please use reduction='sum' instead.
+  warnings.warn(warning.format(ret))
+/Users/shravanswaminathan/PycharmProjects/MLCybSec_ImageAttacks/venv/lib/python3.8/site-packages/torch/nn/_reduction.py:42: UserWarning: size_average and reduce args will be deprecated, please use reduction='sum' instead.
+  warnings.warn(warning.format(ret))
+/Users/shravanswaminathan/PycharmProjects/MLCybSec_ImageAttacks/venv/lib/python3.8/site-packages/torch/nn/_reduction.py:42: UserWarning: size_average and reduce args will be deprecated, please use reduction='sum' instead.
+  warnings.warn(warning.format(ret))
+/Users/shravanswaminathan/PycharmProjects/MLCybSec_ImageAttacks/venv/lib/python3.8/site-packages/torch/nn/_reduction.py:42: UserWarning: size_average and reduce args will be deprecated, please use reduction='sum' instead.
+  warnings.warn(warning.format(ret))
+Attacking with: ['FGSM', 'PGD', 'CW']
+ Test accuracy: 93.75
+ Execution time: 0:06:05.041311
+ ################################################################################
+Attacking with: ['DeepFool', 'PGD', 'FAB']
+ Test accuracy: 90.20999908447266
+ Execution time: 0:12:56.146803
+ ################################################################################
+Attacking with: ['DeepFool', 'FGSM', 'PGD']
+ Test accuracy: 70.51000213623047
+ Execution time: 0:13:46.108940
+ ################################################################################
+Attacking with: ['DeepFool', 'FGSM', 'FAB']
+ Test accuracy: 90.12000274658203
+ Execution time: 0:14:02.949535
+ ################################################################################
+Attacking with: ['FGSM', 'PGD', 'FAB']
+ Test accuracy: 93.66000366210938
+ Execution time: 0:14:51.773130
+ ################################################################################
+Attacking with: ['DeepFool', 'FGSM', 'CW']
+ Test accuracy: 90.12000274658203
+ Execution time: 0:14:52.613413
+ ################################################################################
+Attacking with: ['DeepFool', 'PGD', 'CW']
+ Test accuracy: 90.18000030517578
+ Execution time: 0:15:28.547923
+ ################################################################################
+Attacking with: ['DeepFool', 'CW', 'FAB']
+ Test accuracy: 96.16999816894531
+ Execution time: 0:15:38.223940
+ ################################################################################
+Attacking with: ['PGD', 'CW', 'FAB']
+ Test accuracy: 96.0999984741211
+ Execution time: 0:16:06.414767
+ ################################################################################
+Attacking with: ['FGSM', 'CW', 'FAB']
+ Test accuracy: 96.12000274658203
+ Execution time: 0:16:58.377814
+ ################################################################################
+Generating adversarial samples for 4 cascaded attacks
+################################################################################
+/Users/shravanswaminathan/PycharmProjects/MLCybSec_ImageAttacks/main.py:119: UserWarning: Implicit dimension choice for log_softmax has been deprecated. Change the call to include dim=X as an argument.
+  return F.log_softmax(x)
+/Users/shravanswaminathan/PycharmProjects/MLCybSec_ImageAttacks/main.py:119: UserWarning: Implicit dimension choice for log_softmax has been deprecated. Change the call to include dim=X as an argument.
+  return F.log_softmax(x)
+/Users/shravanswaminathan/PycharmProjects/MLCybSec_ImageAttacks/main.py:119: UserWarning: Implicit dimension choice for log_softmax has been deprecated. Change the call to include dim=X as an argument.
+  return F.log_softmax(x)
+/Users/shravanswaminathan/PycharmProjects/MLCybSec_ImageAttacks/main.py:119: UserWarning: Implicit dimension choice for log_softmax has been deprecated. Change the call to include dim=X as an argument.
+  return F.log_softmax(x)
+/Users/shravanswaminathan/PycharmProjects/MLCybSec_ImageAttacks/main.py:119: UserWarning: Implicit dimension choice for log_softmax has been deprecated. Change the call to include dim=X as an argument.
+  return F.log_softmax(x)
+/Users/shravanswaminathan/PycharmProjects/MLCybSec_ImageAttacks/venv/lib/python3.8/site-packages/torch/nn/_reduction.py:42: UserWarning: size_average and reduce args will be deprecated, please use reduction='sum' instead.
+  warnings.warn(warning.format(ret))
+/Users/shravanswaminathan/PycharmProjects/MLCybSec_ImageAttacks/venv/lib/python3.8/site-packages/torch/nn/_reduction.py:42: UserWarning: size_average and reduce args will be deprecated, please use reduction='sum' instead.
+  warnings.warn(warning.format(ret))
+/Users/shravanswaminathan/PycharmProjects/MLCybSec_ImageAttacks/venv/lib/python3.8/site-packages/torch/nn/_reduction.py:42: UserWarning: size_average and reduce args will be deprecated, please use reduction='sum' instead.
+  warnings.warn(warning.format(ret))
+/Users/shravanswaminathan/PycharmProjects/MLCybSec_ImageAttacks/venv/lib/python3.8/site-packages/torch/nn/_reduction.py:42: UserWarning: size_average and reduce args will be deprecated, please use reduction='sum' instead.
+  warnings.warn(warning.format(ret))
+/Users/shravanswaminathan/PycharmProjects/MLCybSec_ImageAttacks/venv/lib/python3.8/site-packages/torch/nn/_reduction.py:42: UserWarning: size_average and reduce args will be deprecated, please use reduction='sum' instead.
+  warnings.warn(warning.format(ret))
+Attacking with: ['DeepFool', 'FGSM', 'PGD', 'FAB']
+ Test accuracy: 70.66999816894531
+ Execution time: 0:07:28.359388
+ ################################################################################
+Attacking with: ['DeepFool', 'FGSM', 'CW', 'FAB']
+ Test accuracy: 90.12000274658203
+ Execution time: 0:07:48.601305
+ ################################################################################
+Attacking with: ['DeepFool', 'FGSM', 'PGD', 'CW']
+ Test accuracy: 70.37999725341797
+ Execution time: 0:07:48.931650
+ ################################################################################
+Attacking with: ['FGSM', 'PGD', 'CW', 'FAB']
+ Test accuracy: 93.66000366210938
+ Execution time: 0:07:58.942320
+ ################################################################################
+Attacking with: ['DeepFool', 'PGD', 'CW', 'FAB']
+ Test accuracy: 90.20999908447266
+ Execution time: 0:08:30.717235
+ ################################################################################
+Generating adversarial samples for 5 cascaded attacks
+################################################################################
+/Users/shravanswaminathan/PycharmProjects/MLCybSec_ImageAttacks/main.py:119: UserWarning: Implicit dimension choice for log_softmax has been deprecated. Change the call to include dim=X as an argument.
+  return F.log_softmax(x)
+/Users/shravanswaminathan/PycharmProjects/MLCybSec_ImageAttacks/venv/lib/python3.8/site-packages/torch/nn/_reduction.py:42: UserWarning: size_average and reduce args will be deprecated, please use reduction='sum' instead.
+  warnings.warn(warning.format(ret))
+Attacking with: ['DeepFool', 'FGSM', 'PGD', 'CW', 'FAB']
+ Test accuracy: 70.66999816894531
+ Execution time: 0:05:25.713055
+ ################################################################################
+################################################################################
+advModel_CW.pth
+Generated attack set: ('DeepFool',)
+Generated attack set: ('FGSM',)
+Generated attack set: ('PGD',)
+Generated attack set: ('CW',)
+Generated attack set: ('FAB',)
+Generated attack set: ('DeepFool', 'FGSM')
+Generated attack set: ('DeepFool', 'PGD')
+Generated attack set: ('DeepFool', 'CW')
+Generated attack set: ('DeepFool', 'FAB')
+Generated attack set: ('FGSM', 'PGD')
+Generated attack set: ('FGSM', 'CW')
+Generated attack set: ('FGSM', 'FAB')
+Generated attack set: ('PGD', 'CW')
+Generated attack set: ('PGD', 'FAB')
+Generated attack set: ('CW', 'FAB')
+Generated attack set: ('DeepFool', 'FGSM', 'PGD')
+Generated attack set: ('DeepFool', 'FGSM', 'CW')
+Generated attack set: ('DeepFool', 'FGSM', 'FAB')
+Generated attack set: ('DeepFool', 'PGD', 'CW')
+Generated attack set: ('DeepFool', 'PGD', 'FAB')
+Generated attack set: ('DeepFool', 'CW', 'FAB')
+Generated attack set: ('FGSM', 'PGD', 'CW')
+Generated attack set: ('FGSM', 'PGD', 'FAB')
+Generated attack set: ('FGSM', 'CW', 'FAB')
+Generated attack set: ('PGD', 'CW', 'FAB')
+Generated attack set: ('DeepFool', 'FGSM', 'PGD', 'CW')
+Generated attack set: ('DeepFool', 'FGSM', 'PGD', 'FAB')
+Generated attack set: ('DeepFool', 'FGSM', 'CW', 'FAB')
+Generated attack set: ('DeepFool', 'PGD', 'CW', 'FAB')
+Generated attack set: ('FGSM', 'PGD', 'CW', 'FAB')
+Generated attack set: ('DeepFool', 'FGSM', 'PGD', 'CW', 'FAB')
+Starting threads for generating adversarial samples...
+ .....The command line might be dead for a while
+Generating adversarial samples for 1 cascaded attacks
+################################################################################
+/Users/shravanswaminathan/PycharmProjects/MLCybSec_ImageAttacks/main.py:119: UserWarning: Implicit dimension choice for log_softmax has been deprecated. Change the call to include dim=X as an argument.
+  return F.log_softmax(x)
+/Users/shravanswaminathan/PycharmProjects/MLCybSec_ImageAttacks/main.py:119: UserWarning: Implicit dimension choice for log_softmax has been deprecated. Change the call to include dim=X as an argument.
+  return F.log_softmax(x)
+/Users/shravanswaminathan/PycharmProjects/MLCybSec_ImageAttacks/main.py:119: UserWarning: Implicit dimension choice for log_softmax has been deprecated. Change the call to include dim=X as an argument.
+  return F.log_softmax(x)
+/Users/shravanswaminathan/PycharmProjects/MLCybSec_ImageAttacks/main.py:119: UserWarning: Implicit dimension choice for log_softmax has been deprecated. Change the call to include dim=X as an argument.
+  return F.log_softmax(x)
+/Users/shravanswaminathan/PycharmProjects/MLCybSec_ImageAttacks/main.py:119: UserWarning: Implicit dimension choice for log_softmax has been deprecated. Change the call to include dim=X as an argument.
+  return F.log_softmax(x)
+/Users/shravanswaminathan/PycharmProjects/MLCybSec_ImageAttacks/venv/lib/python3.8/site-packages/torch/nn/_reduction.py:42: UserWarning: size_average and reduce args will be deprecated, please use reduction='sum' instead.
+  warnings.warn(warning.format(ret))
+/Users/shravanswaminathan/PycharmProjects/MLCybSec_ImageAttacks/venv/lib/python3.8/site-packages/torch/nn/_reduction.py:42: UserWarning: size_average and reduce args will be deprecated, please use reduction='sum' instead.
+  warnings.warn(warning.format(ret))
+/Users/shravanswaminathan/PycharmProjects/MLCybSec_ImageAttacks/venv/lib/python3.8/site-packages/torch/nn/_reduction.py:42: UserWarning: size_average and reduce args will be deprecated, please use reduction='sum' instead.
+  warnings.warn(warning.format(ret))
+/Users/shravanswaminathan/PycharmProjects/MLCybSec_ImageAttacks/venv/lib/python3.8/site-packages/torch/nn/_reduction.py:42: UserWarning: size_average and reduce args will be deprecated, please use reduction='sum' instead.
+  warnings.warn(warning.format(ret))
+/Users/shravanswaminathan/PycharmProjects/MLCybSec_ImageAttacks/venv/lib/python3.8/site-packages/torch/nn/_reduction.py:42: UserWarning: size_average and reduce args will be deprecated, please use reduction='sum' instead.
+  warnings.warn(warning.format(ret))
+Attacking with: ['FGSM']
+ Test accuracy: 94.08999633789062
+ Execution time: 0:00:13.155067
+ ################################################################################
+Attacking with: ['PGD']
+ Test accuracy: 94.05999755859375
+ Execution time: 0:00:44.594907
+ ################################################################################
+Attacking with: ['CW']
+ Test accuracy: 97.08999633789062
+ Execution time: 0:01:17.450780
+ ################################################################################
+Attacking with: ['DeepFool']
+ Test accuracy: 91.1500015258789
+ Execution time: 0:03:34.982995
+ ################################################################################
+Attacking with: ['FAB']
+ Test accuracy: 96.54000091552734
+ Execution time: 0:05:35.196063
+ ################################################################################
+Generating adversarial samples for 2 cascaded attacks
+################################################################################
+/Users/shravanswaminathan/PycharmProjects/MLCybSec_ImageAttacks/main.py:119: UserWarning: Implicit dimension choice for log_softmax has been deprecated. Change the call to include dim=X as an argument.
+  return F.log_softmax(x)
+/Users/shravanswaminathan/PycharmProjects/MLCybSec_ImageAttacks/main.py:119: UserWarning: Implicit dimension choice for log_softmax has been deprecated. Change the call to include dim=X as an argument.
+  return F.log_softmax(x)
+/Users/shravanswaminathan/PycharmProjects/MLCybSec_ImageAttacks/main.py:119: UserWarning: Implicit dimension choice for log_softmax has been deprecated. Change the call to include dim=X as an argument.
+  return F.log_softmax(x)
+/Users/shravanswaminathan/PycharmProjects/MLCybSec_ImageAttacks/main.py:119: UserWarning: Implicit dimension choice for log_softmax has been deprecated. Change the call to include dim=X as an argument.
+  return F.log_softmax(x)
+/Users/shravanswaminathan/PycharmProjects/MLCybSec_ImageAttacks/main.py:119: UserWarning: Implicit dimension choice for log_softmax has been deprecated. Change the call to include dim=X as an argument.
+  return F.log_softmax(x)
+/Users/shravanswaminathan/PycharmProjects/MLCybSec_ImageAttacks/main.py:119: UserWarning: Implicit dimension choice for log_softmax has been deprecated. Change the call to include dim=X as an argument.
+  return F.log_softmax(x)
+/Users/shravanswaminathan/PycharmProjects/MLCybSec_ImageAttacks/main.py:119: UserWarning: Implicit dimension choice for log_softmax has been deprecated. Change the call to include dim=X as an argument.
+  return F.log_softmax(x)
+/Users/shravanswaminathan/PycharmProjects/MLCybSec_ImageAttacks/main.py:119: UserWarning: Implicit dimension choice for log_softmax has been deprecated. Change the call to include dim=X as an argument.
+  return F.log_softmax(x)
+/Users/shravanswaminathan/PycharmProjects/MLCybSec_ImageAttacks/main.py:119: UserWarning: Implicit dimension choice for log_softmax has been deprecated. Change the call to include dim=X as an argument.
+  return F.log_softmax(x)
+/Users/shravanswaminathan/PycharmProjects/MLCybSec_ImageAttacks/main.py:119: UserWarning: Implicit dimension choice for log_softmax has been deprecated. Change the call to include dim=X as an argument.
+  return F.log_softmax(x)
+/Users/shravanswaminathan/PycharmProjects/MLCybSec_ImageAttacks/venv/lib/python3.8/site-packages/torch/nn/_reduction.py:42: UserWarning: size_average and reduce args will be deprecated, please use reduction='sum' instead.
+  warnings.warn(warning.format(ret))
+/Users/shravanswaminathan/PycharmProjects/MLCybSec_ImageAttacks/venv/lib/python3.8/site-packages/torch/nn/_reduction.py:42: UserWarning: size_average and reduce args will be deprecated, please use reduction='sum' instead.
+  warnings.warn(warning.format(ret))
+/Users/shravanswaminathan/PycharmProjects/MLCybSec_ImageAttacks/venv/lib/python3.8/site-packages/torch/nn/_reduction.py:42: UserWarning: size_average and reduce args will be deprecated, please use reduction='sum' instead.
+  warnings.warn(warning.format(ret))
+/Users/shravanswaminathan/PycharmProjects/MLCybSec_ImageAttacks/venv/lib/python3.8/site-packages/torch/nn/_reduction.py:42: UserWarning: size_average and reduce args will be deprecated, please use reduction='sum' instead.
+  warnings.warn(warning.format(ret))
+/Users/shravanswaminathan/PycharmProjects/MLCybSec_ImageAttacks/venv/lib/python3.8/site-packages/torch/nn/_reduction.py:42: UserWarning: size_average and reduce args will be deprecated, please use reduction='sum' instead.
+  warnings.warn(warning.format(ret))
+/Users/shravanswaminathan/PycharmProjects/MLCybSec_ImageAttacks/venv/lib/python3.8/site-packages/torch/nn/_reduction.py:42: UserWarning: size_average and reduce args will be deprecated, please use reduction='sum' instead.
+  warnings.warn(warning.format(ret))
+/Users/shravanswaminathan/PycharmProjects/MLCybSec_ImageAttacks/venv/lib/python3.8/site-packages/torch/nn/_reduction.py:42: UserWarning: size_average and reduce args will be deprecated, please use reduction='sum' instead.
+  warnings.warn(warning.format(ret))
+/Users/shravanswaminathan/PycharmProjects/MLCybSec_ImageAttacks/venv/lib/python3.8/site-packages/torch/nn/_reduction.py:42: UserWarning: size_average and reduce args will be deprecated, please use reduction='sum' instead.
+  warnings.warn(warning.format(ret))
+/Users/shravanswaminathan/PycharmProjects/MLCybSec_ImageAttacks/venv/lib/python3.8/site-packages/torch/nn/_reduction.py:42: UserWarning: size_average and reduce args will be deprecated, please use reduction='sum' instead.
+  warnings.warn(warning.format(ret))
+/Users/shravanswaminathan/PycharmProjects/MLCybSec_ImageAttacks/venv/lib/python3.8/site-packages/torch/nn/_reduction.py:42: UserWarning: size_average and reduce args will be deprecated, please use reduction='sum' instead.
+  warnings.warn(warning.format(ret))
+Attacking with: ['FGSM', 'PGD']
+ Test accuracy: 88.08999633789062
+ Execution time: 0:02:09.308905
+ ################################################################################
+Attacking with: ['FGSM', 'CW']
+ Test accuracy: 93.97000122070312
+ Execution time: 0:03:45.581852
+ ################################################################################
+Attacking with: ['PGD', 'CW']
+ Test accuracy: 93.91999816894531
+ Execution time: 0:04:46.802715
+ ################################################################################
+Attacking with: ['DeepFool', 'FGSM']
+ Test accuracy: 65.7699966430664
+ Execution time: 0:09:47.117052
+ ################################################################################
+Attacking with: ['DeepFool', 'PGD']
+ Test accuracy: 66.37999725341797
+ Execution time: 0:09:48.755438
+ ################################################################################
+Attacking with: ['DeepFool', 'CW']
+ Test accuracy: 90.5999984741211
+ Execution time: 0:10:39.158254
+ ################################################################################
+Attacking with: ['FGSM', 'FAB']
+ Test accuracy: 93.4000015258789
+ Execution time: 0:12:16.591733
+ ################################################################################
+Attacking with: ['PGD', 'FAB']
+ Test accuracy: 93.36000061035156
+ Execution time: 0:28:39.422489
+ ################################################################################
+Attacking with: ['CW', 'FAB']
+ Test accuracy: 96.54000091552734
+ Execution time: 0:29:24.144208
+ ################################################################################
+Attacking with: ['DeepFool', 'FAB']
+ Test accuracy: 91.1500015258789
+ Execution time: 0:47:05.989881
+ ################################################################################
+Generating adversarial samples for 3 cascaded attacks
+################################################################################
+/Users/shravanswaminathan/PycharmProjects/MLCybSec_ImageAttacks/main.py:119: UserWarning: Implicit dimension choice for log_softmax has been deprecated. Change the call to include dim=X as an argument.
+  return F.log_softmax(x)
+/Users/shravanswaminathan/PycharmProjects/MLCybSec_ImageAttacks/main.py:119: UserWarning: Implicit dimension choice for log_softmax has been deprecated. Change the call to include dim=X as an argument.
+  return F.log_softmax(x)
+/Users/shravanswaminathan/PycharmProjects/MLCybSec_ImageAttacks/main.py:119: UserWarning: Implicit dimension choice for log_softmax has been deprecated. Change the call to include dim=X as an argument.
+  return F.log_softmax(x)
+/Users/shravanswaminathan/PycharmProjects/MLCybSec_ImageAttacks/main.py:119: UserWarning: Implicit dimension choice for log_softmax has been deprecated. Change the call to include dim=X as an argument.
+  return F.log_softmax(x)
+/Users/shravanswaminathan/PycharmProjects/MLCybSec_ImageAttacks/main.py:119: UserWarning: Implicit dimension choice for log_softmax has been deprecated. Change the call to include dim=X as an argument.
+  return F.log_softmax(x)
+/Users/shravanswaminathan/PycharmProjects/MLCybSec_ImageAttacks/main.py:119: UserWarning: Implicit dimension choice for log_softmax has been deprecated. Change the call to include dim=X as an argument.
+  return F.log_softmax(x)
+/Users/shravanswaminathan/PycharmProjects/MLCybSec_ImageAttacks/main.py:119: UserWarning: Implicit dimension choice for log_softmax has been deprecated. Change the call to include dim=X as an argument.
+  return F.log_softmax(x)
+/Users/shravanswaminathan/PycharmProjects/MLCybSec_ImageAttacks/main.py:119: UserWarning: Implicit dimension choice for log_softmax has been deprecated. Change the call to include dim=X as an argument.
+  return F.log_softmax(x)
+/Users/shravanswaminathan/PycharmProjects/MLCybSec_ImageAttacks/main.py:119: UserWarning: Implicit dimension choice for log_softmax has been deprecated. Change the call to include dim=X as an argument.
+  return F.log_softmax(x)
+/Users/shravanswaminathan/PycharmProjects/MLCybSec_ImageAttacks/venv/lib/python3.8/site-packages/torch/nn/_reduction.py:42: UserWarning: size_average and reduce args will be deprecated, please use reduction='sum' instead.
+  warnings.warn(warning.format(ret))
+/Users/shravanswaminathan/PycharmProjects/MLCybSec_ImageAttacks/venv/lib/python3.8/site-packages/torch/nn/_reduction.py:42: UserWarning: size_average and reduce args will be deprecated, please use reduction='sum' instead.
+  warnings.warn(warning.format(ret))
+/Users/shravanswaminathan/PycharmProjects/MLCybSec_ImageAttacks/main.py:119: UserWarning: Implicit dimension choice for log_softmax has been deprecated. Change the call to include dim=X as an argument.
+  return F.log_softmax(x)
+/Users/shravanswaminathan/PycharmProjects/MLCybSec_ImageAttacks/venv/lib/python3.8/site-packages/torch/nn/_reduction.py:42: UserWarning: size_average and reduce args will be deprecated, please use reduction='sum' instead.
+  warnings.warn(warning.format(ret))
+/Users/shravanswaminathan/PycharmProjects/MLCybSec_ImageAttacks/venv/lib/python3.8/site-packages/torch/nn/_reduction.py:42: UserWarning: size_average and reduce args will be deprecated, please use reduction='sum' instead.
+  warnings.warn(warning.format(ret))
+/Users/shravanswaminathan/PycharmProjects/MLCybSec_ImageAttacks/venv/lib/python3.8/site-packages/torch/nn/_reduction.py:42: UserWarning: size_average and reduce args will be deprecated, please use reduction='sum' instead.
+  warnings.warn(warning.format(ret))
+/Users/shravanswaminathan/PycharmProjects/MLCybSec_ImageAttacks/venv/lib/python3.8/site-packages/torch/nn/_reduction.py:42: UserWarning: size_average and reduce args will be deprecated, please use reduction='sum' instead.
+  warnings.warn(warning.format(ret))
+/Users/shravanswaminathan/PycharmProjects/MLCybSec_ImageAttacks/venv/lib/python3.8/site-packages/torch/nn/_reduction.py:42: UserWarning: size_average and reduce args will be deprecated, please use reduction='sum' instead.
+  warnings.warn(warning.format(ret))
+/Users/shravanswaminathan/PycharmProjects/MLCybSec_ImageAttacks/venv/lib/python3.8/site-packages/torch/nn/_reduction.py:42: UserWarning: size_average and reduce args will be deprecated, please use reduction='sum' instead.
+  warnings.warn(warning.format(ret))
+/Users/shravanswaminathan/PycharmProjects/MLCybSec_ImageAttacks/venv/lib/python3.8/site-packages/torch/nn/_reduction.py:42: UserWarning: size_average and reduce args will be deprecated, please use reduction='sum' instead.
+  warnings.warn(warning.format(ret))
+/Users/shravanswaminathan/PycharmProjects/MLCybSec_ImageAttacks/venv/lib/python3.8/site-packages/torch/nn/_reduction.py:42: UserWarning: size_average and reduce args will be deprecated, please use reduction='sum' instead.
+  warnings.warn(warning.format(ret))
+Attacking with: ['FGSM', 'PGD', 'CW']
+ Test accuracy: 87.86000061035156
+ Execution time: 0:05:41.083635
+ ################################################################################
+Attacking with: ['DeepFool', 'FGSM', 'FAB']
+ Test accuracy: 65.7699966430664
+ Execution time: 0:12:12.846715
+ ################################################################################
+Attacking with: ['DeepFool', 'FGSM', 'PGD']
+ Test accuracy: 32.16999816894531
+ Execution time: 0:12:31.370403
+ ################################################################################
+Attacking with: ['DeepFool', 'FGSM', 'CW']
+ Test accuracy: 65.7699966430664
+ Execution time: 0:13:41.965021
+ ################################################################################
+Attacking with: ['FGSM', 'PGD', 'FAB']
+ Test accuracy: 87.45999908447266
+ Execution time: 0:13:46.419136
+ ################################################################################
+Attacking with: ['DeepFool', 'PGD', 'FAB']
+ Test accuracy: 66.36000061035156
+ Execution time: 0:13:47.604992
+ ################################################################################
+Attacking with: ['DeepFool', 'PGD', 'CW']
+ Test accuracy: 66.4000015258789
+ Execution time: 0:14:16.319272
+ ################################################################################
+Attacking with: ['DeepFool', 'CW', 'FAB']
+ Test accuracy: 90.5999984741211
+ Execution time: 0:14:30.804119
+ ################################################################################
+Attacking with: ['PGD', 'CW', 'FAB']
+ Test accuracy: 93.31999969482422
+ Execution time: 0:15:03.359747
+ ################################################################################
+Attacking with: ['FGSM', 'CW', 'FAB']
+ Test accuracy: 93.37000274658203
+ Execution time: 0:15:46.939508
+ ################################################################################
+Generating adversarial samples for 4 cascaded attacks
+################################################################################
+/Users/shravanswaminathan/PycharmProjects/MLCybSec_ImageAttacks/main.py:119: UserWarning: Implicit dimension choice for log_softmax has been deprecated. Change the call to include dim=X as an argument.
+  return F.log_softmax(x)
+/Users/shravanswaminathan/PycharmProjects/MLCybSec_ImageAttacks/main.py:119: UserWarning: Implicit dimension choice for log_softmax has been deprecated. Change the call to include dim=X as an argument.
+  return F.log_softmax(x)
+/Users/shravanswaminathan/PycharmProjects/MLCybSec_ImageAttacks/main.py:119: UserWarning: Implicit dimension choice for log_softmax has been deprecated. Change the call to include dim=X as an argument.
+  return F.log_softmax(x)
+/Users/shravanswaminathan/PycharmProjects/MLCybSec_ImageAttacks/main.py:119: UserWarning: Implicit dimension choice for log_softmax has been deprecated. Change the call to include dim=X as an argument.
+  return F.log_softmax(x)
+/Users/shravanswaminathan/PycharmProjects/MLCybSec_ImageAttacks/main.py:119: UserWarning: Implicit dimension choice for log_softmax has been deprecated. Change the call to include dim=X as an argument.
+  return F.log_softmax(x)
+/Users/shravanswaminathan/PycharmProjects/MLCybSec_ImageAttacks/venv/lib/python3.8/site-packages/torch/nn/_reduction.py:42: UserWarning: size_average and reduce args will be deprecated, please use reduction='sum' instead.
+  warnings.warn(warning.format(ret))
+/Users/shravanswaminathan/PycharmProjects/MLCybSec_ImageAttacks/venv/lib/python3.8/site-packages/torch/nn/_reduction.py:42: UserWarning: size_average and reduce args will be deprecated, please use reduction='sum' instead.
+  warnings.warn(warning.format(ret))
+/Users/shravanswaminathan/PycharmProjects/MLCybSec_ImageAttacks/venv/lib/python3.8/site-packages/torch/nn/_reduction.py:42: UserWarning: size_average and reduce args will be deprecated, please use reduction='sum' instead.
+  warnings.warn(warning.format(ret))
+/Users/shravanswaminathan/PycharmProjects/MLCybSec_ImageAttacks/venv/lib/python3.8/site-packages/torch/nn/_reduction.py:42: UserWarning: size_average and reduce args will be deprecated, please use reduction='sum' instead.
+  warnings.warn(warning.format(ret))
+/Users/shravanswaminathan/PycharmProjects/MLCybSec_ImageAttacks/venv/lib/python3.8/site-packages/torch/nn/_reduction.py:42: UserWarning: size_average and reduce args will be deprecated, please use reduction='sum' instead.
+  warnings.warn(warning.format(ret))
+Attacking with: ['DeepFool', 'FGSM', 'PGD', 'FAB']
+ Test accuracy: 32.130001068115234
+ Execution time: 0:07:23.261637
+ ################################################################################
+Attacking with: ['DeepFool', 'FGSM', 'PGD', 'CW']
+ Test accuracy: 32.150001525878906
+ Execution time: 0:07:44.834765
+ ################################################################################
+Attacking with: ['FGSM', 'PGD', 'CW', 'FAB']
+ Test accuracy: 87.38999938964844
+ Execution time: 0:07:50.679181
+ ################################################################################
+Attacking with: ['DeepFool', 'FGSM', 'CW', 'FAB']
+ Test accuracy: 65.7699966430664
+ Execution time: 0:08:01.794322
+ ################################################################################
+Attacking with: ['DeepFool', 'PGD', 'CW', 'FAB']
+ Test accuracy: 66.36000061035156
+ Execution time: 0:08:26.997420
+ ################################################################################
+Generating adversarial samples for 5 cascaded attacks
+################################################################################
+/Users/shravanswaminathan/PycharmProjects/MLCybSec_ImageAttacks/main.py:119: UserWarning: Implicit dimension choice for log_softmax has been deprecated. Change the call to include dim=X as an argument.
+  return F.log_softmax(x)
+/Users/shravanswaminathan/PycharmProjects/MLCybSec_ImageAttacks/venv/lib/python3.8/site-packages/torch/nn/_reduction.py:42: UserWarning: size_average and reduce args will be deprecated, please use reduction='sum' instead.
+  warnings.warn(warning.format(ret))
+Attacking with: ['DeepFool', 'FGSM', 'PGD', 'CW', 'FAB']
+ Test accuracy: 32.130001068115234
+ Execution time: 0:05:11.034645
+ ################################################################################
+################################################################################
+advModel_FAB.pth
+Generated attack set: ('DeepFool',)
+Generated attack set: ('FGSM',)
+Generated attack set: ('PGD',)
+Generated attack set: ('CW',)
+Generated attack set: ('FAB',)
+Generated attack set: ('DeepFool', 'FGSM')
+Generated attack set: ('DeepFool', 'PGD')
+Generated attack set: ('DeepFool', 'CW')
+Generated attack set: ('DeepFool', 'FAB')
+Generated attack set: ('FGSM', 'PGD')
+Generated attack set: ('FGSM', 'CW')
+Generated attack set: ('FGSM', 'FAB')
+Generated attack set: ('PGD', 'CW')
+Generated attack set: ('PGD', 'FAB')
+Generated attack set: ('CW', 'FAB')
+Generated attack set: ('DeepFool', 'FGSM', 'PGD')
+Generated attack set: ('DeepFool', 'FGSM', 'CW')
+Generated attack set: ('DeepFool', 'FGSM', 'FAB')
+Generated attack set: ('DeepFool', 'PGD', 'CW')
+Generated attack set: ('DeepFool', 'PGD', 'FAB')
+Generated attack set: ('DeepFool', 'CW', 'FAB')
+Generated attack set: ('FGSM', 'PGD', 'CW')
+Generated attack set: ('FGSM', 'PGD', 'FAB')
+Generated attack set: ('FGSM', 'CW', 'FAB')
+Generated attack set: ('PGD', 'CW', 'FAB')
+Generated attack set: ('DeepFool', 'FGSM', 'PGD', 'CW')
+Generated attack set: ('DeepFool', 'FGSM', 'PGD', 'FAB')
+Generated attack set: ('DeepFool', 'FGSM', 'CW', 'FAB')
+Generated attack set: ('DeepFool', 'PGD', 'CW', 'FAB')
+Generated attack set: ('FGSM', 'PGD', 'CW', 'FAB')
+Generated attack set: ('DeepFool', 'FGSM', 'PGD', 'CW', 'FAB')
+Starting threads for generating adversarial samples...
+ .....The command line might be dead for a while
+Generating adversarial samples for 1 cascaded attacks
+################################################################################
+/Users/shravanswaminathan/PycharmProjects/MLCybSec_ImageAttacks/main.py:119: UserWarning: Implicit dimension choice for log_softmax has been deprecated. Change the call to include dim=X as an argument.
+  return F.log_softmax(x)
+/Users/shravanswaminathan/PycharmProjects/MLCybSec_ImageAttacks/main.py:119: UserWarning: Implicit dimension choice for log_softmax has been deprecated. Change the call to include dim=X as an argument.
+  return F.log_softmax(x)
+/Users/shravanswaminathan/PycharmProjects/MLCybSec_ImageAttacks/main.py:119: UserWarning: Implicit dimension choice for log_softmax has been deprecated. Change the call to include dim=X as an argument.
+  return F.log_softmax(x)
+/Users/shravanswaminathan/PycharmProjects/MLCybSec_ImageAttacks/main.py:119: UserWarning: Implicit dimension choice for log_softmax has been deprecated. Change the call to include dim=X as an argument.
+  return F.log_softmax(x)
+/Users/shravanswaminathan/PycharmProjects/MLCybSec_ImageAttacks/main.py:119: UserWarning: Implicit dimension choice for log_softmax has been deprecated. Change the call to include dim=X as an argument.
+  return F.log_softmax(x)
+/Users/shravanswaminathan/PycharmProjects/MLCybSec_ImageAttacks/venv/lib/python3.8/site-packages/torch/nn/_reduction.py:42: UserWarning: size_average and reduce args will be deprecated, please use reduction='sum' instead.
+  warnings.warn(warning.format(ret))
+/Users/shravanswaminathan/PycharmProjects/MLCybSec_ImageAttacks/venv/lib/python3.8/site-packages/torch/nn/_reduction.py:42: UserWarning: size_average and reduce args will be deprecated, please use reduction='sum' instead.
+  warnings.warn(warning.format(ret))
+/Users/shravanswaminathan/PycharmProjects/MLCybSec_ImageAttacks/venv/lib/python3.8/site-packages/torch/nn/_reduction.py:42: UserWarning: size_average and reduce args will be deprecated, please use reduction='sum' instead.
+  warnings.warn(warning.format(ret))
+/Users/shravanswaminathan/PycharmProjects/MLCybSec_ImageAttacks/venv/lib/python3.8/site-packages/torch/nn/_reduction.py:42: UserWarning: size_average and reduce args will be deprecated, please use reduction='sum' instead.
+  warnings.warn(warning.format(ret))
+/Users/shravanswaminathan/PycharmProjects/MLCybSec_ImageAttacks/venv/lib/python3.8/site-packages/torch/nn/_reduction.py:42: UserWarning: size_average and reduce args will be deprecated, please use reduction='sum' instead.
+  warnings.warn(warning.format(ret))
+Attacking with: ['FGSM']
+ Test accuracy: 95.11000061035156
+ Execution time: 0:00:12.478238
+ ################################################################################
+Attacking with: ['PGD']
+ Test accuracy: 95.12000274658203
+ Execution time: 0:00:46.693445
+ ################################################################################
+Attacking with: ['CW']
+ Test accuracy: 97.13999938964844
+ Execution time: 0:01:14.949322
+ ################################################################################
+Attacking with: ['DeepFool']
+ Test accuracy: 93.06999969482422
+ Execution time: 0:03:30.286013
+ ################################################################################
+Attacking with: ['FAB']
+ Test accuracy: 96.83000183105469
+ Execution time: 0:05:29.735027
+ ################################################################################
+Generating adversarial samples for 2 cascaded attacks
+################################################################################
+/Users/shravanswaminathan/PycharmProjects/MLCybSec_ImageAttacks/main.py:119: UserWarning: Implicit dimension choice for log_softmax has been deprecated. Change the call to include dim=X as an argument.
+  return F.log_softmax(x)
+/Users/shravanswaminathan/PycharmProjects/MLCybSec_ImageAttacks/venv/lib/python3.8/site-packages/torch/nn/_reduction.py:42: UserWarning: size_average and reduce args will be deprecated, please use reduction='sum' instead.
+  warnings.warn(warning.format(ret))
+/Users/shravanswaminathan/PycharmProjects/MLCybSec_ImageAttacks/main.py:119: UserWarning: Implicit dimension choice for log_softmax has been deprecated. Change the call to include dim=X as an argument.
+  return F.log_softmax(x)
+/Users/shravanswaminathan/PycharmProjects/MLCybSec_ImageAttacks/main.py:119: UserWarning: Implicit dimension choice for log_softmax has been deprecated. Change the call to include dim=X as an argument.
+  return F.log_softmax(x)
+/Users/shravanswaminathan/PycharmProjects/MLCybSec_ImageAttacks/main.py:119: UserWarning: Implicit dimension choice for log_softmax has been deprecated. Change the call to include dim=X as an argument.
+  return F.log_softmax(x)
+/Users/shravanswaminathan/PycharmProjects/MLCybSec_ImageAttacks/main.py:119: UserWarning: Implicit dimension choice for log_softmax has been deprecated. Change the call to include dim=X as an argument.
+  return F.log_softmax(x)
+/Users/shravanswaminathan/PycharmProjects/MLCybSec_ImageAttacks/main.py:119: UserWarning: Implicit dimension choice for log_softmax has been deprecated. Change the call to include dim=X as an argument.
+  return F.log_softmax(x)
+/Users/shravanswaminathan/PycharmProjects/MLCybSec_ImageAttacks/venv/lib/python3.8/site-packages/torch/nn/_reduction.py:42: UserWarning: size_average and reduce args will be deprecated, please use reduction='sum' instead.
+  warnings.warn(warning.format(ret))
+/Users/shravanswaminathan/PycharmProjects/MLCybSec_ImageAttacks/venv/lib/python3.8/site-packages/torch/nn/_reduction.py:42: UserWarning: size_average and reduce args will be deprecated, please use reduction='sum' instead.
+  warnings.warn(warning.format(ret))
+/Users/shravanswaminathan/PycharmProjects/MLCybSec_ImageAttacks/main.py:119: UserWarning: Implicit dimension choice for log_softmax has been deprecated. Change the call to include dim=X as an argument.
+  return F.log_softmax(x)
+/Users/shravanswaminathan/PycharmProjects/MLCybSec_ImageAttacks/main.py:119: UserWarning: Implicit dimension choice for log_softmax has been deprecated. Change the call to include dim=X as an argument.
+  return F.log_softmax(x)
+/Users/shravanswaminathan/PycharmProjects/MLCybSec_ImageAttacks/venv/lib/python3.8/site-packages/torch/nn/_reduction.py:42: UserWarning: size_average and reduce args will be deprecated, please use reduction='sum' instead.
+  warnings.warn(warning.format(ret))
+/Users/shravanswaminathan/PycharmProjects/MLCybSec_ImageAttacks/main.py:119: UserWarning: Implicit dimension choice for log_softmax has been deprecated. Change the call to include dim=X as an argument.
+  return F.log_softmax(x)
+/Users/shravanswaminathan/PycharmProjects/MLCybSec_ImageAttacks/main.py:119: UserWarning: Implicit dimension choice for log_softmax has been deprecated. Change the call to include dim=X as an argument.
+  return F.log_softmax(x)
+/Users/shravanswaminathan/PycharmProjects/MLCybSec_ImageAttacks/venv/lib/python3.8/site-packages/torch/nn/_reduction.py:42: UserWarning: size_average and reduce args will be deprecated, please use reduction='sum' instead.
+  warnings.warn(warning.format(ret))
+/Users/shravanswaminathan/PycharmProjects/MLCybSec_ImageAttacks/venv/lib/python3.8/site-packages/torch/nn/_reduction.py:42: UserWarning: size_average and reduce args will be deprecated, please use reduction='sum' instead.
+  warnings.warn(warning.format(ret))
+/Users/shravanswaminathan/PycharmProjects/MLCybSec_ImageAttacks/venv/lib/python3.8/site-packages/torch/nn/_reduction.py:42: UserWarning: size_average and reduce args will be deprecated, please use reduction='sum' instead.
+  warnings.warn(warning.format(ret))
+/Users/shravanswaminathan/PycharmProjects/MLCybSec_ImageAttacks/venv/lib/python3.8/site-packages/torch/nn/_reduction.py:42: UserWarning: size_average and reduce args will be deprecated, please use reduction='sum' instead.
+  warnings.warn(warning.format(ret))
+/Users/shravanswaminathan/PycharmProjects/MLCybSec_ImageAttacks/venv/lib/python3.8/site-packages/torch/nn/_reduction.py:42: UserWarning: size_average and reduce args will be deprecated, please use reduction='sum' instead.
+  warnings.warn(warning.format(ret))
+/Users/shravanswaminathan/PycharmProjects/MLCybSec_ImageAttacks/venv/lib/python3.8/site-packages/torch/nn/_reduction.py:42: UserWarning: size_average and reduce args will be deprecated, please use reduction='sum' instead.
+  warnings.warn(warning.format(ret))
+Attacking with: ['FGSM', 'PGD']
+ Test accuracy: 90.41000366210938
+ Execution time: 0:02:04.994486
+ ################################################################################
+Attacking with: ['FGSM', 'CW']
+ Test accuracy: 95.0199966430664
+ Execution time: 0:03:44.158299
+ ################################################################################
+Attacking with: ['PGD', 'CW']
+ Test accuracy: 94.95999908447266
+ Execution time: 0:04:44.585519
+ ################################################################################
+Attacking with: ['DeepFool', 'FGSM']
+ Test accuracy: 73.12000274658203
+ Execution time: 0:08:55.549555
+ ################################################################################
+Attacking with: ['DeepFool', 'PGD']
+ Test accuracy: 73.91999816894531
+ Execution time: 0:10:25.509595
+ ################################################################################
+Attacking with: ['DeepFool', 'CW']
+ Test accuracy: 92.6500015258789
+ Execution time: 0:10:35.298413
+ ################################################################################
+Attacking with: ['FGSM', 'FAB']
+ Test accuracy: 94.68000030517578
+ Execution time: 0:11:27.112854
+ ################################################################################
+Attacking with: ['PGD', 'FAB']
+ Test accuracy: 94.66999816894531
+ Execution time: 0:11:43.743621
+ ################################################################################
+Attacking with: ['CW', 'FAB']
+ Test accuracy: 96.80999755859375
+ Execution time: 0:12:01.999927
+ ################################################################################
+Attacking with: ['DeepFool', 'FAB']
+ Test accuracy: 93.06999969482422
+ Execution time: 0:13:20.339642
+ ################################################################################
+Generating adversarial samples for 3 cascaded attacks
+################################################################################
+/Users/shravanswaminathan/PycharmProjects/MLCybSec_ImageAttacks/main.py:119: UserWarning: Implicit dimension choice for log_softmax has been deprecated. Change the call to include dim=X as an argument.
+  return F.log_softmax(x)
+/Users/shravanswaminathan/PycharmProjects/MLCybSec_ImageAttacks/main.py:119: UserWarning: Implicit dimension choice for log_softmax has been deprecated. Change the call to include dim=X as an argument.
+  return F.log_softmax(x)
+/Users/shravanswaminathan/PycharmProjects/MLCybSec_ImageAttacks/main.py:119: UserWarning: Implicit dimension choice for log_softmax has been deprecated. Change the call to include dim=X as an argument.
+  return F.log_softmax(x)
+/Users/shravanswaminathan/PycharmProjects/MLCybSec_ImageAttacks/main.py:119: UserWarning: Implicit dimension choice for log_softmax has been deprecated. Change the call to include dim=X as an argument.
+  return F.log_softmax(x)
+/Users/shravanswaminathan/PycharmProjects/MLCybSec_ImageAttacks/main.py:119: UserWarning: Implicit dimension choice for log_softmax has been deprecated. Change the call to include dim=X as an argument.
+  return F.log_softmax(x)
+/Users/shravanswaminathan/PycharmProjects/MLCybSec_ImageAttacks/venv/lib/python3.8/site-packages/torch/nn/_reduction.py:42: UserWarning: size_average and reduce args will be deprecated, please use reduction='sum' instead.
+  warnings.warn(warning.format(ret))
+/Users/shravanswaminathan/PycharmProjects/MLCybSec_ImageAttacks/venv/lib/python3.8/site-packages/torch/nn/_reduction.py:42: UserWarning: size_average and reduce args will be deprecated, please use reduction='sum' instead.
+  warnings.warn(warning.format(ret))
+/Users/shravanswaminathan/PycharmProjects/MLCybSec_ImageAttacks/main.py:119: UserWarning: Implicit dimension choice for log_softmax has been deprecated. Change the call to include dim=X as an argument.
+  return F.log_softmax(x)
+/Users/shravanswaminathan/PycharmProjects/MLCybSec_ImageAttacks/venv/lib/python3.8/site-packages/torch/nn/_reduction.py:42: UserWarning: size_average and reduce args will be deprecated, please use reduction='sum' instead.
+  warnings.warn(warning.format(ret))
+/Users/shravanswaminathan/PycharmProjects/MLCybSec_ImageAttacks/main.py:119: UserWarning: Implicit dimension choice for log_softmax has been deprecated. Change the call to include dim=X as an argument.
+  return F.log_softmax(x)
+/Users/shravanswaminathan/PycharmProjects/MLCybSec_ImageAttacks/main.py:119: UserWarning: Implicit dimension choice for log_softmax has been deprecated. Change the call to include dim=X as an argument.
+  return F.log_softmax(x)
+/Users/shravanswaminathan/PycharmProjects/MLCybSec_ImageAttacks/main.py:119: UserWarning: Implicit dimension choice for log_softmax has been deprecated. Change the call to include dim=X as an argument.
+  return F.log_softmax(x)
+/Users/shravanswaminathan/PycharmProjects/MLCybSec_ImageAttacks/main.py:119: UserWarning: Implicit dimension choice for log_softmax has been deprecated. Change the call to include dim=X as an argument.
+  return F.log_softmax(x)
+/Users/shravanswaminathan/PycharmProjects/MLCybSec_ImageAttacks/venv/lib/python3.8/site-packages/torch/nn/_reduction.py:42: UserWarning: size_average and reduce args will be deprecated, please use reduction='sum' instead.
+  warnings.warn(warning.format(ret))
+/Users/shravanswaminathan/PycharmProjects/MLCybSec_ImageAttacks/venv/lib/python3.8/site-packages/torch/nn/_reduction.py:42: UserWarning: size_average and reduce args will be deprecated, please use reduction='sum' instead.
+  warnings.warn(warning.format(ret))
+/Users/shravanswaminathan/PycharmProjects/MLCybSec_ImageAttacks/venv/lib/python3.8/site-packages/torch/nn/_reduction.py:42: UserWarning: size_average and reduce args will be deprecated, please use reduction='sum' instead.
+  warnings.warn(warning.format(ret))
+/Users/shravanswaminathan/PycharmProjects/MLCybSec_ImageAttacks/venv/lib/python3.8/site-packages/torch/nn/_reduction.py:42: UserWarning: size_average and reduce args will be deprecated, please use reduction='sum' instead.
+  warnings.warn(warning.format(ret))
+/Users/shravanswaminathan/PycharmProjects/MLCybSec_ImageAttacks/venv/lib/python3.8/site-packages/torch/nn/_reduction.py:42: UserWarning: size_average and reduce args will be deprecated, please use reduction='sum' instead.
+  warnings.warn(warning.format(ret))
+/Users/shravanswaminathan/PycharmProjects/MLCybSec_ImageAttacks/venv/lib/python3.8/site-packages/torch/nn/_reduction.py:42: UserWarning: size_average and reduce args will be deprecated, please use reduction='sum' instead.
+  warnings.warn(warning.format(ret))
+/Users/shravanswaminathan/PycharmProjects/MLCybSec_ImageAttacks/venv/lib/python3.8/site-packages/torch/nn/_reduction.py:42: UserWarning: size_average and reduce args will be deprecated, please use reduction='sum' instead.
+  warnings.warn(warning.format(ret))
+Attacking with: ['FGSM', 'PGD', 'CW']
+ Test accuracy: 90.30000305175781
+ Execution time: 0:05:30.472761
+ ################################################################################
+Attacking with: ['DeepFool', 'FGSM', 'PGD']
+ Test accuracy: 41.18000030517578
+ Execution time: 0:12:52.005916
+ ################################################################################
+Attacking with: ['DeepFool', 'CW', 'FAB']
+ Test accuracy: 92.6500015258789
+ Execution time: 0:13:07.333584
+ ################################################################################
+Attacking with: ['DeepFool', 'FGSM', 'FAB']
+ Test accuracy: 73.12000274658203
+ Execution time: 0:14:00.326322
+ ################################################################################
+Attacking with: ['DeepFool', 'FGSM', 'CW']
+ Test accuracy: 73.12000274658203
+ Execution time: 0:14:03.946340
+ ################################################################################
+Attacking with: ['DeepFool', 'PGD', 'FAB']
+ Test accuracy: 73.77999877929688
+ Execution time: 0:14:04.753971
+ ################################################################################
+Attacking with: ['FGSM', 'PGD', 'FAB']
+ Test accuracy: 90.08000183105469
+ Execution time: 0:14:33.038316
+ ################################################################################
+Attacking with: ['DeepFool', 'PGD', 'CW']
+ Test accuracy: 73.91000366210938
+ Execution time: 0:14:37.206171
+ ################################################################################
+Attacking with: ['FGSM', 'CW', 'FAB']
+ Test accuracy: 94.66999816894531
+ Execution time: 0:14:49.888052
+ ################################################################################
+Attacking with: ['PGD', 'CW', 'FAB']
+ Test accuracy: 94.63999938964844
+ Execution time: 0:15:46.386086
+ ################################################################################
+Generating adversarial samples for 4 cascaded attacks
+################################################################################
+/Users/shravanswaminathan/PycharmProjects/MLCybSec_ImageAttacks/main.py:119: UserWarning: Implicit dimension choice for log_softmax has been deprecated. Change the call to include dim=X as an argument.
+  return F.log_softmax(x)
+/Users/shravanswaminathan/PycharmProjects/MLCybSec_ImageAttacks/main.py:119: UserWarning: Implicit dimension choice for log_softmax has been deprecated. Change the call to include dim=X as an argument.
+  return F.log_softmax(x)
+/Users/shravanswaminathan/PycharmProjects/MLCybSec_ImageAttacks/main.py:119: UserWarning: Implicit dimension choice for log_softmax has been deprecated. Change the call to include dim=X as an argument.
+  return F.log_softmax(x)
+/Users/shravanswaminathan/PycharmProjects/MLCybSec_ImageAttacks/main.py:119: UserWarning: Implicit dimension choice for log_softmax has been deprecated. Change the call to include dim=X as an argument.
+  return F.log_softmax(x)
+/Users/shravanswaminathan/PycharmProjects/MLCybSec_ImageAttacks/main.py:119: UserWarning: Implicit dimension choice for log_softmax has been deprecated. Change the call to include dim=X as an argument.
+  return F.log_softmax(x)
+/Users/shravanswaminathan/PycharmProjects/MLCybSec_ImageAttacks/venv/lib/python3.8/site-packages/torch/nn/_reduction.py:42: UserWarning: size_average and reduce args will be deprecated, please use reduction='sum' instead.
+  warnings.warn(warning.format(ret))
+/Users/shravanswaminathan/PycharmProjects/MLCybSec_ImageAttacks/venv/lib/python3.8/site-packages/torch/nn/_reduction.py:42: UserWarning: size_average and reduce args will be deprecated, please use reduction='sum' instead.
+  warnings.warn(warning.format(ret))
+/Users/shravanswaminathan/PycharmProjects/MLCybSec_ImageAttacks/venv/lib/python3.8/site-packages/torch/nn/_reduction.py:42: UserWarning: size_average and reduce args will be deprecated, please use reduction='sum' instead.
+  warnings.warn(warning.format(ret))
+/Users/shravanswaminathan/PycharmProjects/MLCybSec_ImageAttacks/venv/lib/python3.8/site-packages/torch/nn/_reduction.py:42: UserWarning: size_average and reduce args will be deprecated, please use reduction='sum' instead.
+  warnings.warn(warning.format(ret))
+/Users/shravanswaminathan/PycharmProjects/MLCybSec_ImageAttacks/venv/lib/python3.8/site-packages/torch/nn/_reduction.py:42: UserWarning: size_average and reduce args will be deprecated, please use reduction='sum' instead.
+  warnings.warn(warning.format(ret))
+Attacking with: ['FGSM', 'PGD', 'CW', 'FAB']
+ Test accuracy: 90.04000091552734
+ Execution time: 0:07:08.333687
+ ################################################################################
+Attacking with: ['DeepFool', 'FGSM', 'PGD', 'FAB']
+ Test accuracy: 41.29999923706055
+ Execution time: 0:07:16.727655
+ ################################################################################
+Attacking with: ['DeepFool', 'FGSM', 'PGD', 'CW']
+ Test accuracy: 41.279998779296875
+ Execution time: 0:07:32.809437
+ ################################################################################
+Attacking with: ['DeepFool', 'FGSM', 'CW', 'FAB']
+ Test accuracy: 73.12000274658203
+ Execution time: 0:07:52.848055
+ ################################################################################
+Attacking with: ['DeepFool', 'PGD', 'CW', 'FAB']
+ Test accuracy: 73.77999877929688
+ Execution time: 0:08:19.137719
+ ################################################################################
+Generating adversarial samples for 5 cascaded attacks
+################################################################################
+/Users/shravanswaminathan/PycharmProjects/MLCybSec_ImageAttacks/main.py:119: UserWarning: Implicit dimension choice for log_softmax has been deprecated. Change the call to include dim=X as an argument.
+  return F.log_softmax(x)
+/Users/shravanswaminathan/PycharmProjects/MLCybSec_ImageAttacks/venv/lib/python3.8/site-packages/torch/nn/_reduction.py:42: UserWarning: size_average and reduce args will be deprecated, please use reduction='sum' instead.
+  warnings.warn(warning.format(ret))
+Attacking with: ['DeepFool', 'FGSM', 'PGD', 'CW', 'FAB']
+ Test accuracy: 41.29999923706055
+ Execution time: 0:05:11.969423
+ ################################################################################
+################################################################################
+advModel_DeepFoolFGSM.pth
+Generated attack set: ('DeepFool',)
+Generated attack set: ('FGSM',)
+Generated attack set: ('PGD',)
+Generated attack set: ('CW',)
+Generated attack set: ('FAB',)
+Generated attack set: ('DeepFool', 'FGSM')
+Generated attack set: ('DeepFool', 'PGD')
+Generated attack set: ('DeepFool', 'CW')
+Generated attack set: ('DeepFool', 'FAB')
+Generated attack set: ('FGSM', 'PGD')
+Generated attack set: ('FGSM', 'CW')
+Generated attack set: ('FGSM', 'FAB')
+Generated attack set: ('PGD', 'CW')
+Generated attack set: ('PGD', 'FAB')
+Generated attack set: ('CW', 'FAB')
+Generated attack set: ('DeepFool', 'FGSM', 'PGD')
+Generated attack set: ('DeepFool', 'FGSM', 'CW')
+Generated attack set: ('DeepFool', 'FGSM', 'FAB')
+Generated attack set: ('DeepFool', 'PGD', 'CW')
+Generated attack set: ('DeepFool', 'PGD', 'FAB')
+Generated attack set: ('DeepFool', 'CW', 'FAB')
+Generated attack set: ('FGSM', 'PGD', 'CW')
+Generated attack set: ('FGSM', 'PGD', 'FAB')
+Generated attack set: ('FGSM', 'CW', 'FAB')
+Generated attack set: ('PGD', 'CW', 'FAB')
+Generated attack set: ('DeepFool', 'FGSM', 'PGD', 'CW')
+Generated attack set: ('DeepFool', 'FGSM', 'PGD', 'FAB')
+Generated attack set: ('DeepFool', 'FGSM', 'CW', 'FAB')
+Generated attack set: ('DeepFool', 'PGD', 'CW', 'FAB')
+Generated attack set: ('FGSM', 'PGD', 'CW', 'FAB')
+Generated attack set: ('DeepFool', 'FGSM', 'PGD', 'CW', 'FAB')
+Starting threads for generating adversarial samples...
+ .....The command line might be dead for a while
+Generating adversarial samples for 1 cascaded attacks
+################################################################################
+/Users/shravanswaminathan/PycharmProjects/MLCybSec_ImageAttacks/main.py:119: UserWarning: Implicit dimension choice for log_softmax has been deprecated. Change the call to include dim=X as an argument.
+  return F.log_softmax(x)
+/Users/shravanswaminathan/PycharmProjects/MLCybSec_ImageAttacks/main.py:119: UserWarning: Implicit dimension choice for log_softmax has been deprecated. Change the call to include dim=X as an argument.
+  return F.log_softmax(x)
+/Users/shravanswaminathan/PycharmProjects/MLCybSec_ImageAttacks/main.py:119: UserWarning: Implicit dimension choice for log_softmax has been deprecated. Change the call to include dim=X as an argument.
+  return F.log_softmax(x)
+/Users/shravanswaminathan/PycharmProjects/MLCybSec_ImageAttacks/main.py:119: UserWarning: Implicit dimension choice for log_softmax has been deprecated. Change the call to include dim=X as an argument.
+  return F.log_softmax(x)
+/Users/shravanswaminathan/PycharmProjects/MLCybSec_ImageAttacks/main.py:119: UserWarning: Implicit dimension choice for log_softmax has been deprecated. Change the call to include dim=X as an argument.
+  return F.log_softmax(x)
+/Users/shravanswaminathan/PycharmProjects/MLCybSec_ImageAttacks/venv/lib/python3.8/site-packages/torch/nn/_reduction.py:42: UserWarning: size_average and reduce args will be deprecated, please use reduction='sum' instead.
+  warnings.warn(warning.format(ret))
+/Users/shravanswaminathan/PycharmProjects/MLCybSec_ImageAttacks/venv/lib/python3.8/site-packages/torch/nn/_reduction.py:42: UserWarning: size_average and reduce args will be deprecated, please use reduction='sum' instead.
+  warnings.warn(warning.format(ret))
+/Users/shravanswaminathan/PycharmProjects/MLCybSec_ImageAttacks/venv/lib/python3.8/site-packages/torch/nn/_reduction.py:42: UserWarning: size_average and reduce args will be deprecated, please use reduction='sum' instead.
+  warnings.warn(warning.format(ret))
+/Users/shravanswaminathan/PycharmProjects/MLCybSec_ImageAttacks/venv/lib/python3.8/site-packages/torch/nn/_reduction.py:42: UserWarning: size_average and reduce args will be deprecated, please use reduction='sum' instead.
+  warnings.warn(warning.format(ret))
+/Users/shravanswaminathan/PycharmProjects/MLCybSec_ImageAttacks/venv/lib/python3.8/site-packages/torch/nn/_reduction.py:42: UserWarning: size_average and reduce args will be deprecated, please use reduction='sum' instead.
+  warnings.warn(warning.format(ret))
+Attacking with: ['FGSM']
+ Test accuracy: 96.63999938964844
+ Execution time: 0:00:13.074940
+ ################################################################################
+Attacking with: ['PGD']
+ Test accuracy: 96.6500015258789
+ Execution time: 0:00:45.184686
+ ################################################################################
+Attacking with: ['CW']
+ Test accuracy: 97.5999984741211
+ Execution time: 0:01:14.009341
+ ################################################################################
+Attacking with: ['DeepFool']
+ Test accuracy: 97.05999755859375
+ Execution time: 0:03:30.389258
+ ################################################################################
+Attacking with: ['FAB']
+ Test accuracy: 97.44000244140625
+ Execution time: 0:05:29.827492
+ ################################################################################
+Generating adversarial samples for 2 cascaded attacks
+################################################################################
+/Users/shravanswaminathan/PycharmProjects/MLCybSec_ImageAttacks/main.py:119: UserWarning: Implicit dimension choice for log_softmax has been deprecated. Change the call to include dim=X as an argument.
+  return F.log_softmax(x)
+/Users/shravanswaminathan/PycharmProjects/MLCybSec_ImageAttacks/main.py:119: UserWarning: Implicit dimension choice for log_softmax has been deprecated. Change the call to include dim=X as an argument.
+  return F.log_softmax(x)
+/Users/shravanswaminathan/PycharmProjects/MLCybSec_ImageAttacks/main.py:119: UserWarning: Implicit dimension choice for log_softmax has been deprecated. Change the call to include dim=X as an argument.
+  return F.log_softmax(x)
+/Users/shravanswaminathan/PycharmProjects/MLCybSec_ImageAttacks/main.py:119: UserWarning: Implicit dimension choice for log_softmax has been deprecated. Change the call to include dim=X as an argument.
+  return F.log_softmax(x)
+/Users/shravanswaminathan/PycharmProjects/MLCybSec_ImageAttacks/venv/lib/python3.8/site-packages/torch/nn/_reduction.py:42: UserWarning: size_average and reduce args will be deprecated, please use reduction='sum' instead.
+  warnings.warn(warning.format(ret))
+/Users/shravanswaminathan/PycharmProjects/MLCybSec_ImageAttacks/main.py:119: UserWarning: Implicit dimension choice for log_softmax has been deprecated. Change the call to include dim=X as an argument.
+  return F.log_softmax(x)
+/Users/shravanswaminathan/PycharmProjects/MLCybSec_ImageAttacks/main.py:119: UserWarning: Implicit dimension choice for log_softmax has been deprecated. Change the call to include dim=X as an argument.
+  return F.log_softmax(x)
+/Users/shravanswaminathan/PycharmProjects/MLCybSec_ImageAttacks/main.py:119: UserWarning: Implicit dimension choice for log_softmax has been deprecated. Change the call to include dim=X as an argument.
+  return F.log_softmax(x)
+/Users/shravanswaminathan/PycharmProjects/MLCybSec_ImageAttacks/main.py:119: UserWarning: Implicit dimension choice for log_softmax has been deprecated. Change the call to include dim=X as an argument.
+  return F.log_softmax(x)
+/Users/shravanswaminathan/PycharmProjects/MLCybSec_ImageAttacks/venv/lib/python3.8/site-packages/torch/nn/_reduction.py:42: UserWarning: size_average and reduce args will be deprecated, please use reduction='sum' instead.
+  warnings.warn(warning.format(ret))
+/Users/shravanswaminathan/PycharmProjects/MLCybSec_ImageAttacks/main.py:119: UserWarning: Implicit dimension choice for log_softmax has been deprecated. Change the call to include dim=X as an argument.
+  return F.log_softmax(x)
+/Users/shravanswaminathan/PycharmProjects/MLCybSec_ImageAttacks/venv/lib/python3.8/site-packages/torch/nn/_reduction.py:42: UserWarning: size_average and reduce args will be deprecated, please use reduction='sum' instead.
+  warnings.warn(warning.format(ret))
+/Users/shravanswaminathan/PycharmProjects/MLCybSec_ImageAttacks/main.py:119: UserWarning: Implicit dimension choice for log_softmax has been deprecated. Change the call to include dim=X as an argument.
+  return F.log_softmax(x)
+/Users/shravanswaminathan/PycharmProjects/MLCybSec_ImageAttacks/venv/lib/python3.8/site-packages/torch/nn/_reduction.py:42: UserWarning: size_average and reduce args will be deprecated, please use reduction='sum' instead.
+  warnings.warn(warning.format(ret))
+/Users/shravanswaminathan/PycharmProjects/MLCybSec_ImageAttacks/venv/lib/python3.8/site-packages/torch/nn/_reduction.py:42: UserWarning: size_average and reduce args will be deprecated, please use reduction='sum' instead.
+  warnings.warn(warning.format(ret))
+/Users/shravanswaminathan/PycharmProjects/MLCybSec_ImageAttacks/venv/lib/python3.8/site-packages/torch/nn/_reduction.py:42: UserWarning: size_average and reduce args will be deprecated, please use reduction='sum' instead.
+  warnings.warn(warning.format(ret))
+/Users/shravanswaminathan/PycharmProjects/MLCybSec_ImageAttacks/venv/lib/python3.8/site-packages/torch/nn/_reduction.py:42: UserWarning: size_average and reduce args will be deprecated, please use reduction='sum' instead.
+  warnings.warn(warning.format(ret))
+/Users/shravanswaminathan/PycharmProjects/MLCybSec_ImageAttacks/venv/lib/python3.8/site-packages/torch/nn/_reduction.py:42: UserWarning: size_average and reduce args will be deprecated, please use reduction='sum' instead.
+  warnings.warn(warning.format(ret))
+/Users/shravanswaminathan/PycharmProjects/MLCybSec_ImageAttacks/venv/lib/python3.8/site-packages/torch/nn/_reduction.py:42: UserWarning: size_average and reduce args will be deprecated, please use reduction='sum' instead.
+  warnings.warn(warning.format(ret))
+/Users/shravanswaminathan/PycharmProjects/MLCybSec_ImageAttacks/venv/lib/python3.8/site-packages/torch/nn/_reduction.py:42: UserWarning: size_average and reduce args will be deprecated, please use reduction='sum' instead.
+  warnings.warn(warning.format(ret))
+Attacking with: ['FGSM', 'PGD']
+ Test accuracy: 95.36000061035156
+ Execution time: 0:02:12.276443
+ ################################################################################
+Attacking with: ['FGSM', 'CW']
+ Test accuracy: 96.58999633789062
+ Execution time: 0:03:43.110234
+ ################################################################################
+Attacking with: ['PGD', 'CW']
+ Test accuracy: 96.61000061035156
+ Execution time: 0:04:45.453636
+ ################################################################################
+Attacking with: ['DeepFool', 'FGSM']
+ Test accuracy: 95.0
+ Execution time: 0:08:52.665574
+ ################################################################################
+Attacking with: ['DeepFool', 'PGD']
+ Test accuracy: 95.04000091552734
+ Execution time: 0:09:40.139483
+ ################################################################################
+Attacking with: ['DeepFool', 'CW']
+ Test accuracy: 97.0199966430664
+ Execution time: 0:11:13.987914
+ ################################################################################
+Attacking with: ['FGSM', 'FAB']
+ Test accuracy: 96.55000305175781
+ Execution time: 0:11:30.038362
+ ################################################################################
+Attacking with: ['PGD', 'FAB']
+ Test accuracy: 96.58000183105469
+ Execution time: 0:11:47.178560
+ ################################################################################
+Attacking with: ['CW', 'FAB']
+ Test accuracy: 97.43000030517578
+ Execution time: 0:12:10.237381
+ ################################################################################
+Attacking with: ['DeepFool', 'FAB']
+ Test accuracy: 97.05999755859375
+ Execution time: 0:13:41.786532
+ ################################################################################
+Generating adversarial samples for 3 cascaded attacks
+################################################################################
+/Users/shravanswaminathan/PycharmProjects/MLCybSec_ImageAttacks/main.py:119: UserWarning: Implicit dimension choice for log_softmax has been deprecated. Change the call to include dim=X as an argument.
+  return F.log_softmax(x)
+/Users/shravanswaminathan/PycharmProjects/MLCybSec_ImageAttacks/main.py:119: UserWarning: Implicit dimension choice for log_softmax has been deprecated. Change the call to include dim=X as an argument.
+  return F.log_softmax(x)
+/Users/shravanswaminathan/PycharmProjects/MLCybSec_ImageAttacks/main.py:119: UserWarning: Implicit dimension choice for log_softmax has been deprecated. Change the call to include dim=X as an argument.
+  return F.log_softmax(x)
+/Users/shravanswaminathan/PycharmProjects/MLCybSec_ImageAttacks/main.py:119: UserWarning: Implicit dimension choice for log_softmax has been deprecated. Change the call to include dim=X as an argument.
+  return F.log_softmax(x)
+/Users/shravanswaminathan/PycharmProjects/MLCybSec_ImageAttacks/main.py:119: UserWarning: Implicit dimension choice for log_softmax has been deprecated. Change the call to include dim=X as an argument.
+  return F.log_softmax(x)
+/Users/shravanswaminathan/PycharmProjects/MLCybSec_ImageAttacks/main.py:119: UserWarning: Implicit dimension choice for log_softmax has been deprecated. Change the call to include dim=X as an argument.
+  return F.log_softmax(x)
+/Users/shravanswaminathan/PycharmProjects/MLCybSec_ImageAttacks/main.py:119: UserWarning: Implicit dimension choice for log_softmax has been deprecated. Change the call to include dim=X as an argument.
+  return F.log_softmax(x)
+/Users/shravanswaminathan/PycharmProjects/MLCybSec_ImageAttacks/venv/lib/python3.8/site-packages/torch/nn/_reduction.py:42: UserWarning: size_average and reduce args will be deprecated, please use reduction='sum' instead.
+  warnings.warn(warning.format(ret))
+/Users/shravanswaminathan/PycharmProjects/MLCybSec_ImageAttacks/main.py:119: UserWarning: Implicit dimension choice for log_softmax has been deprecated. Change the call to include dim=X as an argument.
+  return F.log_softmax(x)
+/Users/shravanswaminathan/PycharmProjects/MLCybSec_ImageAttacks/main.py:119: UserWarning: Implicit dimension choice for log_softmax has been deprecated. Change the call to include dim=X as an argument.
+  return F.log_softmax(x)
+/Users/shravanswaminathan/PycharmProjects/MLCybSec_ImageAttacks/venv/lib/python3.8/site-packages/torch/nn/_reduction.py:42: UserWarning: size_average and reduce args will be deprecated, please use reduction='sum' instead.
+  warnings.warn(warning.format(ret))
+/Users/shravanswaminathan/PycharmProjects/MLCybSec_ImageAttacks/venv/lib/python3.8/site-packages/torch/nn/_reduction.py:42: UserWarning: size_average and reduce args will be deprecated, please use reduction='sum' instead.
+  warnings.warn(warning.format(ret))
+/Users/shravanswaminathan/PycharmProjects/MLCybSec_ImageAttacks/venv/lib/python3.8/site-packages/torch/nn/_reduction.py:42: UserWarning: size_average and reduce args will be deprecated, please use reduction='sum' instead.
+  warnings.warn(warning.format(ret))
+/Users/shravanswaminathan/PycharmProjects/MLCybSec_ImageAttacks/venv/lib/python3.8/site-packages/torch/nn/_reduction.py:42: UserWarning: size_average and reduce args will be deprecated, please use reduction='sum' instead.
+  warnings.warn(warning.format(ret))
+/Users/shravanswaminathan/PycharmProjects/MLCybSec_ImageAttacks/venv/lib/python3.8/site-packages/torch/nn/_reduction.py:42: UserWarning: size_average and reduce args will be deprecated, please use reduction='sum' instead.
+  warnings.warn(warning.format(ret))
+/Users/shravanswaminathan/PycharmProjects/MLCybSec_ImageAttacks/main.py:119: UserWarning: Implicit dimension choice for log_softmax has been deprecated. Change the call to include dim=X as an argument.
+  return F.log_softmax(x)
+/Users/shravanswaminathan/PycharmProjects/MLCybSec_ImageAttacks/venv/lib/python3.8/site-packages/torch/nn/_reduction.py:42: UserWarning: size_average and reduce args will be deprecated, please use reduction='sum' instead.
+  warnings.warn(warning.format(ret))
+/Users/shravanswaminathan/PycharmProjects/MLCybSec_ImageAttacks/venv/lib/python3.8/site-packages/torch/nn/_reduction.py:42: UserWarning: size_average and reduce args will be deprecated, please use reduction='sum' instead.
+  warnings.warn(warning.format(ret))
+/Users/shravanswaminathan/PycharmProjects/MLCybSec_ImageAttacks/venv/lib/python3.8/site-packages/torch/nn/_reduction.py:42: UserWarning: size_average and reduce args will be deprecated, please use reduction='sum' instead.
+  warnings.warn(warning.format(ret))
+/Users/shravanswaminathan/PycharmProjects/MLCybSec_ImageAttacks/venv/lib/python3.8/site-packages/torch/nn/_reduction.py:42: UserWarning: size_average and reduce args will be deprecated, please use reduction='sum' instead.
+  warnings.warn(warning.format(ret))
+Attacking with: ['FGSM', 'PGD', 'CW']
+ Test accuracy: 95.29000091552734
+ Execution time: 0:05:39.035056
+ ################################################################################
+Attacking with: ['DeepFool', 'FGSM', 'PGD']
+ Test accuracy: 90.45999908447266
+ Execution time: 0:12:51.454041
+ ################################################################################
+Attacking with: ['DeepFool', 'CW', 'FAB']
+ Test accuracy: 97.0199966430664
+ Execution time: 0:13:07.144871
+ ################################################################################
+Attacking with: ['FGSM', 'PGD', 'FAB']
+ Test accuracy: 95.33999633789062
+ Execution time: 0:13:23.365616
+ ################################################################################
+Attacking with: ['DeepFool', 'FGSM', 'FAB']
+ Test accuracy: 95.0
+ Execution time: 0:13:23.340851
+ ################################################################################
+Attacking with: ['DeepFool', 'FGSM', 'CW']
+ Test accuracy: 95.0
+ Execution time: 0:13:57.430808
+ ################################################################################
+Attacking with: ['DeepFool', 'PGD', 'FAB']
+ Test accuracy: 95.08999633789062
+ Execution time: 0:14:05.029679
+ ################################################################################
+Attacking with: ['FGSM', 'CW', 'FAB']
+ Test accuracy: 96.52999877929688
+ Execution time: 0:14:10.650895
+ ################################################################################
+Attacking with: ['DeepFool', 'PGD', 'CW']
+ Test accuracy: 95.05000305175781
+ Execution time: 0:14:23.707747
+ ################################################################################
+Attacking with: ['PGD', 'CW', 'FAB']
+ Test accuracy: 96.56999969482422
+ Execution time: 0:16:14.899718
+ ################################################################################
+Generating adversarial samples for 4 cascaded attacks
+################################################################################
+/Users/shravanswaminathan/PycharmProjects/MLCybSec_ImageAttacks/main.py:119: UserWarning: Implicit dimension choice for log_softmax has been deprecated. Change the call to include dim=X as an argument.
+  return F.log_softmax(x)
+/Users/shravanswaminathan/PycharmProjects/MLCybSec_ImageAttacks/main.py:119: UserWarning: Implicit dimension choice for log_softmax has been deprecated. Change the call to include dim=X as an argument.
+  return F.log_softmax(x)
+/Users/shravanswaminathan/PycharmProjects/MLCybSec_ImageAttacks/main.py:119: UserWarning: Implicit dimension choice for log_softmax has been deprecated. Change the call to include dim=X as an argument.
+  return F.log_softmax(x)
+/Users/shravanswaminathan/PycharmProjects/MLCybSec_ImageAttacks/main.py:119: UserWarning: Implicit dimension choice for log_softmax has been deprecated. Change the call to include dim=X as an argument.
+  return F.log_softmax(x)
+/Users/shravanswaminathan/PycharmProjects/MLCybSec_ImageAttacks/main.py:119: UserWarning: Implicit dimension choice for log_softmax has been deprecated. Change the call to include dim=X as an argument.
+  return F.log_softmax(x)
+/Users/shravanswaminathan/PycharmProjects/MLCybSec_ImageAttacks/venv/lib/python3.8/site-packages/torch/nn/_reduction.py:42: UserWarning: size_average and reduce args will be deprecated, please use reduction='sum' instead.
+  warnings.warn(warning.format(ret))
+/Users/shravanswaminathan/PycharmProjects/MLCybSec_ImageAttacks/venv/lib/python3.8/site-packages/torch/nn/_reduction.py:42: UserWarning: size_average and reduce args will be deprecated, please use reduction='sum' instead.
+  warnings.warn(warning.format(ret))
+/Users/shravanswaminathan/PycharmProjects/MLCybSec_ImageAttacks/venv/lib/python3.8/site-packages/torch/nn/_reduction.py:42: UserWarning: size_average and reduce args will be deprecated, please use reduction='sum' instead.
+  warnings.warn(warning.format(ret))
+/Users/shravanswaminathan/PycharmProjects/MLCybSec_ImageAttacks/venv/lib/python3.8/site-packages/torch/nn/_reduction.py:42: UserWarning: size_average and reduce args will be deprecated, please use reduction='sum' instead.
+  warnings.warn(warning.format(ret))
+/Users/shravanswaminathan/PycharmProjects/MLCybSec_ImageAttacks/venv/lib/python3.8/site-packages/torch/nn/_reduction.py:42: UserWarning: size_average and reduce args will be deprecated, please use reduction='sum' instead.
+  warnings.warn(warning.format(ret))
+Attacking with: ['DeepFool', 'FGSM', 'CW', 'FAB']
+ Test accuracy: 95.0
+ Execution time: 0:07:08.764913
+ ################################################################################
+Attacking with: ['DeepFool', 'FGSM', 'PGD', 'FAB']
+ Test accuracy: 90.41999816894531
+ Execution time: 0:07:19.639045
+ ################################################################################
+Attacking with: ['FGSM', 'PGD', 'CW', 'FAB']
+ Test accuracy: 95.33999633789062
+ Execution time: 0:07:30.000271
+ ################################################################################
+Attacking with: ['DeepFool', 'FGSM', 'PGD', 'CW']
+ Test accuracy: 90.4000015258789
+ Execution time: 0:07:35.245227
+ ################################################################################
+Attacking with: ['DeepFool', 'PGD', 'CW', 'FAB']
+ Test accuracy: 95.08999633789062
+ Execution time: 0:08:17.561613
+ ################################################################################
+Generating adversarial samples for 5 cascaded attacks
+################################################################################
+/Users/shravanswaminathan/PycharmProjects/MLCybSec_ImageAttacks/main.py:119: UserWarning: Implicit dimension choice for log_softmax has been deprecated. Change the call to include dim=X as an argument.
+  return F.log_softmax(x)
+/Users/shravanswaminathan/PycharmProjects/MLCybSec_ImageAttacks/venv/lib/python3.8/site-packages/torch/nn/_reduction.py:42: UserWarning: size_average and reduce args will be deprecated, please use reduction='sum' instead.
+  warnings.warn(warning.format(ret))
+Attacking with: ['DeepFool', 'FGSM', 'PGD', 'CW', 'FAB']
+ Test accuracy: 90.41999816894531
+ Execution time: 0:05:10.455653
+ ################################################################################
+################################################################################
+advModel_DeepFoolPGD.pth
+Generated attack set: ('DeepFool',)
+Generated attack set: ('FGSM',)
+Generated attack set: ('PGD',)
+Generated attack set: ('CW',)
+Generated attack set: ('FAB',)
+Generated attack set: ('DeepFool', 'FGSM')
+Generated attack set: ('DeepFool', 'PGD')
+Generated attack set: ('DeepFool', 'CW')
+Generated attack set: ('DeepFool', 'FAB')
+Generated attack set: ('FGSM', 'PGD')
+Generated attack set: ('FGSM', 'CW')
+Generated attack set: ('FGSM', 'FAB')
+Generated attack set: ('PGD', 'CW')
+Generated attack set: ('PGD', 'FAB')
+Generated attack set: ('CW', 'FAB')
+Generated attack set: ('DeepFool', 'FGSM', 'PGD')
+Generated attack set: ('DeepFool', 'FGSM', 'CW')
+Generated attack set: ('DeepFool', 'FGSM', 'FAB')
+Generated attack set: ('DeepFool', 'PGD', 'CW')
+Generated attack set: ('DeepFool', 'PGD', 'FAB')
+Generated attack set: ('DeepFool', 'CW', 'FAB')
+Generated attack set: ('FGSM', 'PGD', 'CW')
+Generated attack set: ('FGSM', 'PGD', 'FAB')
+Generated attack set: ('FGSM', 'CW', 'FAB')
+Generated attack set: ('PGD', 'CW', 'FAB')
+Generated attack set: ('DeepFool', 'FGSM', 'PGD', 'CW')
+Generated attack set: ('DeepFool', 'FGSM', 'PGD', 'FAB')
+Generated attack set: ('DeepFool', 'FGSM', 'CW', 'FAB')
+Generated attack set: ('DeepFool', 'PGD', 'CW', 'FAB')
+Generated attack set: ('FGSM', 'PGD', 'CW', 'FAB')
+Generated attack set: ('DeepFool', 'FGSM', 'PGD', 'CW', 'FAB')
+Starting threads for generating adversarial samples...
+ .....The command line might be dead for a while
+Generating adversarial samples for 1 cascaded attacks
+################################################################################
+/Users/shravanswaminathan/PycharmProjects/MLCybSec_ImageAttacks/main.py:119: UserWarning: Implicit dimension choice for log_softmax has been deprecated. Change the call to include dim=X as an argument.
+  return F.log_softmax(x)
+/Users/shravanswaminathan/PycharmProjects/MLCybSec_ImageAttacks/main.py:119: UserWarning: Implicit dimension choice for log_softmax has been deprecated. Change the call to include dim=X as an argument.
+  return F.log_softmax(x)
+/Users/shravanswaminathan/PycharmProjects/MLCybSec_ImageAttacks/main.py:119: UserWarning: Implicit dimension choice for log_softmax has been deprecated. Change the call to include dim=X as an argument.
+  return F.log_softmax(x)
+/Users/shravanswaminathan/PycharmProjects/MLCybSec_ImageAttacks/main.py:119: UserWarning: Implicit dimension choice for log_softmax has been deprecated. Change the call to include dim=X as an argument.
+  return F.log_softmax(x)
+/Users/shravanswaminathan/PycharmProjects/MLCybSec_ImageAttacks/main.py:119: UserWarning: Implicit dimension choice for log_softmax has been deprecated. Change the call to include dim=X as an argument.
+  return F.log_softmax(x)
+/Users/shravanswaminathan/PycharmProjects/MLCybSec_ImageAttacks/venv/lib/python3.8/site-packages/torch/nn/_reduction.py:42: UserWarning: size_average and reduce args will be deprecated, please use reduction='sum' instead.
+  warnings.warn(warning.format(ret))
+/Users/shravanswaminathan/PycharmProjects/MLCybSec_ImageAttacks/venv/lib/python3.8/site-packages/torch/nn/_reduction.py:42: UserWarning: size_average and reduce args will be deprecated, please use reduction='sum' instead.
+  warnings.warn(warning.format(ret))
+/Users/shravanswaminathan/PycharmProjects/MLCybSec_ImageAttacks/venv/lib/python3.8/site-packages/torch/nn/_reduction.py:42: UserWarning: size_average and reduce args will be deprecated, please use reduction='sum' instead.
+  warnings.warn(warning.format(ret))
+/Users/shravanswaminathan/PycharmProjects/MLCybSec_ImageAttacks/venv/lib/python3.8/site-packages/torch/nn/_reduction.py:42: UserWarning: size_average and reduce args will be deprecated, please use reduction='sum' instead.
+  warnings.warn(warning.format(ret))
+/Users/shravanswaminathan/PycharmProjects/MLCybSec_ImageAttacks/venv/lib/python3.8/site-packages/torch/nn/_reduction.py:42: UserWarning: size_average and reduce args will be deprecated, please use reduction='sum' instead.
+  warnings.warn(warning.format(ret))
+Attacking with: ['FGSM']
+ Test accuracy: 96.47000122070312
+ Execution time: 0:00:12.936960
+ ################################################################################
+Attacking with: ['PGD']
+ Test accuracy: 96.51000213623047
+ Execution time: 0:00:46.393509
+ ################################################################################
+Attacking with: ['CW']
+ Test accuracy: 97.45999908447266
+ Execution time: 0:01:14.305422
+ ################################################################################
+Attacking with: ['DeepFool']
+ Test accuracy: 96.66999816894531
+ Execution time: 0:03:23.969047
+ ################################################################################
+Attacking with: ['FAB']
+ Test accuracy: 97.33999633789062
+ Execution time: 0:05:30.745775
+ ################################################################################
+Generating adversarial samples for 2 cascaded attacks
+################################################################################
+/Users/shravanswaminathan/PycharmProjects/MLCybSec_ImageAttacks/main.py:119: UserWarning: Implicit dimension choice for log_softmax has been deprecated. Change the call to include dim=X as an argument.
+  return F.log_softmax(x)
+/Users/shravanswaminathan/PycharmProjects/MLCybSec_ImageAttacks/main.py:119: UserWarning: Implicit dimension choice for log_softmax has been deprecated. Change the call to include dim=X as an argument.
+  return F.log_softmax(x)
+/Users/shravanswaminathan/PycharmProjects/MLCybSec_ImageAttacks/main.py:119: UserWarning: Implicit dimension choice for log_softmax has been deprecated. Change the call to include dim=X as an argument.
+  return F.log_softmax(x)
+/Users/shravanswaminathan/PycharmProjects/MLCybSec_ImageAttacks/main.py:119: UserWarning: Implicit dimension choice for log_softmax has been deprecated. Change the call to include dim=X as an argument.
+  return F.log_softmax(x)
+/Users/shravanswaminathan/PycharmProjects/MLCybSec_ImageAttacks/main.py:119: UserWarning: Implicit dimension choice for log_softmax has been deprecated. Change the call to include dim=X as an argument.
+  return F.log_softmax(x)
+/Users/shravanswaminathan/PycharmProjects/MLCybSec_ImageAttacks/venv/lib/python3.8/site-packages/torch/nn/_reduction.py:42: UserWarning: size_average and reduce args will be deprecated, please use reduction='sum' instead.
+  warnings.warn(warning.format(ret))
+/Users/shravanswaminathan/PycharmProjects/MLCybSec_ImageAttacks/venv/lib/python3.8/site-packages/torch/nn/_reduction.py:42: UserWarning: size_average and reduce args will be deprecated, please use reduction='sum' instead.
+  warnings.warn(warning.format(ret))
+/Users/shravanswaminathan/PycharmProjects/MLCybSec_ImageAttacks/main.py:119: UserWarning: Implicit dimension choice for log_softmax has been deprecated. Change the call to include dim=X as an argument.
+  return F.log_softmax(x)
+/Users/shravanswaminathan/PycharmProjects/MLCybSec_ImageAttacks/venv/lib/python3.8/site-packages/torch/nn/_reduction.py:42: UserWarning: size_average and reduce args will be deprecated, please use reduction='sum' instead.
+  warnings.warn(warning.format(ret))
+/Users/shravanswaminathan/PycharmProjects/MLCybSec_ImageAttacks/venv/lib/python3.8/site-packages/torch/nn/_reduction.py:42: UserWarning: size_average and reduce args will be deprecated, please use reduction='sum' instead.
+  warnings.warn(warning.format(ret))
+/Users/shravanswaminathan/PycharmProjects/MLCybSec_ImageAttacks/main.py:119: UserWarning: Implicit dimension choice for log_softmax has been deprecated. Change the call to include dim=X as an argument.
+  return F.log_softmax(x)
+/Users/shravanswaminathan/PycharmProjects/MLCybSec_ImageAttacks/main.py:119: UserWarning: Implicit dimension choice for log_softmax has been deprecated. Change the call to include dim=X as an argument.
+  return F.log_softmax(x)
+/Users/shravanswaminathan/PycharmProjects/MLCybSec_ImageAttacks/venv/lib/python3.8/site-packages/torch/nn/_reduction.py:42: UserWarning: size_average and reduce args will be deprecated, please use reduction='sum' instead.
+  warnings.warn(warning.format(ret))
+/Users/shravanswaminathan/PycharmProjects/MLCybSec_ImageAttacks/venv/lib/python3.8/site-packages/torch/nn/_reduction.py:42: UserWarning: size_average and reduce args will be deprecated, please use reduction='sum' instead.
+  warnings.warn(warning.format(ret))
+/Users/shravanswaminathan/PycharmProjects/MLCybSec_ImageAttacks/main.py:119: UserWarning: Implicit dimension choice for log_softmax has been deprecated. Change the call to include dim=X as an argument.
+  return F.log_softmax(x)
+/Users/shravanswaminathan/PycharmProjects/MLCybSec_ImageAttacks/venv/lib/python3.8/site-packages/torch/nn/_reduction.py:42: UserWarning: size_average and reduce args will be deprecated, please use reduction='sum' instead.
+  warnings.warn(warning.format(ret))
+/Users/shravanswaminathan/PycharmProjects/MLCybSec_ImageAttacks/main.py:119: UserWarning: Implicit dimension choice for log_softmax has been deprecated. Change the call to include dim=X as an argument.
+  return F.log_softmax(x)
+/Users/shravanswaminathan/PycharmProjects/MLCybSec_ImageAttacks/venv/lib/python3.8/site-packages/torch/nn/_reduction.py:42: UserWarning: size_average and reduce args will be deprecated, please use reduction='sum' instead.
+  warnings.warn(warning.format(ret))
+/Users/shravanswaminathan/PycharmProjects/MLCybSec_ImageAttacks/venv/lib/python3.8/site-packages/torch/nn/_reduction.py:42: UserWarning: size_average and reduce args will be deprecated, please use reduction='sum' instead.
+  warnings.warn(warning.format(ret))
+/Users/shravanswaminathan/PycharmProjects/MLCybSec_ImageAttacks/venv/lib/python3.8/site-packages/torch/nn/_reduction.py:42: UserWarning: size_average and reduce args will be deprecated, please use reduction='sum' instead.
+  warnings.warn(warning.format(ret))
+Attacking with: ['FGSM', 'PGD']
+ Test accuracy: 95.31999969482422
+ Execution time: 0:02:02.763831
+ ################################################################################
+Attacking with: ['FGSM', 'CW']
+ Test accuracy: 96.44999694824219
+ Execution time: 0:03:43.396267
+ ################################################################################
+Attacking with: ['PGD', 'CW']
+ Test accuracy: 96.5199966430664
+ Execution time: 0:05:03.067721
+ ################################################################################
+Attacking with: ['DeepFool', 'FGSM']
+ Test accuracy: 94.19999694824219
+ Execution time: 0:09:37.967150
+ ################################################################################
+Attacking with: ['DeepFool', 'PGD']
+ Test accuracy: 94.27999877929688
+ Execution time: 0:09:46.738594
+ ################################################################################
+Attacking with: ['DeepFool', 'CW']
+ Test accuracy: 96.61000061035156
+ Execution time: 0:11:14.013426
+ ################################################################################
+Attacking with: ['FGSM', 'FAB']
+ Test accuracy: 96.37999725341797
+ Execution time: 0:11:30.766736
+ ################################################################################
+Attacking with: ['PGD', 'FAB']
+ Test accuracy: 96.41000366210938
+ Execution time: 0:11:50.858894
+ ################################################################################
+Attacking with: ['CW', 'FAB']
+ Test accuracy: 97.33000183105469
+ Execution time: 0:13:17.111037
+ ################################################################################
+Attacking with: ['DeepFool', 'FAB']
+ Test accuracy: 96.66999816894531
+ Execution time: 0:13:58.536341
+ ################################################################################
+Generating adversarial samples for 3 cascaded attacks
+################################################################################
+/Users/shravanswaminathan/PycharmProjects/MLCybSec_ImageAttacks/main.py:119: UserWarning: Implicit dimension choice for log_softmax has been deprecated. Change the call to include dim=X as an argument.
+  return F.log_softmax(x)
+/Users/shravanswaminathan/PycharmProjects/MLCybSec_ImageAttacks/main.py:119: UserWarning: Implicit dimension choice for log_softmax has been deprecated. Change the call to include dim=X as an argument.
+  return F.log_softmax(x)
+/Users/shravanswaminathan/PycharmProjects/MLCybSec_ImageAttacks/main.py:119: UserWarning: Implicit dimension choice for log_softmax has been deprecated. Change the call to include dim=X as an argument.
+  return F.log_softmax(x)
+/Users/shravanswaminathan/PycharmProjects/MLCybSec_ImageAttacks/main.py:119: UserWarning: Implicit dimension choice for log_softmax has been deprecated. Change the call to include dim=X as an argument.
+  return F.log_softmax(x)
+/Users/shravanswaminathan/PycharmProjects/MLCybSec_ImageAttacks/main.py:119: UserWarning: Implicit dimension choice for log_softmax has been deprecated. Change the call to include dim=X as an argument.
+  return F.log_softmax(x)
+/Users/shravanswaminathan/PycharmProjects/MLCybSec_ImageAttacks/main.py:119: UserWarning: Implicit dimension choice for log_softmax has been deprecated. Change the call to include dim=X as an argument.
+  return F.log_softmax(x)
+/Users/shravanswaminathan/PycharmProjects/MLCybSec_ImageAttacks/main.py:119: UserWarning: Implicit dimension choice for log_softmax has been deprecated. Change the call to include dim=X as an argument.
+  return F.log_softmax(x)
+/Users/shravanswaminathan/PycharmProjects/MLCybSec_ImageAttacks/main.py:119: UserWarning: Implicit dimension choice for log_softmax has been deprecated. Change the call to include dim=X as an argument.
+  return F.log_softmax(x)
+/Users/shravanswaminathan/PycharmProjects/MLCybSec_ImageAttacks/main.py:119: UserWarning: Implicit dimension choice for log_softmax has been deprecated. Change the call to include dim=X as an argument.
+  return F.log_softmax(x)
+/Users/shravanswaminathan/PycharmProjects/MLCybSec_ImageAttacks/main.py:119: UserWarning: Implicit dimension choice for log_softmax has been deprecated. Change the call to include dim=X as an argument.
+  return F.log_softmax(x)
+/Users/shravanswaminathan/PycharmProjects/MLCybSec_ImageAttacks/venv/lib/python3.8/site-packages/torch/nn/_reduction.py:42: UserWarning: size_average and reduce args will be deprecated, please use reduction='sum' instead.
+  warnings.warn(warning.format(ret))
+/Users/shravanswaminathan/PycharmProjects/MLCybSec_ImageAttacks/venv/lib/python3.8/site-packages/torch/nn/_reduction.py:42: UserWarning: size_average and reduce args will be deprecated, please use reduction='sum' instead.
+  warnings.warn(warning.format(ret))
+/Users/shravanswaminathan/PycharmProjects/MLCybSec_ImageAttacks/venv/lib/python3.8/site-packages/torch/nn/_reduction.py:42: UserWarning: size_average and reduce args will be deprecated, please use reduction='sum' instead.
+  warnings.warn(warning.format(ret))
+/Users/shravanswaminathan/PycharmProjects/MLCybSec_ImageAttacks/venv/lib/python3.8/site-packages/torch/nn/_reduction.py:42: UserWarning: size_average and reduce args will be deprecated, please use reduction='sum' instead.
+  warnings.warn(warning.format(ret))
+/Users/shravanswaminathan/PycharmProjects/MLCybSec_ImageAttacks/venv/lib/python3.8/site-packages/torch/nn/_reduction.py:42: UserWarning: size_average and reduce args will be deprecated, please use reduction='sum' instead.
+  warnings.warn(warning.format(ret))
+/Users/shravanswaminathan/PycharmProjects/MLCybSec_ImageAttacks/venv/lib/python3.8/site-packages/torch/nn/_reduction.py:42: UserWarning: size_average and reduce args will be deprecated, please use reduction='sum' instead.
+  warnings.warn(warning.format(ret))
+/Users/shravanswaminathan/PycharmProjects/MLCybSec_ImageAttacks/venv/lib/python3.8/site-packages/torch/nn/_reduction.py:42: UserWarning: size_average and reduce args will be deprecated, please use reduction='sum' instead.
+  warnings.warn(warning.format(ret))
+/Users/shravanswaminathan/PycharmProjects/MLCybSec_ImageAttacks/venv/lib/python3.8/site-packages/torch/nn/_reduction.py:42: UserWarning: size_average and reduce args will be deprecated, please use reduction='sum' instead.
+  warnings.warn(warning.format(ret))
+/Users/shravanswaminathan/PycharmProjects/MLCybSec_ImageAttacks/venv/lib/python3.8/site-packages/torch/nn/_reduction.py:42: UserWarning: size_average and reduce args will be deprecated, please use reduction='sum' instead.
+  warnings.warn(warning.format(ret))
+/Users/shravanswaminathan/PycharmProjects/MLCybSec_ImageAttacks/venv/lib/python3.8/site-packages/torch/nn/_reduction.py:42: UserWarning: size_average and reduce args will be deprecated, please use reduction='sum' instead.
+  warnings.warn(warning.format(ret))
+Attacking with: ['FGSM', 'PGD', 'CW']
+ Test accuracy: 95.23999786376953
+ Execution time: 0:09:22.655739
+ ################################################################################
+Attacking with: ['DeepFool', 'PGD', 'FAB']
+ Test accuracy: 94.26000213623047
+ Execution time: 0:09:41.548194
+ ################################################################################
+Attacking with: ['FGSM', 'PGD', 'FAB']
+ Test accuracy: 95.25
+ Execution time: 0:10:12.505208
+ ################################################################################
+Attacking with: ['DeepFool', 'CW', 'FAB']
+ Test accuracy: 96.61000061035156
+ Execution time: 0:10:50.113434
+ ################################################################################
+Attacking with: ['PGD', 'CW', 'FAB']
+ Test accuracy: 96.4000015258789
+ Execution time: 0:12:32.711238
+ ################################################################################
+Attacking with: ['DeepFool', 'FGSM', 'PGD']
+ Test accuracy: 89.31999969482422
+ Execution time: 0:13:57.526374
+ ################################################################################
+Attacking with: ['DeepFool', 'FGSM', 'FAB']
+ Test accuracy: 94.19999694824219
+ Execution time: 0:13:57.673299
+ ################################################################################
+Attacking with: ['FGSM', 'CW', 'FAB']
+ Test accuracy: 96.37000274658203
+ Execution time: 0:14:01.270481
+ ################################################################################
+Attacking with: ['DeepFool', 'FGSM', 'CW']
+ Test accuracy: 94.19999694824219
+ Execution time: 0:14:32.340745
+ ################################################################################
+Attacking with: ['DeepFool', 'PGD', 'CW']
+ Test accuracy: 94.23999786376953
+ Execution time: 0:14:55.706048
+ ################################################################################
+Generating adversarial samples for 4 cascaded attacks
+################################################################################
+/Users/shravanswaminathan/PycharmProjects/MLCybSec_ImageAttacks/main.py:119: UserWarning: Implicit dimension choice for log_softmax has been deprecated. Change the call to include dim=X as an argument.
+  return F.log_softmax(x)
+/Users/shravanswaminathan/PycharmProjects/MLCybSec_ImageAttacks/main.py:119: UserWarning: Implicit dimension choice for log_softmax has been deprecated. Change the call to include dim=X as an argument.
+  return F.log_softmax(x)
+/Users/shravanswaminathan/PycharmProjects/MLCybSec_ImageAttacks/main.py:119: UserWarning: Implicit dimension choice for log_softmax has been deprecated. Change the call to include dim=X as an argument.
+  return F.log_softmax(x)
+/Users/shravanswaminathan/PycharmProjects/MLCybSec_ImageAttacks/main.py:119: UserWarning: Implicit dimension choice for log_softmax has been deprecated. Change the call to include dim=X as an argument.
+  return F.log_softmax(x)
+/Users/shravanswaminathan/PycharmProjects/MLCybSec_ImageAttacks/main.py:119: UserWarning: Implicit dimension choice for log_softmax has been deprecated. Change the call to include dim=X as an argument.
+  return F.log_softmax(x)
+/Users/shravanswaminathan/PycharmProjects/MLCybSec_ImageAttacks/venv/lib/python3.8/site-packages/torch/nn/_reduction.py:42: UserWarning: size_average and reduce args will be deprecated, please use reduction='sum' instead.
+  warnings.warn(warning.format(ret))
+/Users/shravanswaminathan/PycharmProjects/MLCybSec_ImageAttacks/venv/lib/python3.8/site-packages/torch/nn/_reduction.py:42: UserWarning: size_average and reduce args will be deprecated, please use reduction='sum' instead.
+  warnings.warn(warning.format(ret))
+/Users/shravanswaminathan/PycharmProjects/MLCybSec_ImageAttacks/venv/lib/python3.8/site-packages/torch/nn/_reduction.py:42: UserWarning: size_average and reduce args will be deprecated, please use reduction='sum' instead.
+  warnings.warn(warning.format(ret))
+/Users/shravanswaminathan/PycharmProjects/MLCybSec_ImageAttacks/venv/lib/python3.8/site-packages/torch/nn/_reduction.py:42: UserWarning: size_average and reduce args will be deprecated, please use reduction='sum' instead.
+  warnings.warn(warning.format(ret))
+/Users/shravanswaminathan/PycharmProjects/MLCybSec_ImageAttacks/venv/lib/python3.8/site-packages/torch/nn/_reduction.py:42: UserWarning: size_average and reduce args will be deprecated, please use reduction='sum' instead.
+  warnings.warn(warning.format(ret))
+Attacking with: ['DeepFool', 'FGSM', 'PGD', 'FAB']
+ Test accuracy: 89.3499984741211
+ Execution time: 0:07:27.833967
+ ################################################################################
+Attacking with: ['DeepFool', 'FGSM', 'PGD', 'CW']
+ Test accuracy: 89.27999877929688
+ Execution time: 0:07:33.109424
+ ################################################################################
+Attacking with: ['FGSM', 'PGD', 'CW', 'FAB']
+ Test accuracy: 95.23999786376953
+ Execution time: 0:07:46.091866
+ ################################################################################
+Attacking with: ['DeepFool', 'FGSM', 'CW', 'FAB']
+ Test accuracy: 94.19999694824219
+ Execution time: 0:07:59.344709
+ ################################################################################
+Attacking with: ['DeepFool', 'PGD', 'CW', 'FAB']
+ Test accuracy: 94.26000213623047
+ Execution time: 0:08:20.004360
+ ################################################################################
+Generating adversarial samples for 5 cascaded attacks
+################################################################################
+/Users/shravanswaminathan/PycharmProjects/MLCybSec_ImageAttacks/main.py:119: UserWarning: Implicit dimension choice for log_softmax has been deprecated. Change the call to include dim=X as an argument.
+  return F.log_softmax(x)
+/Users/shravanswaminathan/PycharmProjects/MLCybSec_ImageAttacks/venv/lib/python3.8/site-packages/torch/nn/_reduction.py:42: UserWarning: size_average and reduce args will be deprecated, please use reduction='sum' instead.
+  warnings.warn(warning.format(ret))
+Attacking with: ['DeepFool', 'FGSM', 'PGD', 'CW', 'FAB']
+ Test accuracy: 89.3499984741211
+ Execution time: 0:05:13.683316
+ ################################################################################
+################################################################################
+advModel_DeepFoolCW.pth
+Generated attack set: ('DeepFool',)
+Generated attack set: ('FGSM',)
+Generated attack set: ('PGD',)
+Generated attack set: ('CW',)
+Generated attack set: ('FAB',)
+Generated attack set: ('DeepFool', 'FGSM')
+Generated attack set: ('DeepFool', 'PGD')
+Generated attack set: ('DeepFool', 'CW')
+Generated attack set: ('DeepFool', 'FAB')
+Generated attack set: ('FGSM', 'PGD')
+Generated attack set: ('FGSM', 'CW')
+Generated attack set: ('FGSM', 'FAB')
+Generated attack set: ('PGD', 'CW')
+Generated attack set: ('PGD', 'FAB')
+Generated attack set: ('CW', 'FAB')
+Generated attack set: ('DeepFool', 'FGSM', 'PGD')
+Generated attack set: ('DeepFool', 'FGSM', 'CW')
+Generated attack set: ('DeepFool', 'FGSM', 'FAB')
+Generated attack set: ('DeepFool', 'PGD', 'CW')
+Generated attack set: ('DeepFool', 'PGD', 'FAB')
+Generated attack set: ('DeepFool', 'CW', 'FAB')
+Generated attack set: ('FGSM', 'PGD', 'CW')
+Generated attack set: ('FGSM', 'PGD', 'FAB')
+Generated attack set: ('FGSM', 'CW', 'FAB')
+Generated attack set: ('PGD', 'CW', 'FAB')
+Generated attack set: ('DeepFool', 'FGSM', 'PGD', 'CW')
+Generated attack set: ('DeepFool', 'FGSM', 'PGD', 'FAB')
+Generated attack set: ('DeepFool', 'FGSM', 'CW', 'FAB')
+Generated attack set: ('DeepFool', 'PGD', 'CW', 'FAB')
+Generated attack set: ('FGSM', 'PGD', 'CW', 'FAB')
+Generated attack set: ('DeepFool', 'FGSM', 'PGD', 'CW', 'FAB')
+Starting threads for generating adversarial samples...
+ .....The command line might be dead for a while
+Generating adversarial samples for 1 cascaded attacks
+################################################################################
+/Users/shravanswaminathan/PycharmProjects/MLCybSec_ImageAttacks/main.py:119: UserWarning: Implicit dimension choice for log_softmax has been deprecated. Change the call to include dim=X as an argument.
+  return F.log_softmax(x)
+/Users/shravanswaminathan/PycharmProjects/MLCybSec_ImageAttacks/main.py:119: UserWarning: Implicit dimension choice for log_softmax has been deprecated. Change the call to include dim=X as an argument.
+  return F.log_softmax(x)
+/Users/shravanswaminathan/PycharmProjects/MLCybSec_ImageAttacks/main.py:119: UserWarning: Implicit dimension choice for log_softmax has been deprecated. Change the call to include dim=X as an argument.
+  return F.log_softmax(x)
+/Users/shravanswaminathan/PycharmProjects/MLCybSec_ImageAttacks/main.py:119: UserWarning: Implicit dimension choice for log_softmax has been deprecated. Change the call to include dim=X as an argument.
+  return F.log_softmax(x)
+/Users/shravanswaminathan/PycharmProjects/MLCybSec_ImageAttacks/main.py:119: UserWarning: Implicit dimension choice for log_softmax has been deprecated. Change the call to include dim=X as an argument.
+  return F.log_softmax(x)
+/Users/shravanswaminathan/PycharmProjects/MLCybSec_ImageAttacks/venv/lib/python3.8/site-packages/torch/nn/_reduction.py:42: UserWarning: size_average and reduce args will be deprecated, please use reduction='sum' instead.
+  warnings.warn(warning.format(ret))
+/Users/shravanswaminathan/PycharmProjects/MLCybSec_ImageAttacks/venv/lib/python3.8/site-packages/torch/nn/_reduction.py:42: UserWarning: size_average and reduce args will be deprecated, please use reduction='sum' instead.
+  warnings.warn(warning.format(ret))
+/Users/shravanswaminathan/PycharmProjects/MLCybSec_ImageAttacks/venv/lib/python3.8/site-packages/torch/nn/_reduction.py:42: UserWarning: size_average and reduce args will be deprecated, please use reduction='sum' instead.
+  warnings.warn(warning.format(ret))
+/Users/shravanswaminathan/PycharmProjects/MLCybSec_ImageAttacks/venv/lib/python3.8/site-packages/torch/nn/_reduction.py:42: UserWarning: size_average and reduce args will be deprecated, please use reduction='sum' instead.
+  warnings.warn(warning.format(ret))
+/Users/shravanswaminathan/PycharmProjects/MLCybSec_ImageAttacks/venv/lib/python3.8/site-packages/torch/nn/_reduction.py:42: UserWarning: size_average and reduce args will be deprecated, please use reduction='sum' instead.
+  warnings.warn(warning.format(ret))
+Attacking with: ['FGSM']
+ Test accuracy: 96.47000122070312
+ Execution time: 0:00:12.309004
+ ################################################################################
+Attacking with: ['PGD']
+ Test accuracy: 96.47000122070312
+ Execution time: 0:00:45.099685
+ ################################################################################
+Attacking with: ['CW']
+ Test accuracy: 97.55000305175781
+ Execution time: 0:01:13.981436
+ ################################################################################
+Attacking with: ['DeepFool']
+ Test accuracy: 96.7300033569336
+ Execution time: 0:03:23.104166
+ ################################################################################
+Attacking with: ['FAB']
+ Test accuracy: 97.4000015258789
+ Execution time: 0:05:29.940378
+ ################################################################################
+Generating adversarial samples for 2 cascaded attacks
+################################################################################
+/Users/shravanswaminathan/PycharmProjects/MLCybSec_ImageAttacks/main.py:119: UserWarning: Implicit dimension choice for log_softmax has been deprecated. Change the call to include dim=X as an argument.
+  return F.log_softmax(x)
+/Users/shravanswaminathan/PycharmProjects/MLCybSec_ImageAttacks/main.py:119: UserWarning: Implicit dimension choice for log_softmax has been deprecated. Change the call to include dim=X as an argument.
+  return F.log_softmax(x)
+/Users/shravanswaminathan/PycharmProjects/MLCybSec_ImageAttacks/main.py:119: UserWarning: Implicit dimension choice for log_softmax has been deprecated. Change the call to include dim=X as an argument.
+  return F.log_softmax(x)
+/Users/shravanswaminathan/PycharmProjects/MLCybSec_ImageAttacks/main.py:119: UserWarning: Implicit dimension choice for log_softmax has been deprecated. Change the call to include dim=X as an argument.
+  return F.log_softmax(x)
+/Users/shravanswaminathan/PycharmProjects/MLCybSec_ImageAttacks/venv/lib/python3.8/site-packages/torch/nn/_reduction.py:42: UserWarning: size_average and reduce args will be deprecated, please use reduction='sum' instead.
+  warnings.warn(warning.format(ret))
+/Users/shravanswaminathan/PycharmProjects/MLCybSec_ImageAttacks/main.py:119: UserWarning: Implicit dimension choice for log_softmax has been deprecated. Change the call to include dim=X as an argument.
+  return F.log_softmax(x)
+/Users/shravanswaminathan/PycharmProjects/MLCybSec_ImageAttacks/main.py:119: UserWarning: Implicit dimension choice for log_softmax has been deprecated. Change the call to include dim=X as an argument.
+  return F.log_softmax(x)
+/Users/shravanswaminathan/PycharmProjects/MLCybSec_ImageAttacks/main.py:119: UserWarning: Implicit dimension choice for log_softmax has been deprecated. Change the call to include dim=X as an argument.
+  return F.log_softmax(x)
+/Users/shravanswaminathan/PycharmProjects/MLCybSec_ImageAttacks/main.py:119: UserWarning: Implicit dimension choice for log_softmax has been deprecated. Change the call to include dim=X as an argument.
+  return F.log_softmax(x)
+/Users/shravanswaminathan/PycharmProjects/MLCybSec_ImageAttacks/main.py:119: UserWarning: Implicit dimension choice for log_softmax has been deprecated. Change the call to include dim=X as an argument.
+  return F.log_softmax(x)
+/Users/shravanswaminathan/PycharmProjects/MLCybSec_ImageAttacks/main.py:119: UserWarning: Implicit dimension choice for log_softmax has been deprecated. Change the call to include dim=X as an argument.
+  return F.log_softmax(x)
+/Users/shravanswaminathan/PycharmProjects/MLCybSec_ImageAttacks/venv/lib/python3.8/site-packages/torch/nn/_reduction.py:42: UserWarning: size_average and reduce args will be deprecated, please use reduction='sum' instead.
+  warnings.warn(warning.format(ret))
+/Users/shravanswaminathan/PycharmProjects/MLCybSec_ImageAttacks/venv/lib/python3.8/site-packages/torch/nn/_reduction.py:42: UserWarning: size_average and reduce args will be deprecated, please use reduction='sum' instead.
+  warnings.warn(warning.format(ret))
+/Users/shravanswaminathan/PycharmProjects/MLCybSec_ImageAttacks/venv/lib/python3.8/site-packages/torch/nn/_reduction.py:42: UserWarning: size_average and reduce args will be deprecated, please use reduction='sum' instead.
+  warnings.warn(warning.format(ret))
+/Users/shravanswaminathan/PycharmProjects/MLCybSec_ImageAttacks/venv/lib/python3.8/site-packages/torch/nn/_reduction.py:42: UserWarning: size_average and reduce args will be deprecated, please use reduction='sum' instead.
+  warnings.warn(warning.format(ret))
+/Users/shravanswaminathan/PycharmProjects/MLCybSec_ImageAttacks/venv/lib/python3.8/site-packages/torch/nn/_reduction.py:42: UserWarning: size_average and reduce args will be deprecated, please use reduction='sum' instead.
+  warnings.warn(warning.format(ret))
+/Users/shravanswaminathan/PycharmProjects/MLCybSec_ImageAttacks/venv/lib/python3.8/site-packages/torch/nn/_reduction.py:42: UserWarning: size_average and reduce args will be deprecated, please use reduction='sum' instead.
+  warnings.warn(warning.format(ret))
+/Users/shravanswaminathan/PycharmProjects/MLCybSec_ImageAttacks/venv/lib/python3.8/site-packages/torch/nn/_reduction.py:42: UserWarning: size_average and reduce args will be deprecated, please use reduction='sum' instead.
+  warnings.warn(warning.format(ret))
+/Users/shravanswaminathan/PycharmProjects/MLCybSec_ImageAttacks/venv/lib/python3.8/site-packages/torch/nn/_reduction.py:42: UserWarning: size_average and reduce args will be deprecated, please use reduction='sum' instead.
+  warnings.warn(warning.format(ret))
+/Users/shravanswaminathan/PycharmProjects/MLCybSec_ImageAttacks/venv/lib/python3.8/site-packages/torch/nn/_reduction.py:42: UserWarning: size_average and reduce args will be deprecated, please use reduction='sum' instead.
+  warnings.warn(warning.format(ret))
+Attacking with: ['FGSM', 'PGD']
+ Test accuracy: 94.58999633789062
+ Execution time: 0:02:16.753908
+ ################################################################################
+Attacking with: ['FGSM', 'CW']
+ Test accuracy: 96.41999816894531
+ Execution time: 0:04:04.499441
+ ################################################################################
+Attacking with: ['PGD', 'CW']
+ Test accuracy: 96.43000030517578
+ Execution time: 0:05:08.477480
+ ################################################################################
+Attacking with: ['DeepFool', 'FGSM']
+ Test accuracy: 93.48999786376953
+ Execution time: 0:09:28.520290
+ ################################################################################
+Attacking with: ['DeepFool', 'PGD']
+ Test accuracy: 93.56999969482422
+ Execution time: 0:10:13.899825
+ ################################################################################
+Attacking with: ['FGSM', 'FAB']
+ Test accuracy: 96.36000061035156
+ Execution time: 0:11:01.921226
+ ################################################################################
+Attacking with: ['DeepFool', 'CW']
+ Test accuracy: 96.68000030517578
+ Execution time: 0:11:04.446111
+ ################################################################################
+Attacking with: ['CW', 'FAB']
+ Test accuracy: 97.38999938964844
+ Execution time: 0:12:49.434846
+ ################################################################################
+Attacking with: ['PGD', 'FAB']
+ Test accuracy: 96.41999816894531
+ Execution time: 0:12:50.148152
+ ################################################################################
+Attacking with: ['DeepFool', 'FAB']
+ Test accuracy: 96.7300033569336
+ Execution time: 0:13:00.085236
+ ################################################################################
+Generating adversarial samples for 3 cascaded attacks
+################################################################################
+/Users/shravanswaminathan/PycharmProjects/MLCybSec_ImageAttacks/main.py:119: UserWarning: Implicit dimension choice for log_softmax has been deprecated. Change the call to include dim=X as an argument.
+  return F.log_softmax(x)
+/Users/shravanswaminathan/PycharmProjects/MLCybSec_ImageAttacks/main.py:119: UserWarning: Implicit dimension choice for log_softmax has been deprecated. Change the call to include dim=X as an argument.
+  return F.log_softmax(x)
+/Users/shravanswaminathan/PycharmProjects/MLCybSec_ImageAttacks/main.py:119: UserWarning: Implicit dimension choice for log_softmax has been deprecated. Change the call to include dim=X as an argument.
+  return F.log_softmax(x)
+/Users/shravanswaminathan/PycharmProjects/MLCybSec_ImageAttacks/main.py:119: UserWarning: Implicit dimension choice for log_softmax has been deprecated. Change the call to include dim=X as an argument.
+  return F.log_softmax(x)
+/Users/shravanswaminathan/PycharmProjects/MLCybSec_ImageAttacks/main.py:119: UserWarning: Implicit dimension choice for log_softmax has been deprecated. Change the call to include dim=X as an argument.
+  return F.log_softmax(x)
+/Users/shravanswaminathan/PycharmProjects/MLCybSec_ImageAttacks/main.py:119: UserWarning: Implicit dimension choice for log_softmax has been deprecated. Change the call to include dim=X as an argument.
+  return F.log_softmax(x)
+/Users/shravanswaminathan/PycharmProjects/MLCybSec_ImageAttacks/main.py:119: UserWarning: Implicit dimension choice for log_softmax has been deprecated. Change the call to include dim=X as an argument.
+  return F.log_softmax(x)
+/Users/shravanswaminathan/PycharmProjects/MLCybSec_ImageAttacks/main.py:119: UserWarning: Implicit dimension choice for log_softmax has been deprecated. Change the call to include dim=X as an argument.
+  return F.log_softmax(x)
+/Users/shravanswaminathan/PycharmProjects/MLCybSec_ImageAttacks/main.py:119: UserWarning: Implicit dimension choice for log_softmax has been deprecated. Change the call to include dim=X as an argument.
+  return F.log_softmax(x)
+/Users/shravanswaminathan/PycharmProjects/MLCybSec_ImageAttacks/venv/lib/python3.8/site-packages/torch/nn/_reduction.py:42: UserWarning: size_average and reduce args will be deprecated, please use reduction='sum' instead.
+  warnings.warn(warning.format(ret))
+/Users/shravanswaminathan/PycharmProjects/MLCybSec_ImageAttacks/venv/lib/python3.8/site-packages/torch/nn/_reduction.py:42: UserWarning: size_average and reduce args will be deprecated, please use reduction='sum' instead.
+  warnings.warn(warning.format(ret))
+/Users/shravanswaminathan/PycharmProjects/MLCybSec_ImageAttacks/venv/lib/python3.8/site-packages/torch/nn/_reduction.py:42: UserWarning: size_average and reduce args will be deprecated, please use reduction='sum' instead.
+  warnings.warn(warning.format(ret))
+/Users/shravanswaminathan/PycharmProjects/MLCybSec_ImageAttacks/main.py:119: UserWarning: Implicit dimension choice for log_softmax has been deprecated. Change the call to include dim=X as an argument.
+  return F.log_softmax(x)
+/Users/shravanswaminathan/PycharmProjects/MLCybSec_ImageAttacks/venv/lib/python3.8/site-packages/torch/nn/_reduction.py:42: UserWarning: size_average and reduce args will be deprecated, please use reduction='sum' instead.
+  warnings.warn(warning.format(ret))
+/Users/shravanswaminathan/PycharmProjects/MLCybSec_ImageAttacks/venv/lib/python3.8/site-packages/torch/nn/_reduction.py:42: UserWarning: size_average and reduce args will be deprecated, please use reduction='sum' instead.
+  warnings.warn(warning.format(ret))
+/Users/shravanswaminathan/PycharmProjects/MLCybSec_ImageAttacks/venv/lib/python3.8/site-packages/torch/nn/_reduction.py:42: UserWarning: size_average and reduce args will be deprecated, please use reduction='sum' instead.
+  warnings.warn(warning.format(ret))
+/Users/shravanswaminathan/PycharmProjects/MLCybSec_ImageAttacks/venv/lib/python3.8/site-packages/torch/nn/_reduction.py:42: UserWarning: size_average and reduce args will be deprecated, please use reduction='sum' instead.
+  warnings.warn(warning.format(ret))
+/Users/shravanswaminathan/PycharmProjects/MLCybSec_ImageAttacks/venv/lib/python3.8/site-packages/torch/nn/_reduction.py:42: UserWarning: size_average and reduce args will be deprecated, please use reduction='sum' instead.
+  warnings.warn(warning.format(ret))
+/Users/shravanswaminathan/PycharmProjects/MLCybSec_ImageAttacks/venv/lib/python3.8/site-packages/torch/nn/_reduction.py:42: UserWarning: size_average and reduce args will be deprecated, please use reduction='sum' instead.
+  warnings.warn(warning.format(ret))
+/Users/shravanswaminathan/PycharmProjects/MLCybSec_ImageAttacks/venv/lib/python3.8/site-packages/torch/nn/_reduction.py:42: UserWarning: size_average and reduce args will be deprecated, please use reduction='sum' instead.
+  warnings.warn(warning.format(ret))
+Attacking with: ['FGSM', 'PGD', 'CW']
+ Test accuracy: 94.5999984741211
+ Execution time: 0:06:44.797671
+ ################################################################################
+Attacking with: ['DeepFool', 'FGSM', 'FAB']
+ Test accuracy: 93.48999786376953
+ Execution time: 0:10:28.288751
+ ################################################################################
+Attacking with: ['DeepFool', 'PGD', 'FAB']
+ Test accuracy: 93.66999816894531
+ Execution time: 0:10:55.329127
+ ################################################################################
+Attacking with: ['FGSM', 'PGD', 'FAB']
+ Test accuracy: 94.61000061035156
+ Execution time: 0:11:03.024282
+ ################################################################################
+Attacking with: ['DeepFool', 'FGSM', 'PGD']
+ Test accuracy: 85.9000015258789
+ Execution time: 0:12:42.195936
+ ################################################################################
+Attacking with: ['DeepFool', 'FGSM', 'CW']
+ Test accuracy: 93.48999786376953
+ Execution time: 0:13:34.040053
+ ################################################################################
+Attacking with: ['DeepFool', 'CW', 'FAB']
+ Test accuracy: 96.68000030517578
+ Execution time: 0:14:18.682119
+ ################################################################################
+Attacking with: ['DeepFool', 'PGD', 'CW']
+ Test accuracy: 93.63999938964844
+ Execution time: 0:14:45.701645
+ ################################################################################
+Attacking with: ['FGSM', 'CW', 'FAB']
+ Test accuracy: 96.33999633789062
+ Execution time: 0:15:12.490238
+ ################################################################################
