@@ -31,6 +31,7 @@ from multiprocessing import Process, Pool, Pipe, Lock
 # We only support sklearn and pytorch.
 import torchvision.datasets as datasets
 import torchvision.transforms as transforms
+from torchvision import models
 import torch.utils.data as data
 import torchvision
 
@@ -47,10 +48,15 @@ undefended_model_path = "undefended_model.pth"
 threshold_model_path = "threshold_model.pth"
 defended_model_path = "defended_model.pth"
 whiteboxRandomModel = "whiteboxRandomModel.pth"
+
+substituteModelName0 = "substituteModel0.pth"
+substituteModelName1 = "substituteModel1.pth"
+substituteModelName2 = "substituteModel2.pth"
+
 untrainedModelPath = "untrainedModel.pth"
 attackDict = {} #filled by main
 listAdvModels = []
-n_epochs = 3
+n_epochs = 4
 batch_size_train = 64
 batch_size_test = 1
 learning_rate_1 = 0.01
@@ -100,6 +106,7 @@ class CNN(nn.Module):
 
         return out
 
+
 class Net(nn.Module):
     def __init__(self):
         super(Net, self).__init__()
@@ -118,9 +125,43 @@ class Net(nn.Module):
         x = self.fc2(x)
         return F.log_softmax(x)
 
+# Fully connected neural network with one hidden layer
+class FeedForwardNeuralNet(nn.Module):
+    def __init__(self):
+        super(FeedForwardNeuralNet, self).__init__()
+        self.input_size = 784
+        self.l1 = nn.Linear(784, 500)
+        self.relu = nn.ReLU()
+        self.l2 = nn.Linear(500, 10)
+
+    def forward(self, x):
+        out = self.l1(x)
+        out = self.relu(out)
+        out = self.l2(out)
+        # no activation and no softmax at the end
+        return out
+
+
+class MultiPerceptronNet(nn.Module):
+    def __init__(self):
+        super(MultiPerceptronNet, self).__init__()
+        self.fc1 = nn.Linear(28 * 28, 512)
+        self.fc2 = nn.Linear(512, 512)
+        self.fc3 = nn.Linear(512, 10)
+        self.droput = nn.Dropout(0.2)
+
+    def forward(self, x):
+        x = x.view(-1, 28 * 28)
+        x = F.relu(self.fc1(x))
+        x = self.droput(x)
+        x = F.relu(self.fc2(x))
+        x = self.droput(x)
+        x = self.fc3(x)
+        return x
+
 # (3)define loss, optimizer
 # Training function for all networks
-def train(modelInp, optimizerInp, epoch, saveModel, train_loader, attackGeneratorList=None ):
+def train(modelInp, optimizerInp, epoch, saveModel, train_loader, attackGeneratorList=None, criterionInp=None, flgReshape = False ):
     # defining list to save training and testing loss for future evaluation.
     train_losses = []
     train_counter = []
@@ -128,9 +169,54 @@ def train(modelInp, optimizerInp, epoch, saveModel, train_loader, attackGenerato
     correct = 0
     for batch_idx, (data, target) in enumerate(train_loader):
         #data.requires_grad = True
+        if flgReshape:
+            data = data.reshape(-1, 28 * 28)
+
+        data = data.to(device)
+        target = target.to(device)
+
         optimizerInp.zero_grad()
         output = modelInp(data)
-        loss = F.nll_loss(output, target)
+        if criterionInp is None:
+            loss = F.nll_loss(output, target)
+        else:
+            loss = criterionInp(output, target)
+        loss.backward()
+        optimizerInp.step()
+        pred = output.data.max(1, keepdim=True)[1]
+        correct += pred.eq(target.data.view_as(pred)).sum()
+        if batch_idx % log_interval == 0:
+            #print('Network:Train Epoch: {} [{}/{} ({:.0f}%)]\tLoss: {:.6f}'.format(
+            #    epoch, batch_idx * len(data), len(train_loader.dataset),
+            #           100. * batch_idx / len(train_loader), loss.item()))
+            train_losses.append(loss.item())
+            train_counter.append(
+                (batch_idx * 64) + ((epoch - 1) * len(train_loader.dataset)))
+            torch.save(modelInp.state_dict(), saveModel)
+    accuracy = 100 * correct / len(train_loader.dataset)
+    train_acc.append(accuracy)
+    print("Epoch = {}, Training Accuracy = {}".format(epoch, accuracy))
+    return accuracy
+
+# (3)define loss, optimizer
+# Training function for all networks
+def trainTemp(modelInp, optimizerInp, epoch, saveModel, train_loader, attackGeneratorList=None, criterionInp=None ):
+    # defining list to save training and testing loss for future evaluation.
+    train_losses = []
+    train_counter = []
+    modelInp.train()
+    correct = 0
+    for batch_idx, (data, target) in enumerate(train_loader):
+        #data.requires_grad = True
+        data = data.reshape(-1, 28 * 28).to(device)
+        target = target.to(device)
+
+        optimizerInp.zero_grad()
+        output = modelInp(data)
+        if criterionInp is None:
+            loss = F.nll_loss(output, target)
+        else:
+            loss = criterionInp(output, target)
         loss.backward()
         optimizerInp.step()
         pred = output.data.max(1, keepdim=True)[1]
@@ -207,13 +293,55 @@ def trainWithAdversary(modelInpPath, nEpoch, saveModel, attackGeneratorList, att
     print("Adversarial({}) model {} is trained and stored".format(attackNameList, saveModel))
     print("################################################################################")
 
-def test(modelInp, test_loader_arg, attackGeneratorList=None, attackNameList='', id=0, lock=None):
+def test(modelInp, test_loader_arg, attackGeneratorList=None, attackNameList='', id=0, lock=None, flgReshape = False):
     begin_time = datetime.datetime.now()
     modelInp.eval()
     test_loss = 0
     correct = 0
     test_losses = []
     for dataX, target in test_loader_arg:
+        if flgReshape:
+            dataX = dataX.reshape(-1, 28 * 28)
+        dataX = dataX.to(device)
+        target = target.to(device)
+
+        dataTmp = dataX
+        if attackGeneratorList is not None:
+            for attackType in attackGeneratorList:
+                dataTmp = attackType(dataTmp, target)
+        output = modelInp(dataTmp)
+        test_loss += F.nll_loss(output, target, size_average=False).item()
+        pred = output.data.max(1, keepdim=True)[1]
+        correct += pred.eq(target.data.view_as(pred)).sum()
+    try:
+        accuracy = 100 * correct / len(test_loader_arg.dataset)
+    except:
+        accuracy = 100 * correct / len(test_loader_arg)
+    #test_acc.append(accuracy)
+    try:
+        test_loss /= len(test_loader_arg.dataset)
+    except:
+        test_loss /= len(test_loader_arg)
+    test_losses.append(test_loss)
+
+    runTime = (datetime.datetime.now() - begin_time)
+    print("Attacking with: {} \n Test accuracy: {}\n Execution time: {} \n ################################################################################"
+          .format(attackNameList, accuracy, runTime))
+    #recordTestParams(id, attackNameList, accuracy, runTime, lock)
+    #print("Execution time - ", datetime.datetime.now() - begin_time)
+    return accuracy
+
+def testTemp(modelInp, test_loader_arg, attackGeneratorList=None, attackNameList='', id=0, lock=None, flgReshape = False):
+    begin_time = datetime.datetime.now()
+    modelInp.eval()
+    test_loss = 0
+    correct = 0
+    test_losses = []
+    for dataX, target in test_loader_arg:
+        if flgReshape:
+            dataX = dataX.reshape(-1, 28 * 28)
+        dataX = dataX.to(device)
+        target = target.to(device)
         dataTmp = dataX
         if attackGeneratorList is not None:
             for attackType in attackGeneratorList:
@@ -260,9 +388,9 @@ def dumpTestParams(jsonName):
 
 def evaluateAttacks(originalModel, substituteModel, lock):
 
-    global attackDict
+    global attackDict, attackDictKeys,  attackDictSubsModel0, attackDictSubsModel1, attackDictSubsModel2
     attackThreadPoolDict = {}
-    attackKeys = list(attackDict.keys())
+    attackKeys = attackDictKeys
 
     # Initializing threading helper dict
     for i in range(len(attackKeys)):
@@ -275,9 +403,11 @@ def evaluateAttacks(originalModel, substituteModel, lock):
             print("Generated attack set: {}".format(attackSet))
             attackModelList = []
             attackNameList = []
-            for attackX in list(attackSet):
-                attackNameList.append(attackX)
-                attackModelList.append(attackDict[attackX])
+
+            for subsModelNr in range(3):
+                for attackX in list(attackSet):
+                    attackNameList.append(str(attackX) + str(subsModelNr))
+                    attackModelList.append(attackDict[subsModelNr][attackX])
             # trying combinatorial attacks
             procInst = Process(target=test,
                                args=(originalModel, test_loader, attackModelList, attackNameList, itr, lock))
@@ -359,9 +489,9 @@ if __name__ == '__main__':
     train_acc = []
     test_acc = []
 
-    model = Net().to(device)
-    optimizerModel = optim.SGD(model.parameters(), lr=learning_rate_2, momentum=momentum_2)
-    torch.save(model.state_dict(), untrainedModelPath)
+    #model = Net().to(device)
+    #optimizerModel = optim.SGD(model.parameters(), lr=learning_rate_2, momentum=momentum_2)
+    #torch.save(model.state_dict(), untrainedModelPath)
     #todo, train the above model to the MNIST dataset. This will improve the attack vastly.
 
 
@@ -382,11 +512,26 @@ if __name__ == '__main__':
 
     networkOriginal = Net().to(device)
     optimizerOriginal = optim.SGD(networkOriginal.parameters(), lr=learning_rate_2, momentum=momentum_2)
+    #criterionOriginal = F.nll_loss()
 
-    substituteModel = Net().to(device)
-    optimizerSubstituteModel = optim.SGD(substituteModel.parameters(), lr=learning_rate_2, momentum=momentum_2)
+    #substituteModel = Net().to(device)
+    #optimizerSubstituteModel = optim.SGD(substituteModel.parameters(), lr=learning_rate_2, momentum=momentum_2)
 
-    train(substituteModel, optimizerSubstituteModel, 1, whiteboxRandomModel, train_loader)
+    #train(substituteModel, optimizerSubstituteModel, 1, whiteboxRandomModel, train_loader)
+
+    print("################################################################################")
+    print("Training original model")
+    print("################################################################################")
+
+    for epoch in range(1, n_epochs + 1):
+        train_acc.append(train(networkOriginal, optimizerOriginal, epoch, undefended_model_path, train_loader))
+        test_acc.append(test(networkOriginal, test_loader))
+
+
+    print("Training Summary - ")
+    for epoch in range(1, n_epochs + 1):
+        print('.....Epoch %d, Train Accuracy: %f, Test Accuracy: %f' % (epoch, train_acc[epoch - 1], test_acc[epoch - 1]))
+    print("################################################################################")
 
     epsilonSmall = 0.05
     epsilonMiddle = 0.1
@@ -394,31 +539,108 @@ if __name__ == '__main__':
 
     epsilonUse = epsilonSmall
 
-    attackDict = {
-        "DeepFool": DeepFool(substituteModel, steps=10),  # used to be 1000 steps
-        "FGSM": FGSM(substituteModel, eps=epsilonUse),
-        "PGD": PGD(substituteModel, eps=epsilonUse, alpha=0.5, steps=7, random_start=True),
-        "CW": CW(substituteModel, c=100, lr=0.01, steps=10, kappa=10),  # used to be 1000 steps,
-        # "FFGSM"       :   FFGSM(model, eps=epsilonUse, alpha=0.1),
-        # "VANILA"      :   VANILA(model),
-        # "APGD"        :   APGD(model, eps=epsilonUse, steps=100, eot_iter=1, n_restarts=1, loss='ce'),
-        # "AutoAttack"  :   AutoAttack(model, eps=0.05, n_classes=10, version='standard'),
-        # "DIFGSM"      :   DIFGSM(model, eps=epsilonUse, alpha=2 / 255, steps=100, diversity_prob=0.5, resize_rate=0.9),
-        "FAB": FAB(substituteModel, eps=epsilonUse, steps=10, n_classes=10, n_restarts=1, targeted=False),
-        # steps used to be 100
-        # "FAB2"        :   FAB(model, eps=epsilonUse, steps=10, n_classes=10, n_restarts=1, targeted=True)
+    # Substitute model 0 - Multi layer perceptron
+    print("################################################################################")
+    print("Training MultiPerceptronNet model")
+    print("################################################################################")
+    substituteModel0 = MultiPerceptronNet().to(device)
+    criterionSub0 = nn.CrossEntropyLoss()
+    optimizerSub0 = torch.optim.SGD(substituteModel0.parameters(),lr = 0.01)
+
+    #train(substituteModel0, optimizerSub0, 4, substituteModelName0, train_loader, criterionInp=criterionSub0)
+    train_acc = []
+    test_acc = []
+    for epoch in range(1, 10 + 1):
+        train_acc.append(train(substituteModel0, optimizerSub0, epoch, substituteModelName0, train_loader, criterionInp=criterionSub0))
+        test_acc.append(test(substituteModel0, test_loader))
+
+    print("Training Summary - ")
+    for epoch in range(1, 10 + 1):
+        print(
+            '.....Epoch %d, Train Accuracy: %f, Test Accuracy: %f' % (epoch, train_acc[epoch - 1], test_acc[epoch - 1]))
+    print("################################################################################")
+
+
+
+
+
+    print("################################################################################")
+    print("Training FeedForwardNeuralNet model")
+    print("################################################################################")
+    #Substitute model 1 - Feed-Forward Neural Network
+    substituteModel1 = FeedForwardNeuralNet().to(device)
+    criterionSub1 = nn.CrossEntropyLoss()
+    optimizerSub1 = torch.optim.Adam(substituteModel1.parameters(), lr=0.001)
+
+    #train(substituteModel1, optimizerSub1, 4, substituteModelName1, train_loader, criterionInp=criterionSub1)
+    train_acc = []
+    test_acc = []
+    for epoch in range(1, 10 + 1):
+        train_acc.append(train(substituteModel1, optimizerSub1, epoch, substituteModelName1, train_loader,
+                               criterionInp=criterionSub1, flgReshape=True))
+        test_acc.append(test(substituteModel1, test_loader, flgReshape=True))
+
+    print("Training Summary - ")
+    for epoch in range(1, 10 + 1):
+        print(
+            '.....Epoch %d, Train Accuracy: %f, Test Accuracy: %f' % (epoch, train_acc[epoch - 1], test_acc[epoch - 1]))
+    print("################################################################################")
+
+
+
+
+
+
+    print("################################################################################")
+    print("Training resnet50 model")
+    print("################################################################################")
+    #Substitute model 2 - Resnet CNN model
+    substituteModel2 = models.resnet50(pretrained=True)
+    substituteModel2.conv1 = nn.Conv2d(1, 64, kernel_size=(7, 7), stride=(2, 2), padding=(3, 3), bias=False)
+    substituteModel2.fc = nn.Linear(2048, 10, bias=True)
+
+    print("Testing Summary - ")
+    test(substituteModel2, test_loader)
+    print("################################################################################")
+
+    attackDictSubsModel0 = {
+        "DeepFool": DeepFool(substituteModel0, steps=10),  # used to be 1000 steps
+        "FGSM": FGSM(substituteModel0, eps=epsilonUse),
+        "CW": CW(substituteModel0, c=100, lr=0.01, steps=10, kappa=10),  # used to be 1000 steps,
     }
 
+    attackDictSubsModel1 = {
+        "DeepFool": DeepFool(substituteModel1, steps=10),  # used to be 1000 steps
+        "FGSM": FGSM(substituteModel1, eps=epsilonUse),
+        "CW": CW(substituteModel1, c=100, lr=0.01, steps=10, kappa=10),  # used to be 1000 steps,
+    }
 
-    for epoch in range(1, n_epochs + 1):
-        train_acc.append(train(networkOriginal, optimizerOriginal, epoch, undefended_model_path, train_loader))
-        test_acc.append(test(networkOriginal, test_loader))
+    attackDictSubsModel2 = {
+        "DeepFool": DeepFool(substituteModel2, steps=10),  # used to be 1000 steps
+        "FGSM": FGSM(substituteModel2, eps=epsilonUse),
+        "CW": CW(substituteModel2, c=100, lr=0.01, steps=10, kappa=10),  # used to be 1000 steps,
+    }
 
-    print("################################################################################")
-    print("Training Summary - ")
-    for epoch in range(1, n_epochs + 1):
-        print('.....Epoch %d, Train Accuracy: %f, Test Accuracy: %f' % (epoch, train_acc[epoch - 1], test_acc[epoch - 1]))
-    print("################################################################################")
+    attackDictKeys = ["DeepFool", "FGSM", "CW"]
+    attackDict = [attackDictSubsModel0, attackDictSubsModel1, attackDictSubsModel2]
+
+    #attackDict = {
+    #    "DeepFool": DeepFool(substituteModel0, steps=10),  # used to be 1000 steps
+    #    "FGSM": FGSM(substituteModel0, eps=epsilonUse),
+    #    "CW": CW(substituteModel0, c=100, lr=0.01, steps=10, kappa=10),  # used to be 1000 steps,
+    #    "DeepFool": DeepFool(substituteModel1, steps=10),  # used to be 1000 steps
+    #    "FGSM": FGSM(substituteModel1, eps=epsilonUse),
+    #    "CW": CW(substituteModel1, c=100, lr=0.01, steps=10, kappa=10),  # used to be 1000 steps,
+    #    "DeepFool": DeepFool(substituteModel2, steps=10),  # used to be 1000 steps
+    #    "FGSM": FGSM(substituteModel2, eps=epsilonUse),
+    #    "CW": CW(substituteModel3, c=100, lr=0.01, steps=10, kappa=10),  # used to be 1000 steps,
+
+        # "PGD": PGD(substituteModel, eps=epsilonUse, alpha=0.5, steps=7, random_start=True),
+        #"FAB": FAB(substituteModel, eps=epsilonUse, steps=10, n_classes=10, n_restarts=1, targeted=False),
+    #    }
+
+
+
 
     #evaluateAttacks(originalModel=networkOriginal,
     #                substituteModel=substituteModel,
@@ -428,6 +650,8 @@ if __name__ == '__main__':
 
 
     #adversarialTraining(untrainedModelPath, train_loader)
+
+    exit()
 
     attackKeys = list(attackDict.keys())
     for itr, attackSet in enumerate(
@@ -454,19 +678,5 @@ if __name__ == '__main__':
         dumpJsonName = advModelPath.replace("advModel_", "")
         dumpJsonName = "cascadedAttackAccuracy_AdvModel_" + dumpJsonName + ".json"
         dumpTestParams(dumpJsonName)
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
