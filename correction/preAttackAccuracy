@@ -1,0 +1,168 @@
+################################################################################
+Training original model
+################################################################################
+Epoch = 1, Training Accuracy = 71.73400115966797
+Attacking with:
+ Test accuracy: 94.26000213623047
+ Execution time: 0:00:02.940279
+ ################################################################################
+Epoch = 2, Training Accuracy = 88.9219970703125
+Attacking with:
+ Test accuracy: 96.2699966430664
+ Execution time: 0:00:02.852815
+ ################################################################################
+Epoch = 3, Training Accuracy = 91.27999877929688
+Attacking with:
+ Test accuracy: 97.22000122070312
+ Execution time: 0:00:02.946304
+ ################################################################################
+Epoch = 4, Training Accuracy = 92.69999694824219
+Attacking with:
+ Test accuracy: 97.41999816894531
+ Execution time: 0:00:02.975735
+ ################################################################################
+Training Summary -
+.....Epoch 1, Train Accuracy: 71.734001, Test Accuracy: 94.260002
+.....Epoch 2, Train Accuracy: 71.734001, Test Accuracy: 96.269997
+.....Epoch 3, Train Accuracy: 88.921997, Test Accuracy: 97.220001
+.....Epoch 4, Train Accuracy: 88.921997, Test Accuracy: 97.419998
+################################################################################
+################################################################################
+Training MultiPerceptronNet model
+################################################################################
+Epoch = 1, Training Accuracy = 59.34199905395508
+Attacking with:
+ Test accuracy: 80.33000183105469
+ Execution time: 0:00:01.019807
+ ################################################################################
+Epoch = 2, Training Accuracy = 83.13600158691406
+Attacking with:
+ Test accuracy: 87.19999694824219
+ Execution time: 0:00:01.021031
+ ################################################################################
+Epoch = 3, Training Accuracy = 87.43399810791016
+Attacking with:
+ Test accuracy: 89.37999725341797
+ Execution time: 0:00:01.021257
+ ################################################################################
+Epoch = 4, Training Accuracy = 89.01399993896484
+Attacking with:
+ Test accuracy: 90.19999694824219
+ Execution time: 0:00:01.025641
+ ################################################################################
+Epoch = 5, Training Accuracy = 89.91600036621094
+Attacking with:
+ Test accuracy: 91.01000213623047
+ Execution time: 0:00:01.020241
+ ################################################################################
+Epoch = 6, Training Accuracy = 90.80000305175781
+Attacking with:
+ Test accuracy: 91.7699966430664
+ Execution time: 0:00:01.024719
+ ################################################################################
+Epoch = 7, Training Accuracy = 91.46399688720703
+Attacking with:
+ Test accuracy: 92.19999694824219
+ Execution time: 0:00:01.023928
+ ################################################################################
+Epoch = 8, Training Accuracy = 92.0780029296875
+Attacking with:
+ Test accuracy: 92.55000305175781
+ Execution time: 0:00:01.021213
+ ################################################################################
+Epoch = 9, Training Accuracy = 92.5
+Attacking with:
+ Test accuracy: 93.33000183105469
+ Execution time: 0:00:01.022520
+ ################################################################################
+Epoch = 10, Training Accuracy = 92.98600006103516
+Attacking with:
+ Test accuracy: 93.5199966430664
+ Execution time: 0:00:01.021382
+ ################################################################################
+Training Summary -
+.....Epoch 1, Train Accuracy: 59.341999, Test Accuracy: 80.330002
+.....Epoch 2, Train Accuracy: 59.341999, Test Accuracy: 87.199997
+.....Epoch 3, Train Accuracy: 83.136002, Test Accuracy: 89.379997
+.....Epoch 4, Train Accuracy: 83.136002, Test Accuracy: 90.199997
+.....Epoch 5, Train Accuracy: 87.433998, Test Accuracy: 91.010002
+.....Epoch 6, Train Accuracy: 87.433998, Test Accuracy: 91.769997
+.....Epoch 7, Train Accuracy: 89.014000, Test Accuracy: 92.199997
+.....Epoch 8, Train Accuracy: 89.014000, Test Accuracy: 92.550003
+.....Epoch 9, Train Accuracy: 89.916000, Test Accuracy: 93.330002
+.....Epoch 10, Train Accuracy: 89.916000, Test Accuracy: 93.519997
+################################################################################
+################################################################################
+Training FeedForwardNeuralNet model
+################################################################################
+Epoch = 1, Training Accuracy = 92.0260009765625
+Attacking with:
+ Test accuracy: 95.56999969482422
+ Execution time: 0:00:00.836348
+ ################################################################################
+Epoch = 2, Training Accuracy = 96.53600311279297
+Attacking with:
+ Test accuracy: 96.29000091552734
+ Execution time: 0:00:00.855271
+ ################################################################################
+Epoch = 3, Training Accuracy = 97.7020034790039
+Attacking with:
+ Test accuracy: 97.16000366210938
+ Execution time: 0:00:00.836955
+ ################################################################################
+Epoch = 4, Training Accuracy = 98.4219970703125
+Attacking with:
+ Test accuracy: 97.37000274658203
+ Execution time: 0:00:00.867235
+ ################################################################################
+Epoch = 5, Training Accuracy = 98.86399841308594
+Attacking with:
+ Test accuracy: 97.4800033569336
+ Execution time: 0:00:00.830522
+ ################################################################################
+Epoch = 6, Training Accuracy = 99.1520004272461
+Attacking with:
+ Test accuracy: 97.62000274658203
+ Execution time: 0:00:00.833550
+ ################################################################################
+Epoch = 7, Training Accuracy = 99.3759994506836
+Attacking with:
+ Test accuracy: 97.4000015258789
+ Execution time: 0:00:00.843696
+ ################################################################################
+Epoch = 8, Training Accuracy = 99.56999969482422
+Attacking with:
+ Test accuracy: 97.8499984741211
+ Execution time: 0:00:00.835965
+ ################################################################################
+Epoch = 9, Training Accuracy = 99.64600372314453
+Attacking with:
+ Test accuracy: 97.9000015258789
+ Execution time: 0:00:00.838147
+ ################################################################################
+Epoch = 10, Training Accuracy = 99.70600128173828
+Attacking with:
+ Test accuracy: 97.86000061035156
+ Execution time: 0:00:00.841586
+ ################################################################################
+Training Summary -
+.....Epoch 1, Train Accuracy: 92.026001, Test Accuracy: 95.570000
+.....Epoch 2, Train Accuracy: 92.026001, Test Accuracy: 96.290001
+.....Epoch 3, Train Accuracy: 96.536003, Test Accuracy: 97.160004
+.....Epoch 4, Train Accuracy: 96.536003, Test Accuracy: 97.370003
+.....Epoch 5, Train Accuracy: 97.702003, Test Accuracy: 97.480003
+.....Epoch 6, Train Accuracy: 97.702003, Test Accuracy: 97.620003
+.....Epoch 7, Train Accuracy: 98.421997, Test Accuracy: 97.400002
+.....Epoch 8, Train Accuracy: 98.421997, Test Accuracy: 97.849998
+.....Epoch 9, Train Accuracy: 98.863998, Test Accuracy: 97.900002
+.....Epoch 10, Train Accuracy: 98.863998, Test Accuracy: 97.860001
+################################################################################
+################################################################################
+Training resnet50 model
+################################################################################
+Testing Summary -
+Attacking with:
+ Test accuracy: 10.949999809265137
+ Execution time: 0:01:31.110480
+ ################################################################################
+################################################################################

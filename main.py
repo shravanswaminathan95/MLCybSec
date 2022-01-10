@@ -56,7 +56,7 @@ substituteModelName2 = "substituteModel2.pth"
 untrainedModelPath = "untrainedModel.pth"
 attackDict = {} #filled by main
 listAdvModels = []
-n_epochs = 4
+n_epochs = 10
 batch_size_train = 64
 batch_size_test = 1
 learning_rate_1 = 0.01
@@ -308,7 +308,15 @@ def test(modelInp, test_loader_arg, attackGeneratorList=None, attackNameList='',
         dataTmp = dataX
         if attackGeneratorList is not None:
             for attackType in attackGeneratorList:
-                dataTmp = attackType(dataTmp, target)
+                try:
+                    dataTmp = attackType(dataTmp, target)
+                except:
+                    #print("dataTmp shape before reshape call", dataTmp.shape)
+                    dataTmp = attackType(dataTmp.reshape(-1, 28*28), target)
+                    #print("dataTmp shape after attackType call", dataTmp.shape)
+                    dataTmp = dataTmp.reshape(1, 1, 28, 28)
+                    #print("dataTmp shape after reshape call", dataTmp.shape)
+
         output = modelInp(dataTmp)
         test_loss += F.nll_loss(output, target, size_average=False).item()
         pred = output.data.max(1, keepdim=True)[1]
@@ -386,7 +394,7 @@ def dumpTestParams(jsonName):
     dictTestParams = {}
 
 
-def evaluateAttacks(originalModel, substituteModel, lock):
+def evaluateAttacks(originalModel, lock):
 
     global attackDict, attackDictKeys,  attackDictSubsModel0, attackDictSubsModel1, attackDictSubsModel2
     attackThreadPoolDict = {}
@@ -537,7 +545,7 @@ if __name__ == '__main__':
     epsilonMiddle = 0.1
     epsilonLarge = 0.15
 
-    epsilonUse = epsilonSmall
+    epsilonUse = epsilonMiddle
 
     # Substitute model 0 - Multi layer perceptron
     print("################################################################################")
@@ -550,12 +558,12 @@ if __name__ == '__main__':
     #train(substituteModel0, optimizerSub0, 4, substituteModelName0, train_loader, criterionInp=criterionSub0)
     train_acc = []
     test_acc = []
-    for epoch in range(1, 10 + 1):
+    for epoch in range(1, n_epochs + 1):
         train_acc.append(train(substituteModel0, optimizerSub0, epoch, substituteModelName0, train_loader, criterionInp=criterionSub0))
         test_acc.append(test(substituteModel0, test_loader))
 
     print("Training Summary - ")
-    for epoch in range(1, 10 + 1):
+    for epoch in range(1, n_epochs + 1):
         print(
             '.....Epoch %d, Train Accuracy: %f, Test Accuracy: %f' % (epoch, train_acc[epoch - 1], test_acc[epoch - 1]))
     print("################################################################################")
@@ -575,13 +583,13 @@ if __name__ == '__main__':
     #train(substituteModel1, optimizerSub1, 4, substituteModelName1, train_loader, criterionInp=criterionSub1)
     train_acc = []
     test_acc = []
-    for epoch in range(1, 10 + 1):
+    for epoch in range(1, n_epochs + 1):
         train_acc.append(train(substituteModel1, optimizerSub1, epoch, substituteModelName1, train_loader,
                                criterionInp=criterionSub1, flgReshape=True))
         test_acc.append(test(substituteModel1, test_loader, flgReshape=True))
 
     print("Training Summary - ")
-    for epoch in range(1, 10 + 1):
+    for epoch in range(1, n_epochs + 1):
         print(
             '.....Epoch %d, Train Accuracy: %f, Test Accuracy: %f' % (epoch, train_acc[epoch - 1], test_acc[epoch - 1]))
     print("################################################################################")
@@ -607,21 +615,24 @@ if __name__ == '__main__':
         "DeepFool": DeepFool(substituteModel0, steps=10),  # used to be 1000 steps
         "FGSM": FGSM(substituteModel0, eps=epsilonUse),
         "CW": CW(substituteModel0, c=100, lr=0.01, steps=10, kappa=10),  # used to be 1000 steps,
+        "PGD": PGD(substituteModel0, eps=epsilonUse, alpha=0.5, steps=7, random_start=True),
     }
 
     attackDictSubsModel1 = {
         "DeepFool": DeepFool(substituteModel1, steps=10),  # used to be 1000 steps
         "FGSM": FGSM(substituteModel1, eps=epsilonUse),
         "CW": CW(substituteModel1, c=100, lr=0.01, steps=10, kappa=10),  # used to be 1000 steps,
+        "PGD": PGD(substituteModel1, eps=epsilonUse, alpha=0.5, steps=7, random_start=True),
     }
 
     attackDictSubsModel2 = {
         "DeepFool": DeepFool(substituteModel2, steps=10),  # used to be 1000 steps
         "FGSM": FGSM(substituteModel2, eps=epsilonUse),
         "CW": CW(substituteModel2, c=100, lr=0.01, steps=10, kappa=10),  # used to be 1000 steps,
+        "PGD": PGD(substituteModel2, eps=epsilonUse, alpha=0.5, steps=7, random_start=True),
     }
 
-    attackDictKeys = ["DeepFool", "FGSM", "CW"]
+    attackDictKeys = ["DeepFool", "FGSM", "CW", "PGD"]
     attackDict = [attackDictSubsModel0, attackDictSubsModel1, attackDictSubsModel2]
 
     #attackDict = {
@@ -642,9 +653,8 @@ if __name__ == '__main__':
 
 
 
-    #evaluateAttacks(originalModel=networkOriginal,
-    #                substituteModel=substituteModel,
-    #                lock=dictTestParamsMutex)
+    evaluateAttacks(originalModel=networkOriginal,
+                    lock=dictTestParamsMutex)
 
     #dumpTestParams("cascadedAttackAccuracy.json")
 

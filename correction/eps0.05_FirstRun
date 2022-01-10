@@ -1,0 +1,166 @@
+/Users/shravanswaminathan/PycharmProjects/MLCybSec_ImageAttacks/venv/bin/python /Users/shravanswaminathan/PycharmProjects/MLCybSec_ImageAttacks/main.py
+Enter the key to encrypt the hashes:
+\\>booboo
+Valid file -  t10k-images-idx3-ubyte
+Valid file -  .DS_Store
+Valid file -  t10k-labels-idx1-ubyte
+Valid file -  train-images-idx3-ubyte
+Valid file -  train-labels-idx1-ubyte
+Datasets authenticated. Starting training....
+/Users/shravanswaminathan/PycharmProjects/MLCybSec_ImageAttacks/venv/lib/python3.8/site-packages/torchvision/datasets/mnist.py:498: UserWarning: The given NumPy array is not writeable, and PyTorch does not support non-writeable tensors. This means you can write to the underlying (supposedly non-writeable) NumPy array using the tensor. You may want to copy the array to protect its data or make it writeable before converting it to a tensor. This type of warning will be suppressed for the rest of this program. (Triggered internally at  ../torch/csrc/utils/tensor_numpy.cpp:189.)
+  return torch.from_numpy(parsed.astype(m[2], copy=False)).view(*s)
+/Users/shravanswaminathan/PycharmProjects/MLCybSec_ImageAttacks/main.py:126: UserWarning: Implicit dimension choice for log_softmax has been deprecated. Change the call to include dim=X as an argument.
+  return F.log_softmax(x)
+################################################################################
+Training original model
+################################################################################
+Epoch = 1, Training Accuracy = 72.54000091552734
+/Users/shravanswaminathan/PycharmProjects/MLCybSec_ImageAttacks/venv/lib/python3.8/site-packages/torch/nn/_reduction.py:42: UserWarning: size_average and reduce args will be deprecated, please use reduction='sum' instead.
+  warnings.warn(warning.format(ret))
+Attacking with:
+ Test accuracy: 94.33999633789062
+ Execution time: 0:00:02.838354
+ ################################################################################
+Epoch = 2, Training Accuracy = 88.47200012207031
+Attacking with:
+ Test accuracy: 95.80999755859375
+ Execution time: 0:00:02.826231
+ ################################################################################
+Epoch = 3, Training Accuracy = 90.88400268554688
+Attacking with:
+ Test accuracy: 96.80000305175781
+ Execution time: 0:00:02.846775
+ ################################################################################
+Training Summary -
+.....Epoch 1, Train Accuracy: 72.540001, Test Accuracy: 94.339996
+.....Epoch 2, Train Accuracy: 72.540001, Test Accuracy: 95.809998
+.....Epoch 3, Train Accuracy: 88.472000, Test Accuracy: 96.800003
+################################################################################
+################################################################################
+Training MultiPerceptronNet model
+################################################################################
+Epoch = 1, Training Accuracy = 56.74599838256836
+Attacking with:
+ Test accuracy: 80.19999694824219
+ Execution time: 0:00:01.024921
+ ################################################################################
+Epoch = 2, Training Accuracy = 82.80999755859375
+Attacking with:
+ Test accuracy: 87.5
+ Execution time: 0:00:01.015871
+ ################################################################################
+Epoch = 3, Training Accuracy = 87.08999633789062
+Attacking with:
+ Test accuracy: 89.51000213623047
+ Execution time: 0:00:01.017481
+ ################################################################################
+Training Summary -
+.....Epoch 1, Train Accuracy: 56.745998, Test Accuracy: 80.199997
+.....Epoch 2, Train Accuracy: 56.745998, Test Accuracy: 87.500000
+.....Epoch 3, Train Accuracy: 82.809998, Test Accuracy: 89.510002
+################################################################################
+################################################################################
+Training FeedForwardNeuralNet model
+################################################################################
+Epoch = 1, Training Accuracy = 91.95999908447266
+Attacking with:
+ Test accuracy: 95.7300033569336
+ Execution time: 0:00:00.835165
+ ################################################################################
+Epoch = 2, Training Accuracy = 96.73999786376953
+Attacking with:
+ Test accuracy: 96.56999969482422
+ Execution time: 0:00:00.829528
+ ################################################################################
+Epoch = 3, Training Accuracy = 97.8479995727539
+Attacking with:
+ Test accuracy: 96.87999725341797
+ Execution time: 0:00:00.827858
+ ################################################################################
+Training Summary -
+.....Epoch 1, Train Accuracy: 91.959999, Test Accuracy: 95.730003
+.....Epoch 2, Train Accuracy: 91.959999, Test Accuracy: 96.570000
+.....Epoch 3, Train Accuracy: 96.739998, Test Accuracy: 96.879997
+################################################################################
+################################################################################
+Training resnet50 model
+################################################################################
+Testing Summary -
+Attacking with:
+ Test accuracy: 11.630000114440918
+ Execution time: 0:01:34.561493
+ ################################################################################
+################################################################################
+Generated attack set: ('DeepFool',)
+Generated attack set: ('FGSM',)
+Generated attack set: ('CW',)
+Generated attack set: ('DeepFool', 'FGSM')
+Generated attack set: ('DeepFool', 'CW')
+Generated attack set: ('FGSM', 'CW')
+Generated attack set: ('DeepFool', 'FGSM', 'CW')
+Starting threads for generating adversarial samples...
+ .....The command line might be dead for a while
+Generating adversarial samples for 1 cascaded attacks
+################################################################################
+/Users/shravanswaminathan/PycharmProjects/MLCybSec_ImageAttacks/main.py:126: UserWarning: Implicit dimension choice for log_softmax has been deprecated. Change the call to include dim=X as an argument.
+  return F.log_softmax(x)
+/Users/shravanswaminathan/PycharmProjects/MLCybSec_ImageAttacks/venv/lib/python3.8/site-packages/torch/nn/_reduction.py:42: UserWarning: size_average and reduce args will be deprecated, please use reduction='sum' instead.
+  warnings.warn(warning.format(ret))
+/Users/shravanswaminathan/PycharmProjects/MLCybSec_ImageAttacks/main.py:126: UserWarning: Implicit dimension choice for log_softmax has been deprecated. Change the call to include dim=X as an argument.
+  return F.log_softmax(x)
+/Users/shravanswaminathan/PycharmProjects/MLCybSec_ImageAttacks/venv/lib/python3.8/site-packages/torch/nn/_reduction.py:42: UserWarning: size_average and reduce args will be deprecated, please use reduction='sum' instead.
+  warnings.warn(warning.format(ret))
+/Users/shravanswaminathan/PycharmProjects/MLCybSec_ImageAttacks/main.py:126: UserWarning: Implicit dimension choice for log_softmax has been deprecated. Change the call to include dim=X as an argument.
+  return F.log_softmax(x)
+/Users/shravanswaminathan/PycharmProjects/MLCybSec_ImageAttacks/venv/lib/python3.8/site-packages/torch/nn/_reduction.py:42: UserWarning: size_average and reduce args will be deprecated, please use reduction='sum' instead.
+  warnings.warn(warning.format(ret))
+Attacking with: ['FGSM0', 'FGSM1', 'FGSM2']
+ Test accuracy: 92.70999908447266
+ Execution time: 0:07:19.283031
+ ################################################################################
+Attacking with: ['DeepFool0', 'DeepFool1', 'DeepFool2']
+ Test accuracy: 94.8499984741211
+ Execution time: 1:01:57.301029
+ ################################################################################
+Attacking with: ['CW0', 'CW1', 'CW2']
+ Test accuracy: 96.80000305175781
+ Execution time: 1:02:31.167530
+ ################################################################################
+Generating adversarial samples for 2 cascaded attacks
+################################################################################
+/Users/shravanswaminathan/PycharmProjects/MLCybSec_ImageAttacks/main.py:126: UserWarning: Implicit dimension choice for log_softmax has been deprecated. Change the call to include dim=X as an argument.
+  return F.log_softmax(x)
+/Users/shravanswaminathan/PycharmProjects/MLCybSec_ImageAttacks/venv/lib/python3.8/site-packages/torch/nn/_reduction.py:42: UserWarning: size_average and reduce args will be deprecated, please use reduction='sum' instead.
+  warnings.warn(warning.format(ret))
+/Users/shravanswaminathan/PycharmProjects/MLCybSec_ImageAttacks/main.py:126: UserWarning: Implicit dimension choice for log_softmax has been deprecated. Change the call to include dim=X as an argument.
+  return F.log_softmax(x)
+/Users/shravanswaminathan/PycharmProjects/MLCybSec_ImageAttacks/venv/lib/python3.8/site-packages/torch/nn/_reduction.py:42: UserWarning: size_average and reduce args will be deprecated, please use reduction='sum' instead.
+  warnings.warn(warning.format(ret))
+/Users/shravanswaminathan/PycharmProjects/MLCybSec_ImageAttacks/main.py:126: UserWarning: Implicit dimension choice for log_softmax has been deprecated. Change the call to include dim=X as an argument.
+  return F.log_softmax(x)
+/Users/shravanswaminathan/PycharmProjects/MLCybSec_ImageAttacks/venv/lib/python3.8/site-packages/torch/nn/_reduction.py:42: UserWarning: size_average and reduce args will be deprecated, please use reduction='sum' instead.
+  warnings.warn(warning.format(ret))
+Attacking with: ['DeepFool0', 'FGSM0', 'DeepFool1', 'FGSM1', 'DeepFool2', 'FGSM2']
+ Test accuracy: 82.7699966430664
+ Execution time: 1:11:38.864301
+ ################################################################################
+Attacking with: ['FGSM0', 'CW0', 'FGSM1', 'CW1', 'FGSM2', 'CW2']
+ Test accuracy: 92.62999725341797
+ Execution time: 1:23:49.304584
+ ################################################################################
+Attacking with: ['DeepFool0', 'CW0', 'DeepFool1', 'CW1', 'DeepFool2', 'CW2']
+ Test accuracy: 94.58999633789062
+ Execution time: 2:43:14.830214
+ ################################################################################
+Generating adversarial samples for 3 cascaded attacks
+################################################################################
+/Users/shravanswaminathan/PycharmProjects/MLCybSec_ImageAttacks/main.py:126: UserWarning: Implicit dimension choice for log_softmax has been deprecated. Change the call to include dim=X as an argument.
+  return F.log_softmax(x)
+/Users/shravanswaminathan/PycharmProjects/MLCybSec_ImageAttacks/venv/lib/python3.8/site-packages/torch/nn/_reduction.py:42: UserWarning: size_average and reduce args will be deprecated, please use reduction='sum' instead.
+  warnings.warn(warning.format(ret))
+Attacking with: ['DeepFool0', 'FGSM0', 'CW0', 'DeepFool1', 'FGSM1', 'CW1', 'DeepFool2', 'FGSM2', 'CW2']
+ Test accuracy: 82.7699966430664
+ Execution time: 3:43:09.857132
+ ################################################################################
+
+Process finished with exit code 0
